@@ -13,13 +13,22 @@ MoNoSDA provides structured prompts to help AI coding assistants (like Claude Co
 ├── CLAUDE.md                        # Redirect to AGENTS.md
 ├── README.md                        # This file
 ├── TASKS.md                         # Roadmap for extensive version
+├── tools/
+│   └── nrepl.py                     # Send Lua to a norns REPL over websocket
 └── .prompts/
     ├── core/
     │   └── base-instructions.md     # Core norns development principles
-    └── components/
-        ├── script.md                # Script development guide
-        ├── mod.md                   # Mod development guide
-        └── engine.md                # Engine development guide
+    ├── components/
+    │   ├── script.md                # Script development guide
+    │   ├── mod.md                   # Mod development guide
+    │   └── engine.md                # Engine development guide
+    ├── patterns/
+    │   ├── timing.md                # clock loops, transport, tick budget
+    │   ├── midi.md                  # note-off bookkeeping, testing MIDI output
+    │   └── params.md                # id collisions, groups, optional includes
+    └── tasks/
+        ├── debug.md                 # testing on a norns over wifi and on desktop norns
+        └── optimize.md              # measuring performance, xruns, fair comparisons
 ```
 
 ## Norns Core Repository
@@ -65,6 +74,9 @@ MoNoSDA automatically detects your component type and loads relevant guides:
 - **Script Project**: Loads base-instructions.md + script.md
 - **Mod Project** (has `lib/mod.lua`): Loads base-instructions.md + mod.md
 - **Engine Project** (has `*.sc` files): Loads base-instructions.md + engine.md
+- **Patterns** (timing, MIDI, params) load when the code uses them
+- **Tasks** load for the kind of work: `debug.md` for running and testing on a
+  norns or desktop norns, `optimize.md` for performance work
 
 ### Example Prompts
 

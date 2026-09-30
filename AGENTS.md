@@ -25,7 +25,25 @@ fi
 ALWAYS LOAD: .prompts/core/base-instructions.md
 LOAD IF DETECTED: .prompts/components/${COMPONENT_TYPE}.md
 LOAD AS NEEDED: .prompts/patterns/*.md (based on code patterns detected)
+LOAD FOR THE TASK: .prompts/tasks/*.md (based on what the user asks)
 ```
+
+### Patterns (load when the code uses them)
+
+| File | Load when the code… |
+|---|---|
+| `.prompts/patterns/timing.md` | uses `clock.run` / `clock.sync`, transport callbacks, a step sequencer |
+| `.prompts/patterns/midi.md` | sends MIDI notes (`note_on` / `note_off`), chords |
+| `.prompts/patterns/params.md` | adds params, separators or groups, or `include()`s other scripts' libraries |
+
+### Tasks (load for the kind of work)
+
+| File | Load when the user wants to… |
+|---|---|
+| `.prompts/tasks/debug.md` | run, test or debug on a norns (over ssh / wifi) or on desktop norns |
+| `.prompts/tasks/optimize.md` | measure or improve performance: timing, CPU, xruns, dropouts |
+
+`tools/nrepl.py` sends Lua to a norns REPL over websocket (see `tasks/debug.md`).
 
 ## Norns Reference Materials
 
@@ -52,7 +70,7 @@ The norns core repository should exist alongside this repository for reference:
 1. **Understand the component type** (script, mod, or engine)
 2. **Reference existing implementations** in ../norns/ or online examples
 3. **Follow norns conventions** for file structure and naming
-4. **Test on norns hardware or via maiden** when possible
+4. **Test on norns hardware or desktop norns** when possible (`.prompts/tasks/debug.md`)
 5. **Document clearly** for community sharing
 
 ## Important Notes

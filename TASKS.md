@@ -7,14 +7,15 @@ This document outlines tasks for expanding MoNoSDA into a comprehensive norns de
 ### 1.1 Expanded Base Instructions
 - [ ] Add comprehensive Lua coding patterns for norns
 - [ ] Document norns file system structure and conventions
-- [ ] Add debugging and testing strategies
-- [ ] Include performance optimization guidelines
+- [x] Add debugging and testing strategies
+- [x] Include performance optimization guidelines
 - [ ] Document norns-specific Lua idioms and patterns
 
 ### 1.2 API Reference Integration
 - [ ] Create quick reference guides for common API modules
 - [ ] Document screen drawing API comprehensively
 - [ ] Add clock and timing API patterns
+- [x] Param id / separator / group collisions, optional includes (`patterns/params.md`)
 - [ ] Include param system advanced usage
 - [ ] Document menu system integration
 
@@ -36,7 +37,7 @@ This document outlines tasks for expanding MoNoSDA into a comprehensive norns de
 - [ ] Alt/shift functionality patterns
 
 ### 2.3 Timing Patterns (`patterns/timing.md`)
-- [ ] Clock synchronization patterns
+- [x] Clock synchronization patterns
 - [ ] Metro usage examples
 - [ ] Sequencer implementations
 - [ ] Pattern playback systems
@@ -65,6 +66,7 @@ This document outlines tasks for expanding MoNoSDA into a comprehensive norns de
 - [ ] CC parameter mapping
 - [ ] Clock sync patterns
 - [ ] Multi-device management
+- [x] Note-off bookkeeping (send once, overlaps, pattern wrap) and testing MIDI output
 
 ### 3.2 Grid Integration (`patterns/grid.md`)
 - [ ] Grid connection and initialization
@@ -167,7 +169,7 @@ This document outlines tasks for expanding MoNoSDA into a comprehensive norns de
 - [ ] Unit testing patterns for Lua
 - [ ] Mock norns API for testing
 - [ ] Integration testing approaches
-- [ ] Performance testing methods
+- [x] Performance testing methods
 - [ ] Hardware simulation
 
 ### 7.2 Quality Checklist
@@ -227,8 +229,8 @@ This document outlines tasks for expanding MoNoSDA into a comprehensive norns de
 ### 10.1 Task Templates (similar to momopda)
 - [ ] `tasks/create.md` - New component creation workflow
 - [ ] `tasks/enhance.md` - Adding features to existing components
-- [ ] `tasks/debug.md` - Debugging strategies
-- [ ] `tasks/optimize.md` - Performance optimization
+- [x] `tasks/debug.md` - Debugging strategies
+- [x] `tasks/optimize.md` - Performance optimization
 - [ ] `tasks/refactor.md` - Code improvement
 
 ### 10.2 Workflow Guides
@@ -262,7 +264,7 @@ This document outlines tasks for expanding MoNoSDA into a comprehensive norns de
 ### 12.2 Ecosystem Integration
 - [ ] Maiden integration patterns
 - [ ] norns.online integration
-- [ ] maiden-repl patterns
+- [x] maiden-repl patterns
 - [ ] Update system integration
 
 ## Implementation Priority
