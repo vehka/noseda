@@ -1,82 +1,31 @@
-# Norns Development Assistant (MoNoSDA)
+# NoSEDA
 
-You are a development assistant for monome norns scripts, mods, and engines. Follow this conditional loading system:
+This repository holds an agent skill, `noseda`, for developing monome norns
+scripts, mods and engines. It is used from Claude Code and opencode; see
+[README.md](./README.md) for installation.
 
-## Context Detection & Loading
-
-### STEP 1: Detect component type
-
-```bash
-# Detect norns component type based on repository structure and files
-if [ -f "lib/mod.lua" ]; then
-    COMPONENT_TYPE="mod"
-elif [ -d "sc" ] || ls *.sc 1> /dev/null 2>&1; then
-    COMPONENT_TYPE="engine"
-elif [ -f "*.lua" ] || [ -d "lib" ]; then
-    COMPONENT_TYPE="script"
-else
-    COMPONENT_TYPE="unknown"
-fi
-```
-
-### STEP 2: Load relevant instructions
+## Layout
 
 ```
-ALWAYS LOAD: .prompts/core/base-instructions.md
-LOAD IF DETECTED: .prompts/components/${COMPONENT_TYPE}.md
-LOAD AS NEEDED: .prompts/patterns/*.md (based on code patterns detected)
-LOAD FOR THE TASK: .prompts/tasks/*.md (based on what the user asks)
+skills/noseda/
+├── SKILL.md              # entry point: frontmatter, core principles, what to read when
+├── references/
+│   ├── components/       # script.md, mod.md, engine.md
+│   ├── patterns/         # timing.md, midi.md, params.md
+│   └── tasks/            # debug.md, optimize.md
+└── scripts/
+    └── nrepl.py          # send Lua to a norns REPL over websocket
 ```
 
-### Patterns (load when the code uses them)
+## Editing the skill
 
-| File | Load when the code… |
-|---|---|
-| `.prompts/patterns/timing.md` | uses `clock.run` / `clock.sync`, transport callbacks, a step sequencer |
-| `.prompts/patterns/midi.md` | sends MIDI notes (`note_on` / `note_off`), chords |
-| `.prompts/patterns/params.md` | adds params, separators or groups, or `include()`s other scripts' libraries |
-
-### Tasks (load for the kind of work)
-
-| File | Load when the user wants to… |
-|---|---|
-| `.prompts/tasks/debug.md` | run, test or debug on a norns (over ssh / wifi) or on desktop norns |
-| `.prompts/tasks/optimize.md` | measure or improve performance: timing, CPU, xruns, dropouts |
-
-`tools/nrepl.py` sends Lua to a norns REPL over websocket (see `tasks/debug.md`).
-
-## Norns Reference Materials
-
-The norns core repository should exist alongside this repository for reference:
-```
-../norns/          # norns core repository (reference only - DO NOT MODIFY)
-./                 # This norns project repository
-```
-
-### Key Reference Locations
-
-- **API Documentation**: `../norns/doc/` - Local norns API documentation
-- **Script Examples**:
-  - `../norns/scripts/` - Core scripts
-  - https://github.com/tehn/awake - Simple example script
-- **Engine Examples**:
-  - `../norns/sc/engines/` - Core engines
-  - `../norns/sc/engines/Engine_PolyPerc.sc` - Basic engine template
-- **Mod Examples**:
-  - https://github.com/monome/norns-example-mod - Mod template
-
-## Development Workflow
-
-1. **Understand the component type** (script, mod, or engine)
-2. **Reference existing implementations** in ../norns/ or online examples
-3. **Follow norns conventions** for file structure and naming
-4. **Test on norns hardware or desktop norns** when possible (`.prompts/tasks/debug.md`)
-5. **Document clearly** for community sharing
-
-## Important Notes
-
-1. **Never modify files in the norns core repository** - only read them for reference
-2. **Always check existing norns components** for patterns before implementing
-3. **Follow lua/SuperCollider best practices** appropriate to the component type
-4. **Document what needs testing on hardware** - not all functionality can be validated without norns
-5. **Use clear, descriptive names** following norns community conventions
+- The `name` in the `SKILL.md` frontmatter must equal the directory name
+  (`noseda`); opencode rejects the skill otherwise.
+- The frontmatter `description` decides when agents load the skill. Keep it
+  about what the skill does and when to use it, under 1024 characters.
+- `SKILL.md` is always loaded once the skill triggers, so keep it short and put
+  detail in `references/`. When adding a reference file, add a row for it to
+  the tables in `SKILL.md`, or agents won't find it.
+- Paths inside the skill are relative to the skill directory. Don't rely on
+  `${CLAUDE_SKILL_DIR}` or other tool-specific variables.
+- [TASKS.md](./TASKS.md) is the roadmap.

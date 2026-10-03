@@ -1,6 +1,6 @@
-# MoNoSDA Extensive Version Roadmap
+# NoSEDA Extensive Version Roadmap
 
-This document outlines tasks for expanding MoNoSDA into a comprehensive norns development assistant.
+This document outlines tasks for expanding NoSEDA into a comprehensive norns development assistant.
 
 ## Phase 1: Enhanced Core Documentation
 

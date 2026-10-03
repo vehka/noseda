@@ -38,12 +38,12 @@ subprotocol `bus.sp.nanomsg.org`. Send Lua text ending in a newline. `print()`
 output comes back on the socket. This is what maiden uses, so it works whether
 or not the maiden web page opens.
 
-`tools/nrepl.py` in this repo is a small client (needs `pip install websocket-client`):
+`scripts/nrepl.py` in this skill's directory is a small client (needs `pip install websocket-client`):
 
 ```bash
-python3 tools/nrepl.py --host <ip> --wait 25 'norns.script.load("code/<script>/<script>.lua")'
-python3 tools/nrepl.py --host <ip> 'print(params:get("clock_tempo"))'
-python3 tools/nrepl.py --host localhost "dofile('/abs/path/test.lua')"   # desktop
+python3 <skill-dir>/scripts/nrepl.py --host <ip> --wait 25 'norns.script.load("code/<script>/<script>.lua")'
+python3 <skill-dir>/scripts/nrepl.py --host <ip> 'print(params:get("clock_tempo"))'
+python3 <skill-dir>/scripts/nrepl.py --host localhost "dofile('/abs/path/test.lua')"   # desktop
 ```
 
 - Loading a script takes a while; use `--wait 20` or more on hardware.
