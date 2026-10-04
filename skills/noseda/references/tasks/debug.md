@@ -71,11 +71,12 @@ ssh we@<ip> 'cd ~/dust/code && rm -rf <name> && tar xzf ~/<name>.tgz'
   goes to SYSTEM > MODS, turns it on with E3, and restarts. The enabled list is
   in `~/dust/data/system.mods`.
 - **SuperCollider engines** (`*.sc`) are compiled when sclang starts. A new or
-  changed engine file needs a restart:
-  `sudo systemctl restart norns-sclang norns-main` (converged norns). Lua-only
-  changes just need the script reloaded (`norns.script.load`). If a changed
-  revision has an identical `.sc` file, `git diff --quiet A B -- path/Engine.sc`
-  shows you can skip the restart.
+  changed engine file needs a restart. Restart JACK too, in the same ssh
+  session (see "ssh logouts and JACK" below for why):
+  `sudo systemctl restart norns-jack && sleep 4 && sudo systemctl restart norns-sclang norns-main`
+  (converged norns). Lua-only changes just need the script reloaded
+  (`norns.script.load`). If a changed revision has an identical `.sc` file,
+  `git diff --quiet A B -- path/Engine.sc` shows you can skip the restart.
 - Restarting services and replacing installed code change the user's device:
   confirm with the user first unless they asked for it.
 
@@ -88,6 +89,49 @@ journalctl -u norns-jack --since '10 min ago' | grep -i xrun   # audio dropouts,
 cat ~/dust/data/system.mods                    # enabled mods
 amidi -l                                       # MIDI devices connected
 ```
+
+### ssh logouts and JACK
+
+On a norns where systemd-logind has `RemoveIPC` on (the default) and `we` has
+no linger, about 10 s after the **last ssh session of `we` closes**, logind
+deletes everything `we` owns in `/dev/shm`. That includes JACK's socket and
+shared memory. jackd, sclang and norns keep running, because clients that are
+already connected keep their connection, but no new JACK client can attach.
+Seen on a shield running 260616.
+
+What it looks like:
+
+- `systemctl restart norns-sclang norns-main` leaves `norns-main` **failed**
+  (`start-limit-hit`). Its log says `Cannot connect to server socket` and
+  `jack server is not running or cannot be started`, although `norns-jack` is
+  active.
+- A mod that starts its own JACK client (nb_fluid runs fluidsynth) gets no
+  ports and stays silent.
+- The REPL on port 5555 refuses connections, because norns-main is down.
+
+```bash
+ls /dev/shm            # no jack-* / jack_default_* files: JACK's files are gone
+jack_lsp               # "Cannot connect to server socket"
+busctl get-property org.freedesktop.login1 /org/freedesktop/login1 \
+  org.freedesktop.login1.Manager RemoveIPC      # "b true"
+journalctl --since '10 min ago' | grep 'Removed slice User Slice of UID 1000'
+```
+
+To recover, in **one** ssh session:
+
+```bash
+sudo systemctl reset-failed norns-main
+sudo systemctl restart norns-jack && sleep 4 && sudo systemctl restart norns-sclang norns-main
+```
+
+SYSTEM > RESTART on the device, or a power cycle, also recovers it. The files
+are deleted again after the next ssh logout, so after any ssh work assume new
+JACK clients can't connect until JACK has been restarted. Check `/dev/shm`
+before blaming a script, an engine or a mod.
+
+A lasting fix is a system setting on the user's device, so suggest it and let
+the user decide: `RemoveIPC=no` in `/etc/systemd/logind.conf` (then
+`sudo systemctl restart systemd-logind`), or `sudo loginctl enable-linger we`.
 
 ## 5. Flaky wifi
 
@@ -166,3 +210,47 @@ debug.setupvalue(clocked_seq, idx, wrapper)  -- swap a local function (restore a
 - Plain `lua5.3` can load norns libraries for offline tests:
   `package.path = "<norns>/lua/lib/?.lua;" .. package.path; util = require "util"`,
   then `require "musicutil"` and so on.
+
+## 8. Seeing the screen and pressing keys
+
+**Screenshots.** `screen.export_screenshot("name")` writes
+`norns.state.data .. "name.png"` (`~/dust/data/<script>/name.png`) from the
+norns screen itself, on desktop and on hardware. It is an exact capture of the
+128x64 screen, scaled up, with no window or desktop around it.
+
+```bash
+python3 <skill-dir>/scripts/nrepl.py --host <ip> 'print(norns.state.data); screen.export_screenshot("shot")'
+scp we@<ip>:dust/data/<script>/shot.png /tmp/    # then read the PNG
+```
+
+- It captures the screen as it is at that moment, so call it after the script
+  has drawn and updated. Look at `norns.state.data` first: with no script
+  loaded (NO SCRIPT, SUPERCOLLIDER FAIL) it can be a stale directory.
+- Delete the file afterwards; it lands in the user's data folder.
+- A screenshot of the desktop window (`import -window root`) also captures
+  whatever else is on the user's screen. Prefer the call above.
+
+**Pressing keys and encoders from the REPL.** Calling the global `key(3, 1)` or
+`enc(2, 1)` does not test what the hardware does. norns captures the handlers
+by value when it enters play mode: input goes to `_menu.key` and
+`norns.encoders.callback`. `redraw` is the exception, it is called by global
+name, but norns resets it from `norns.script.redraw` whenever the menu is left
+or `norns.menu.init()` runs. To press a key like the hardware does:
+
+```lua
+_menu.key(3, 1)                    -- K3 down (the wiring from _norns.key)
+norns.encoders.callback(2, 1)      -- E2, one step
+```
+
+Code that takes over the screen and input (an installer, a popup) has to
+replace all of them: the globals `key`, `enc`, `redraw`, plus `norns.script.redraw`,
+`_menu.key` and the encoder callback (`norns.menu.set` and `norns.menu.init()`
+do the last ones), and put them back afterwards. Check with
+`debug.getinfo(redraw, "S").short_src` which file the live handlers come from.
+
+**When sclang fails to start** (a class error, duplicate engines), no script
+loads and `script_post_init` never fires. norns calls
+`_norns.startup_status.timeout` and shows SUPERCOLLIDER FAIL; a mod that needs
+to show something then can wrap that function. Test it by looking at
+`journalctl -u norns-sclang` for the first `ERROR` / `not found` after
+`compile done`.
