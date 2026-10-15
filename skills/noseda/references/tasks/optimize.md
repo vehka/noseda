@@ -1,85 +1,113 @@
-# Performance Work on norns
+# Performance work on norns
 
-How to find and prove performance problems in norns scripts and engines.
-Measure before and after on the real target (a Pi 3 / Pi 4 norns), and compare
-revisions under identical conditions. See `tasks/debug.md` for reaching the
-device.
+Apply the [modern definitions](../modern.md) and measure the actual bottleneck.
+Preserve musical behavior unless a change is intentional. Use
+[debugging](debug.md) for reaching the device and the [review checklist](review.md)
+for compatibility risks. Evidence below uses [N/D](../modern.md#evidence-and-scope).
 
-## What to measure
+## Establish a comparable target
 
-- **Lua time per tick:** wrap the hot function (a sequencer step, a clock
-  callback) and time it with `util.time()`: avg, p99, max, and the count over
-  budget. At N pulses per beat and B bpm, the budget per tick is
-  `60 / B / N` s (3.9 ms at 128 ppqn, 120 bpm).
-- **Ticks actually run.** `clock.sync()` does not queue up missed ticks. When a
-  coroutine is late, the ticks in between are skipped, so a "how late did this
-  tick wake up" metric stays near zero even when the sequencer is drowning.
-  Count the calls and compare with `seconds × bpm / 60 × ppqn`. This is the
-  most honest sequencer metric.
-- **Audio xruns:** `_norns.audio_get_xrun_count()` returns the count since the
-  last call and **resets it**. The home menu also reads it while visible, so
-  keep the menu closed during a run. Poll it every 0.25 s from a clock.
-- **DSP load:** `_norns.audio_get_cpu_load()` is the JACK DSP load in percent.
-- **Who caused an xrun:** `journalctl -u norns-jack --since '<time>' | grep -i xrun`.
-  Lines like `client = SuperCollider was not finished` name the late client
-  (SuperCollider = the engine; crone/softcut are norns' own).
-- **Lua memory:** `collectgarbage("count")`. Allocating tables in hot paths
-  means garbage-collection pauses later.
-- **Idle baseline:** script loaded, transport stopped, 30 s of xruns and DSP
-  load. This separates the engine's own cost from the cost of playing notes.
+Record device, firmware/build/channel, backend, sample rate/buffer configuration,
+mods, dependencies, tempo/source, seed, pattern and revision. Modern doesn't
+mean beta: the sidecar beta has a reported `io.popen` failure and source-verified
+write/streaming limitations. A subprocess failure is not automatically a slow
+script, and stock Lua benchmarks don't exercise the beta's substituted shell API.
 
-## Procedure for a fair comparison
+Use real norns hardware for timing/audio headroom. Desktop checks correctness
+and can locate relative costs, but its CPU doesn't establish Pi performance.
+Measure idle, realistic playing, and an explicitly described worst case.
 
-1. Same device, tempo, duration and seeded pattern (`math.randomseed`) for
-   every revision.
-2. Restart norns before each revision (before each run on a desktop). State
-   carries over: a backed-up MIDI port or engine state slows later runs.
-   Interleave or repeat runs to catch drift that is really process state.
-3. Reload the script before each run.
-4. Keep the results with the revision measured (commit hash) and the machine.
-5. Read xruns together with ticks run. A starved sequencer plays fewer notes,
-   so the engine does less and shows *fewer* xruns. That doesn't mean it's better.
+## Measure several signals together
 
-A synthetic stress pattern (every track on, locks, chords, LFOs) at two levels,
-"normal" and "heavy", shows the trend quickly. Add a "realistic" level to find
-where problems start.
+- **Work duration:** use `util.time()` around a musical step or other hot path.
+  Report average, tail percentiles, max and counts over budget. At B BPM and N
+  ticks per quarter-note beat, interval is `60 / B / N` seconds (3.906 ms at
+  120 BPM / 128 PPQN). That interval isn't exclusively available to Lua: other
+  control callbacks and audio work need headroom too.
+- **Count and intended-beat lateness:** current consecutive syncs preserve
+  scheduled targets and can catch up after delays. Count steps and compare
+  actual callback times/beats with the intended timeline. A correct final
+  count can hide bunched late events. If tempo changes, use beat deltas rather
+  than a fixed `seconds × BPM` expectation. Older firmware needs verification.
+- **Xruns:** inspect JACK logs and, in a version-scoped diagnostic harness,
+  `_norns.audio_get_xrun_count()`. This internal binding returns and resets the
+  counter. Other readers, including the home stats display, can consume it.
+  Keep competing readers out of a measurement or record their interference.
+- **DSP load:** internal `_norns.audio_get_cpu_load()` exposes JACK CPU load,
+  not just the custom engine's CPU. Observe engine/server statistics alongside
+  it when identifying a culprit.
+- **Memory/allocation:** `collectgarbage('count')` gives Lua allocation size,
+  not complete process or SC buffer memory. Table churn can add GC work.
+- **Idle baseline:** compare stopped versus playing to distinguish persistent
+  effects/voices from event-rate cost.
 
-## Common costs in Lua (norns scripts)
+Evidence: N `lua/lib/util.lua:14–19`,
+`matron/src/clocks/clock_scheduler.cc:99–121,159–205`,
+`matron/src/weaver.cc:2245–2252`, `matron/src/jack_client.cpp:22–24,51–58`,
+`lua/core/menu/home.lua` (stats readers). The `_norns` metrics are source-level
+diagnostics, not a public production-script dependency. Scheduler tests:
+`tests/matron/clocks/clock_scheduler/test_clock_scheduler.cpp:223–260`.
 
-- **MIDI output:** each message is a system call. A bug that re-sends messages
-  every tick (e.g. note-offs that are never marked as sent) can flood a DIN
-  port (about 1000 msgs/s max) or back up a virtual port until writes block,
-  giving stalls of 100 ms or more.
-- **Building tables in hot paths:** `musicutil.generate_chord()` and similar
-  return a new table on every call. Memoize by the inputs (e.g. by chord type
-  and root note) instead of caching per step. A per-step cache goes stale
-  whenever values change without going through the edit path (rules, MIDI
-  recording, inherited defaults, loaded files).
-- **`params:get()` / `params:set()` in hot loops:** cache rarely-changing
-  values in locals, updated by the param's action. `params:set()` also runs the
-  param action, which may send engine commands.
-- **Skip idle work early:** muted or empty tracks, but keep what still has to
-  happen (pending note-offs).
+## A fair before/after comparison
 
-## Common costs in the audio engine (SuperCollider)
+1. Keep target, musical material, tempo/source, note duration and test duration
+   fixed. Seed generated patterns. State any deliberate behavior changes.
+2. Reload the component and establish a consistent baseline. Restart processes
+   only when needed to remove persistent state; use the same policy for every
+   revision, and don't restart someone else's active session silently.
+3. Warm up consistently; interleave/repeat comparisons when drift or noisy
+   conditions matter. Record results against commit hash/build and conditions.
+4. Compare note/event counts, lateness, xruns and sound together. A version that
+   plays fewer notes can report lower DSP load while doing the wrong work.
+5. Change one suspected cost at a time. Stop once the relevant checks support
+   the improvement; broad stress reruns need a concrete unresolved concern.
 
-- Effects that run all the time (reverb, delay, compressor, send buses) cost
-  DSP even when nothing plays. Measure the idle baseline, then remove effects
-  one at a time.
-- Voices that are never freed (no `doneAction: 2`) or that are allocated up
-  front for every sample slot.
-- On a Pi 3 at 128-frame buffers the headroom is small. Watch the DSP load
-  and the xrun counts, not just whether it "sounds OK".
+## Likely costs to investigate
 
-## Profiling tools inside a script
+### Lua/control
 
-Keep profiling instrumentation behind a flag with ~zero cost when off
-(`if ENABLE_PROFILING then … end`), exposed as params (enable / print / reset),
-and have it append its report to a file under `norns.state.data`. Keep it on
-its own branch if the script is headed upstream.
+- Repeated MIDI/OSC/engine messages that don't change musical state. In
+  particular, clear note-off ownership after sending once. Inspect the actual
+  transport before claiming blocking or a fixed maximum message rate.
+- Tables repeatedly built in hot paths. `musicutil.generate_chord()` constructs
+  a new result; cache by real inputs if measurement justifies it. Include data
+  changes from rules, recording, PSETs and inherited settings in invalidation.
+- Params lookups/actions in tight loops. Cache derived values through actions
+  when useful; don't create a second source of truth. `params:set` may execute
+  its action when changed and non-silent, potentially sending more commands.
+- Redraw/disk/subprocess work on the musical event path. Use dirty rendering,
+  explicit save snapshots and the appropriate time domain. Keep obligatory
+  note-offs even when skipping idle/muted-track work.
 
-## Offline micro-benchmarks
+Evidence: N `lua/core/midi.lua:86–111`, `lua/core/paramset.lua:357–417`,
+`lua/core/params/control.lua:74–97`, `lua/lib/musicutil.lua` (`generate_chord`),
+`lua/core/engine.lua:60–73`; D `norns/grid-recipes.md`, `norns/clocks.md`.
 
-Plain `lua5.3` with `package.path` pointing at `<norns>/lua/lib/` can load
-`util` and `musicutil` for correctness checks and microbenchmarks on the
-desktop. Desktop speed is not Pi speed, so use it for ratios only.
+### Audio/SC
+
+- Persistent effect chains and upfront voices have idle cost. Isolate them one
+  at a time, preserving gain/routing when comparing.
+- Unbounded polyphony, buffers, tasks or nodes left behind after voice stealing,
+  engine switching or reload. A persistent synth can be intentional; absence of
+  `doneAction: 2` is not itself a leak if ownership/free is correct.
+- Large bursts caused by late catch-up events. A control scheduler overload can
+  increase instantaneous audio work even with the intended total note count.
+- Unsupported “UGen A is always faster” or “.ar fixes aliasing” substitutions.
+  Compare the actual synthesis, release tails and resulting sound.
+
+Evidence for ownership: N `sc/core/CroneEngine.sc:42–55`,
+`sc/engines/Engine_TestSine.sc`, `sc/engines/Engine_PolyPerc.sc:18–28,57–59`.
+These are measurement hypotheses, not asserted universal performance results.
+
+## Instrumentation and reporting
+
+Keep instrumentation scoped and restore wrappers on failure as well as success.
+If shipping a profiling mode, expose its settings through params and keep its
+disabled cost small. Write reports under `norns.state.data` after measurement,
+not on every timing tick. Compare instrumentation overhead with an idle control.
+See [debugging](debug.md#scoped-testing-and-diagnostics) for wrapper lifetime.
+
+Offline Lua can load pure libraries for deterministic behavior and relative-cost
+experiments. Stub required host primitives explicitly; `util.time()` requires
+`_norns.get_time` and isn't an offline timer by itself. Report offline versus
+device results separately, including firmware and shell-API differences.

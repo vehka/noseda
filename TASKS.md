@@ -1,295 +1,173 @@
-# NoSEDA Extensive Version Roadmap
+# NoSEDA roadmap
 
-This document outlines tasks for expanding NoSEDA into a comprehensive norns development assistant.
+Updated 2026-10-15. The first priority is a coherent, source-verified definition
+of modern components; additional coverage should follow that definition rather
+than accumulating unrelated templates. Keep `SKILL.md` lean and route every
+new reference from it.
 
-## Phase 1: Enhanced Core Documentation
+## Modern baseline — implemented
 
-### 1.1 Expanded Base Instructions
-- [ ] Add comprehensive Lua coding patterns for norns
-- [ ] Document norns file system structure and conventions
-- [x] Add debugging and testing strategies
-- [x] Include performance optimization guidelines
-- [ ] Document norns-specific Lua idioms and patterns
+- [x] Define scripts, mods and engines in `references/modern.md`, with pinned
+  norns/monome-docs revisions, path citations and evidence classes.
+- [x] Distinguish current core/docs support from a community exemplar's age or
+  popularity; record narrowly assigned exemplar purposes.
+- [x] Explain script-global isolation versus shared mutations/cached modules;
+  remove absolute local-only/global-pollution and private-underscore rules.
+- [x] Correct runtime data/PSET paths; distinguish bundled defaults from saves.
+- [x] Explain callback defaults, core resets and explicit cleanup ownership.
+- [x] Make params/actions/PSET/PMAP the settings integration model; preserve IDs
+  and surface migration risks.
+- [x] Define actual clock/metro time domains, transport policy, lattice sprockets,
+  sequins and event-recording choices. Correct sync catch-up and note units.
+- [x] Add foundational UI patterns: dirty screen/grid cadence, menu/modal ownership,
+  shipped helpers, documented exceptions and source-only native refresh.
+- [x] Add foundational state patterns: startup recall, PSET hooks, versioned
+  sidecars, absent-data policy and session boundaries.
+- [x] Correct all six mod hooks, menu callback tables, module imports/lifetime
+  and coexistence guidance.
+- [x] Correct engine discovery, alloc/free readiness, optional polls/constructors,
+  context ownership and Lua specs/add_params separation.
+- [x] Include minimal script, mod and engine+host skeletons in component guides.
+- [x] Add `tasks/review.md`: idiom → replacement → risk, evidence and verification.
+- [x] Align existing debug/optimize/MIDI guides with the definitions.
+- [x] Document sidecar-beta compatibility concerns: user report plus source-verified
+  popen write/streaming limitations; do not equate modern with latest beta.
+- [x] Update entry-point routing and README.
 
-### 1.2 API Reference Integration
-- [ ] Create quick reference guides for common API modules
-- [ ] Document screen drawing API comprehensively
-- [ ] Add clock and timing API patterns
-- [x] Param id / separator / group collisions, optional includes (`patterns/params.md`)
-- [ ] Include param system advanced usage
-- [ ] Document menu system integration
+### Validation completed for this revision
 
-## Phase 2: Pattern Libraries
+- [x] Check local Markdown links/anchors, frontmatter/name/description length,
+  reference routing and lean entry-point length.
+- [x] Parse all 14 Lua example blocks with `luac5.3`.
+- [x] Exercise script transport/dirty redraw/PSET actions, mod menu and persistent
+  module state, engine Lua host controls, sidecar default/read/delete paths and
+  MIDI note ownership with upstream Lua libraries and scoped host primitives.
+- [x] Compile the engine class alongside upstream Crone classes with sclang,
+  and build its SynthDef graph without booting an audio server.
 
-### 2.1 UI Patterns (`patterns/ui.md`)
-- [ ] Screen layout strategies for 128x64
-- [ ] Multi-page navigation patterns
-- [ ] List/menu implementations
-- [ ] Graph and visualization helpers
-- [ ] Animation techniques
-- [ ] Font and text handling
+These are static and host-instrumented checks, not a desktop norns session,
+physical-device audio test or sidecar-beta regression reproduction.
 
-### 2.2 Input Patterns (`patterns/input.md`)
-- [ ] Encoder handling patterns (delta accumulation, acceleration)
-- [ ] Key combination handling
-- [ ] Input mode switching
-- [ ] Context-sensitive controls
-- [ ] Alt/shift functionality patterns
+## Verification and compatibility — next priority
 
-### 2.3 Timing Patterns (`patterns/timing.md`)
-- [x] Clock synchronization patterns
-- [ ] Metro usage examples
-- [ ] Sequencer implementations
-- [ ] Pattern playback systems
-- [ ] Tempo and subdivision handling
-- [ ] Lattice integration patterns
+- [ ] **Priority acceptance run: stock norns shield with a Raspberry Pi 3**, on
+  an unmodified stable monome image. Record exact image/build, Pi/shield model,
+  component revision and connected devices; start with third-party mods disabled.
+  - [ ] Install the three skeletons verbatim from
+    `skills/noseda/references/components/{script,mod,engine}.md`; record any edits
+    needed to run them as compatibility findings.
+  - [ ] Check audible output, encoders/keys, repeated start/stop/reset, rerun,
+    script/engine switching and cleanup, including partial initialization.
+  - [ ] Check PARAMS/PSET save/recall, sidecar read/write/delete and missing-data
+    defaults; check PMAP with a controller when available.
+  - [ ] Enable only the example mod for its tests: menu entry/exit, state across
+    unrelated scripts, disable/restart and SLEEP/RESTART behavior.
+  - [ ] Test dirty rendering, menu/modal ownership and native `refresh()` on the
+    physical screen; measure cadence instead of assuming 60 Hz delivery.
+  - [ ] Record idle/playing DSP load, xruns and sequencer lateness under a stated
+    workload. Keep firmware and test conditions fixed for Pi 3 comparisons.
+  - [ ] Save reproducible steps, commands, logs and pass/fail results in the repo;
+    distinguish observed behavior from source-derived expectations. Update the
+    guides and verification gaps from the results.
+- [ ] Extend the acceptance run to other supported physical norns releases and
+  hardware, keeping their results separate from the stock shield/Pi 3 baseline.
+- [ ] Verify native refresh cadence/modal behavior on hardware and assess other
+  supported backends; do not infer SDL support.
+- [ ] Establish exact affected/fixed builds for reported sidecar-beta failures,
+  including popen behavior and any verified workaround. Preserve separate
+  source evidence and runtime reports.
+- [ ] Verify minimum release versions for APIs used in new examples before
+  assigning `norns.version.required` numbers.
+- [ ] Maintain representative legacy PSET/PMAP/sidecar migration fixtures.
+- [ ] Run end-to-end skill evaluations for creation, legacy review/refactor and
+  mod/engine integration; compare outputs against the previous skill.
+- [ ] Periodically re-audit source/docs disagreements (PSET actions, mod hooks,
+  lattice/LFO defaults, scheduler behavior, shell interfaces).
+- [ ] Record maintenance evidence before using “two maintained scripts” to
+  justify an idiom unsupported by current core/docs.
 
-### 2.4 State Management (`patterns/state.md`)
-- [ ] Parameter save/load patterns
-- [ ] Data persistence strategies
-- [ ] State serialization
-- [ ] Undo/redo implementations
-- [ ] Session management
+## Focused pattern expansion
 
-### 2.5 Audio Patterns (`patterns/audio.md`)
-- [ ] Softcut usage and patterns
-- [ ] Audio file playback
-- [ ] Recording workflows
-- [ ] Buffer management
-- [ ] Audio routing patterns
+### UI and input
 
-## Phase 3: Hardware Integration
+Foundational redraw/modal guidance is complete in `patterns/ui.md`; this is not
+yet an exhaustive UI design or input reference.
 
-### 3.1 MIDI Integration (`patterns/midi.md`)
-- [ ] MIDI device connection patterns
-- [ ] Note input handling
-- [ ] CC parameter mapping
-- [ ] Clock sync patterns
-- [ ] Multi-device management
-- [x] Note-off bookkeeping (send once, overlaps, pattern wrap) and testing MIDI output
+- [ ] Layout strategies for 128×64, fonts, visualization and graph helpers.
+- [ ] Multi-page navigation, lists and widget integration examples.
+- [ ] Encoder accumulation/acceleration and context-sensitive controls.
+- [ ] Key combinations, held modifiers and input-mode transitions.
+- [ ] Animation designs with measured rendering budgets.
 
-### 3.2 Grid Integration (`patterns/grid.md`)
-- [ ] Grid connection and initialization
-- [ ] LED pattern rendering
-- [ ] Key press handling
-- [ ] Grid layout patterns
-- [ ] Multi-grid support
+### Timing and recorded performance
 
-### 3.3 Arc Integration (`patterns/arc.md`)
-- [ ] Arc connection patterns
-- [ ] LED ring visualization
-- [ ] Delta accumulation
-- [ ] Multi-arc handling
+`patterns/timing.md` covers current clock/metro/lattice/sequence semantics.
+Lattice is a **clocked timing framework**, not a grid framework.
 
-### 3.4 Crow Integration (`patterns/crow.md`)
-- [ ] Crow initialization
-- [ ] CV output patterns
-- [ ] Input monitoring
-- [ ] Trigger/gate handling
-- [ ] Script integration
+- [ ] Annotated multi-sprocket sequencer with swing and source-aware transport.
+- [ ] Pattern-time versus reflection migration, including saved-recording fixtures.
+- [ ] Tempo/subdivision changes and quantized launch policy examples.
+- [ ] LFO/timeline integration when the actual task needs them.
 
-### 3.5 Other Hardware (`patterns/hardware.md`)
-- [ ] HID device integration
-- [ ] Keyboard input handling
-- [ ] Gamepad support
-- [ ] Serial device communication
+### State and sessions
 
-## Phase 4: Advanced Component Guides
+`patterns/state.md` covers PSET recall and sidecars, not a complete session manager.
 
-### 4.1 Advanced Script Patterns
-- [ ] Multi-engine script patterns
-- [ ] Script-to-script communication
-- [ ] Library development guidelines
-- [ ] Testing frameworks for scripts
-- [ ] Performance profiling
+- [ ] Instrument-specific schema migrations and compatible save import.
+- [ ] Audio-inclusive session snapshots and multi-file commit/recovery policy.
+- [ ] Undo/redo for musical edits.
+- [ ] Session selection and shared-library persistence contracts.
 
-### 4.2 Advanced Mod Patterns
-- [ ] Menu system integration
-- [ ] Global parameter injection
-- [ ] Script function hooking patterns
-- [ ] Inter-mod communication
-- [ ] Mod configuration systems
+### Audio and devices
 
-### 4.3 Advanced Engine Patterns
-- [ ] Complex polyphony management
-- [ ] Buffer and sample management
-- [ ] Effect processing chains
-- [ ] Modulation routing
-- [ ] Engine parameter mapping
-- [ ] CPU optimization techniques
+- [ ] Softcut recording/playback, buffers, fades and routing patterns.
+- [ ] Audio file selection/loading and project-specific audio ownership.
+- [ ] MIDI input, multi-port selection/hotplug and clock-source integration.
+- [ ] Broader PMAP/controller recipes beyond note bookkeeping.
+- [ ] Grid connection/layout, dirty rendering, multi-grid and reconnect behavior.
+- [ ] Arc ring rendering, deltas and multi-device use.
+- [ ] Crow CV/gates, input monitoring, clock ownership and cleanup.
+- [ ] HID, keyboard/gamepad and serial examples where supported.
 
-## Phase 5: Library Documentation
+## Advanced components and reusable libraries
 
-### 5.1 Core Libraries
-- [ ] `musicutil` - Complete reference and patterns
-- [ ] `tabutil` - Table manipulation helpers
-- [ ] `util` - General utilities reference
-- [ ] `fileselect` - File browser integration
-- [ ] `textentry` - Text input patterns
+- [ ] Larger script architecture: injected musical actions, UI separation,
+  reusable modules and compatibility-preserving refactors.
+- [ ] Engine selection/shared voice packaging and cross-component contracts.
+- [ ] Mod settings persistence, safe wrapper composition, parameter injection
+  and inter-mod APIs with real lifecycle tests.
+- [ ] Complete optional nb voice-provider example with backend capability and
+  held-note/selection/panic tests.
+- [ ] Engine polyphony, voice stealing, sample/buffer ownership, effects and
+  modulation with measured hardware headroom.
+- [ ] Focused `musicutil`, util/tabutil, UI/graph and container recipes when
+  current public references don't already answer the task.
+- [ ] Music-theory/generative examples: scales/chords/tuning, Euclidean rhythms,
+  L-systems, probability and related algorithms.
+- [ ] DSP examples with commands, specs, resource lifecycle and measured sound/CPU
+  tradeoffs rather than generic UGen efficiency claims.
 
-### 5.2 Extended Libraries
-- [ ] `lattice` - Grid-based timing framework
-- [ ] `sequins` - Sequence generation patterns
-- [ ] `timeline` - Event scheduling
-- [ ] `pattern_time` - Pattern library
-- [ ] `container` - Data structure helpers
+## Testing, packaging and workflows
 
-### 5.3 UI Libraries
-- [ ] `lib.ui` - UI widget reference
-- [ ] Custom UI component patterns
-- [ ] Screen layout helpers
-- [ ] Navigation frameworks
+- [ ] Reusable test boundaries/mocks for meaningful script behavior; keep host
+  binding, audio and firmware regressions distinct from offline Lua checks.
+- [ ] Integration checks for notes, transport, PSETs, device hotplug and partial init.
+- [ ] More hardware performance baselines with repeatable conditions and reports.
+- [ ] Annotated sampler, MIDI processor, generative instrument and multi-page UI.
+- [ ] Extended utility/router/recorder mod examples.
+- [ ] Polyphonic, FM, sample-player and effect engine examples.
+- [ ] Creation/enhancement/release workflows beyond the component skeletons;
+  `tasks/review.md` already covers review/refactor, so avoid a duplicate checklist.
+- [ ] Distribution/versioning/dependency and backwards-compatibility examples.
+- [ ] Cross-script/service and ecosystem integrations only with verified contracts.
 
-## Phase 6: Specialized Guides
+## Existing tooling
 
-### 6.1 Music Theory Integration
-- [ ] Scale and mode handling
-- [ ] Chord generation
-- [ ] Rhythm and meter patterns
-- [ ] Tuning systems
-- [ ] Generative music techniques
+- [x] REPL client and network/desktop debugging guidance.
+- [x] Before/after performance procedure, internal diagnostic labels and ownership
+  checks, with version-sensitive scheduler semantics.
+- [x] MIDI note-off bookkeeping/capture guidance and parameter collision checks.
 
-### 6.2 DSP and Synthesis
-- [ ] SuperCollider UGen reference for norns
-- [ ] Synthesis technique guides
-- [ ] Filter design patterns
-- [ ] Envelope techniques
-- [ ] Modulation strategies
-
-### 6.3 Data and Algorithms
-- [ ] Euclidean rhythm generation
-- [ ] L-system implementations
-- [ ] Markov chain patterns
-- [ ] Cellular automata
-- [ ] Probability and randomness
-
-## Phase 7: Testing and Quality
-
-### 7.1 Testing Strategies
-- [ ] Unit testing patterns for Lua
-- [ ] Mock norns API for testing
-- [ ] Integration testing approaches
-- [x] Performance testing methods
-- [ ] Hardware simulation
-
-### 7.2 Quality Checklist
-- [ ] Code quality guidelines
-- [ ] Performance benchmarks
-- [ ] Memory usage patterns
-- [ ] CPU optimization
-- [ ] Best practices enforcement
-
-### 7.3 Security and Stability
-- [ ] Error handling patterns
-- [ ] Safe file operations
-- [ ] Parameter validation
-- [ ] Resource cleanup
-- [ ] Crash prevention
-
-## Phase 8: Community Integration
-
-### 8.1 Packaging and Distribution
-- [ ] Project structure guidelines
-- [ ] Documentation standards
-- [ ] Version management
-- [ ] Release process
-- [ ] Community publishing guidelines
-
-### 8.2 Collaboration Patterns
-- [ ] Code reuse strategies
-- [ ] Library sharing
-- [ ] Common dependencies
-- [ ] API design patterns
-- [ ] Backwards compatibility
-
-## Phase 9: Example Projects
-
-### 9.1 Complete Script Examples
-- [ ] Simple sequencer (annotated)
-- [ ] Audio sampler (annotated)
-- [ ] Generative composition tool
-- [ ] MIDI processor
-- [ ] Multi-page application
-
-### 9.2 Complete Mod Examples
-- [ ] Global quantizer mod
-- [ ] MIDI router mod
-- [ ] Performance recorder mod
-- [ ] System utility mod
-
-### 9.3 Complete Engine Examples
-- [ ] Simple monophonic synth
-- [ ] Polyphonic subtractive engine
-- [ ] FM synthesis engine
-- [ ] Sample playback engine
-- [ ] Effect processor engine
-
-## Phase 10: Task-Based Prompts
-
-### 10.1 Task Templates (similar to momopda)
-- [ ] `tasks/create.md` - New component creation workflow
-- [ ] `tasks/enhance.md` - Adding features to existing components
-- [x] `tasks/debug.md` - Debugging strategies
-- [x] `tasks/optimize.md` - Performance optimization
-- [ ] `tasks/refactor.md` - Code improvement
-
-### 10.2 Workflow Guides
-- [ ] Development workflow from idea to release
-- [ ] Testing workflow
-- [ ] Documentation workflow
-- [ ] Community feedback integration
-
-## Phase 11: Advanced Detection
-
-### 11.1 Context Detection Enhancement
-- [ ] Detect required libraries from code
-- [ ] Identify hardware dependencies
-- [ ] Recognize common patterns in existing code
-- [ ] Suggest relevant pattern docs
-
-### 11.2 Smart Loading
-- [ ] Load patterns based on code analysis
-- [ ] Conditional loading of hardware guides
-- [ ] Dynamic task detection
-- [ ] Adaptive documentation
-
-## Phase 12: Integration Examples
-
-### 12.1 Cross-Component Integration
-- [ ] Script + Engine examples
-- [ ] Script + Mod examples
-- [ ] Multi-script systems
-- [ ] External service integration
-
-### 12.2 Ecosystem Integration
-- [ ] Maiden integration patterns
-- [ ] norns.online integration
-- [x] maiden-repl patterns
-- [ ] Update system integration
-
-## Implementation Priority
-
-### High Priority (MVP+)
-1. Phase 2: Pattern Libraries (UI, Input, Timing)
-2. Phase 3: Hardware Integration (at least MIDI and Grid)
-3. Phase 10: Task-Based Prompts
-
-### Medium Priority
-4. Phase 4: Advanced Component Guides
-5. Phase 5: Library Documentation
-6. Phase 7: Testing and Quality
-
-### Lower Priority
-7. Phase 6: Specialized Guides
-8. Phase 9: Example Projects
-9. Phase 8: Community Integration
-10. Phase 11-12: Advanced features
-
-## Notes
-
-- Start with most commonly used patterns
-- Reference actual norns core implementations
-- Include anti-patterns and common mistakes
-- Test all examples on actual hardware when possible
-- Keep documentation concise and practical
-- Update as norns evolves
+Keep future guidance concise, link to primary evidence, and state what was
+actually run. Desktop correctness is useful; physical-device timing, audio,
+controls and beta compatibility require their own verification.

@@ -1,59 +1,99 @@
-# Parameter System Patterns and Pitfalls
+# Params-first controls
 
-## Ids and collisions
+Follow the [script definition](../modern.md#params-first-control-and-persistence).
+API evidence uses the [N/D source baseline](../modern.md#evidence-and-scope).
 
-- `params:add_separator(id, name)`: with one argument the name is also the
-  id. Uppercase section names like "REVERB" or "COMPRESSOR" are the ids of
-  norns' own system param groups, so norns prints `separator ID <REVERB>
-  collides with a non-separator parameter, will not overwrite` on every load.
-  (The separator still shows; only the id lookup keeps pointing at the system
-  group.) Give script separators prefixed ids:
-  `params:add_separator("myscript_reverb", "REVERB")`.
-- The same goes for groups (`add_group(id, name, n)`) and every param id:
-  prefix them with the script name.
-- Check the load output for `collides`, `ID collision` and `clobbering`
-  after changing params.
+## Stable IDs, groups and menu integration
 
-## Groups
+- Use stable IDs and user-facing display names. Prefix new reusable-library/mod
+  IDs to avoid collisions, including separators/groups. Do not rename legacy
+  IDs merely for consistency: PSETs and PMAPs refer to those IDs.
+- `params:add_separator(id, name)` with one argument uses it as the ID/name.
+  System names like `REVERB` and `COMPRESSOR` already identify groups. Prefer
+  `params:add_separator('my_script_reverb', 'REVERB')`.
+- `params:add_group(id, name, n)` contains the next `n` parameter entries,
+  including separators. Count conditional additions. Groups cannot nest.
+  Grouping existing controls need not change their IDs or saved values.
+- Use `add_number/option/control/taper/file/text/binary/trigger` according to
+  the control's meaning. Ranges, controlspec units/warp/quantum and formatters
+  should match the sound and encoder behavior; a formatter receives the param
+  object, not its numeric value.
+- Dynamic `params:hide/show(id)` may need `_menu.rebuild_params()`. This is a
+  documented narrow use of `_menu`, not permission to manipulate menu internals.
 
-- `params:add_group(id, name, n)`: `n` must equal the number of params
-  (including separators) added right after it. If it's wrong, the menu nests
-  the wrong params. Count the adds in the function that fills the group, and
-  watch for adds inside `if` blocks.
-- Groups can't be nested.
-- Grouping hundreds of params (e.g. per-sample-slot params) into one group
-  each makes the PARAMS menu usable, and doesn't change param ids, so psets
-  are unaffected.
+Evidence: N `lua/core/paramset.lua:111–315,454–471`,
+`lua/core/params/control.lua:128–137`, `lua/core/params/number.lua:72–78`,
+`lua/core/menu/params.lua:49–67,697–708`;
+D `norns/reference/parameters.md:24–73,154–265`.
 
-## Optional dependencies
+## Actions own settings and derived state
 
-`include()` of a missing file stops the script from loading with
-`MISSING INCLUDE`. For an optional library from another script folder:
-
-```lua
-local lib = util.file_exists(_path.code .. "otherlib/lib/otherlib.lua")
-  and include("otherlib/lib/otherlib") or nil
--- later: only add the related params/features when lib is available
-if lib then params:add_option(...) end
-```
-
-Before relying on a third-party library, check its license: without one it
-can't be copied (vendored) into the script.
-
-## Caching param values for hot paths
+UI controls call `params:set`/`params:delta`; actions update the sound and any
+derived caches. Don't update a cache independently from MIDI/PSET/menu paths.
+Use the existing `clock_tempo` parameter rather than adding a competing tempo
+or assigning a nonexistent `clock.tempo` control. Preserve its system action;
+use `clock.tempo_change_handler` for supported tempo notifications when needed.
 
 ```lua
-local jf_enabled = false
-params:add_option("jf", "jf output", {"no", "yes"}, 1)
-params:set_action("jf", function(x) jf_enabled = (x == 2) end)
+local output_enabled = false -- derived cache, not an independent setting
+
+local function add_output_param()
+  params:add_option('my_script_output', 'output', {'off', 'on'}, 1)
+  params:set_action('my_script_output', function(value)
+    output_enabled = value == 2
+  end)
+end
 ```
 
-The action runs on `params:bang()` and on pset load, so the local stays in
-sync. It saves a `params:get()` on every tick.
+After resources and actions exist, `params:bang()` applies initial values.
+Ordinary setters run actions on value changes; silent setters suppress them.
+A silent PSET read therefore needs a deliberate later application step. Don't
+assume a read always runs every action, or call a full bang for every tick.
+Reusable `add_params()` functions should let the host decide startup/recall.
 
-## Testing param changes
+Evidence: N `lua/core/paramset.lua:357–417,527–610`,
+`lua/core/params/number.lua:35–69`, `lua/core/params/control.lua:68–120`,
+`lua/core/clock.lua:141–145,228–239`;
+D `norns/reference/parameters.md:45–61`, `norns/reference/clock.md`.
 
-In a test harness, `params.set` can be wrapped for timing or logging.
-`params` is a ParamSet instance and `set` is a class method, so
-`params.set = nil` removes the wrapper again. (MIDI vport methods are
-different; see `patterns/midi.md`.)
+## PMAP and persistence
+
+Parameter control values can use the built-in mapping UI instead of a parallel
+MIDI-learn implementation. Not all param types are mappable; check the type's
+`allow_pmap` contract. PMAP is stored separately from PSETs, under the script's
+data directory. Preserve IDs, ranges and option ordering to maintain meaning.
+Changes to them require compatibility analysis, not just a syntax check.
+See [state patterns](state.md) for startup PSETs, hooks and sidecar data.
+
+Evidence: N `lua/core/pmap.lua:61–108`, `lua/core/menu/params.lua:209–255,710–758`,
+`lua/core/paramset.lua:443–449`; D `norns/reference/parameters.md:267–288`.
+
+## Dependencies
+
+Use shipped libraries directly. For script helpers use `include`, which runs
+the file and returns its result. Missing includes raise `MISSING INCLUDE`.
+For an explicitly optional cross-project dependency, check for it before loading:
+
+```lua
+local helper
+if util.file_exists(_path.code .. 'other_project/lib/helper.lua') then
+  helper = include('other_project/lib/helper')
+end
+```
+
+Only expose the optional feature when its contract is available. Missing is
+different from present-but-broken: don't silently swallow arbitrary load errors.
+Declare required dependencies and install instructions. `require` caches a
+module; choose that lifetime intentionally, especially for mod helpers. Check
+licensing before copying third-party code.
+
+Evidence: N `lua/core/startup.lua:51–65`, `lua/core/config.lua:6–16`,
+`lua/lib/util.lua` (`file_exists`); D `norns/reference.md` (libraries),
+`norns/mods.md:145–167`.
+
+## Checks
+
+Look for `collides`, `ID collision` and `clobbering` in load output. Test setting
+values from encoders, PARAMS, mapped MIDI and PSET recall. Verify group counts,
+formatters, silent-read initialization and legacy presets. Scope test wrappers
+and restore their originals; details are in [debugging](../tasks/debug.md).

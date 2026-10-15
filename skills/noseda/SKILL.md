@@ -1,166 +1,76 @@
 ---
 name: noseda
-description: Develop, debug, test and optimize monome norns scripts, mods and SuperCollider engines. Use when working in a norns project (Lua with init/redraw/enc/key, lib/mod.lua, Engine_*.sc, dust/code), when the user mentions norns, matron, maiden, crone, softcut or dust, or wants to run or test code on a norns device or desktop norns.
+description: Write, review, refactor, debug, test and optimize monome norns scripts, mods and SuperCollider engines using current, source-verified norns idioms. Use for norns projects (Lua with init/redraw/enc/key, lib/mod.lua, Engine_*.sc, dust/code), norns, matron, maiden, crone, softcut or dust development, and running or testing components on hardware or desktop norns.
 ---
 
-# Norns Development (NoSEDA)
+# NoSEDA: modern norns development
 
-Guidance for developing monome norns scripts, mods and engines. This file holds
-the core principles; the detailed guides are in `references/` and are read only
-when they apply. Paths below are relative to this skill's directory (the one
-containing this `SKILL.md`).
+Paths here are relative to this skill directory. Links within `references/`
+are relative to the file containing the link.
 
-## Step 1: Detect the component type
+## 1. Detect the component and task
 
-Look at the project you are working in (not this skill's directory):
+Inspect the user's project, not this skill directory. Components can coexist;
+read every applicable component guide.
 
-| The project has… | Component | Read |
-|---|---|---|
-| `lib/mod.lua` | mod | `references/components/mod.md` |
-| an `Engine_*.sc` file (root, `lib/` or `sc/`) | engine | `references/components/engine.md` |
-| `<dirname>.lua` at the root, or other `*.lua` / `lib/` | script | `references/components/script.md` |
-
-A project can be more than one of these (a script that ships its own engine,
-a script with a mod). Read every guide that applies. For a new project, pick
-from what the user asks for.
-
-## Step 2: Read the guides that apply
-
-### Patterns (read when the code uses them)
-
-| File | Read when the code… |
+| Project contains / user requests | Read |
 |---|---|
-| `references/patterns/timing.md` | uses `clock.run` / `clock.sync`, transport callbacks, a step sequencer |
-| `references/patterns/midi.md` | sends MIDI notes (`note_on` / `note_off`), chords |
-| `references/patterns/params.md` | adds params, separators or groups, or `include()`s other scripts' libraries |
+| A script entry point, usually `<project>.lua` | `references/components/script.md` |
+| `lib/mod.lua`, a system extension or nb voice provider | `references/components/mod.md` |
+| `Engine_*.sc`, a custom synthesis or processing engine | `references/components/engine.md` |
 
-### Tasks (read for the kind of work)
+For a new project, infer the components from the requested instrument. Consider
+existing engines, softcut and optional nb voices before adding a custom engine.
 
-| File | Read when the user wants to… |
+## 2. Apply the modern definition
+
+Read `references/modern.md`: the evidence policy and shared rules, then the
+section for each component involved. It is the authority for these guides.
+“Modern” means current platform integration and explicit ownership, not copying
+the style of a popular script. Preserve intentional musical behavior during
+refactors and report compatibility costs before changing it.
+
+- Use params for user-facing settings, with actions driving derived state and
+  sound. Preserve stable IDs and existing PSET/PMAP compatibility.
+- Save runtime data under `norns.state.data`, audio under `_path.audio`.
+- Use beat-aware clocks for musical synchronization. Metro remains supported
+  for seconds-based work. Keep rendering inexpensive and deliberately paced.
+- Global callbacks and small scripts' global state are normal norns usage.
+  Modules ordinarily return local tables. Do not shadow system bindings.
+- Track owned work and external notes; distinguish core resets from component
+  cleanup. Restore changes to shared implementations.
+- Prefer platform facilities. Label undocumented interfaces, including
+  `refresh()`, and verify them on the target version/backend.
+
+## 3. Load only relevant detail
+
+| Reference | Read when… |
 |---|---|
-| `references/tasks/debug.md` | run, test or debug on a norns (over ssh / wifi) or on desktop norns |
-| `references/tasks/optimize.md` | measure or improve performance: timing, CPU, xruns, dropouts |
+| `references/modern.md` | Always: evidence/shared rules and relevant component definitions |
+| `references/patterns/params.md` | Adding/editing parameters, groups, actions, dependencies |
+| `references/patterns/state.md` | PSET hooks, sidecar data, migrations or session persistence |
+| `references/patterns/timing.md` | Clocks, transport, lattice, sequins or event recording |
+| `references/patterns/ui.md` | Dirty redraws, refresh, modal UI or screen/grid coordination |
+| `references/patterns/midi.md` | Sending notes, handling overlap/stop, optional nb integration |
+| `references/tasks/review.md` | Reviewing or refactoring, especially legacy components |
+| `references/tasks/debug.md` | Running, testing or debugging on hardware/desktop norns |
+| `references/tasks/optimize.md` | Measuring timing, CPU, memory, xruns or audio dropouts |
+| `references/exemplars.md` | Looking for an implementation to study for a specific purpose |
 
-`scripts/nrepl.py` sends Lua to a norns REPL over websocket (see
-`references/tasks/debug.md`). It needs `pip install websocket-client`
-(`scripts/requirements.txt`).
+## 4. Verify and finish
 
-Cross-references inside the guides (`tasks/debug.md`, `patterns/midi.md`…) are
-relative to `references/`.
+Find the target norns version/build and a core checkout (`../norns`, `~/norns`,
+or elsewhere). Modern does not mean latest beta: check release-specific failures,
+including the reported sidecar-beta `io.popen` regression in `references/modern.md`.
+Read core as reference; don't edit it as part of component work.
+Verify API behavior in `lua/core/`, `lua/lib/`, `matron/src/`, and, for engines,
+`sc/core/`; cross-check [monome docs](https://monome.org/docs/norns/).
+`references/modern.md` records the audited baseline and known documentation gaps.
 
-## Norns platform overview
+Choose checks proportional to the change: syntax, PSET compatibility, transport
+and cleanup, then target-device timing/audio/UI where relevant. State what ran
+and what still needs hardware. For reviews, report each finding as **legacy
+idiom → modern replacement → risk of changing it**, with source evidence.
 
-Norns is a sound computer by monome that combines:
-- **matron**: Lua scripting environment for control and interface
-- **crone/supercollider**: Audio synthesis engine (SuperCollider-based)
-- **maiden**: Web-based editor and REPL
-- Hardware: encoders, keys, screen, audio I/O
-
-## Development principles
-
-- **Simplicity**: Keep code readable and maintainable
-- **Community**: Follow established norns conventions and patterns
-- **Documentation**: Comment non-obvious code, provide usage instructions
-- **Hardware awareness**: Consider limited screen size (128x64), encoders (3), and keys (3)
-- **Performance**: Be mindful of CPU usage and real-time audio constraints
-
-## Lua coding style for norns
-
-### File structure
-- Use lowercase filenames: `mylib.lua`, not `MyLib.lua`
-- Main script in root: `myscript.lua`
-- Libraries in `lib/` directory: `lib/sequencer.lua`
-- Data files in `data/` directory (for saving state)
-
-### Naming conventions
-- Variables: lowercase with underscores: `note_value`, `step_count`
-- Functions: lowercase with underscores: `update_display()`, `process_midi()`
-- Constants: UPPERCASE: `MAX_STEPS = 16`
-- Private functions: prefix with underscore: `_internal_helper()`
-
-### Code style
-- Indentation: 2 spaces (norns convention)
-- Line length: aim for ~80 characters for readability
-- Comments: use `--` for single line, `--[[ ]]--` for blocks
-- Local by default: use `local` keyword unless global is needed
-
-## Essential norns API patterns
-
-```lua
-function init()
-  -- Called once at script start
-end
-
-function cleanup()
-  -- Called when script ends
-end
-
-function redraw()
-  -- Called to update screen
-  screen.clear()
-  screen.move(10, 10)
-  screen.text("hello")
-  screen.update()
-end
-
-function enc(n, delta)
-  -- Encoder input: n=encoder number (1-3), delta=change
-end
-
-function key(n, z)
-  -- Key input: n=key number (1-3), z=state (1=down, 0=up)
-end
-```
-
-## SuperCollider for engines
-
-- Extend `CroneEngine` class, defined in an `Engine_*.sc` file
-- Use `addCommand` to expose parameters to Lua
-- Audio output via `Out.ar(context.out_b, signal)`
-- Keep synthesis definitions clear and commented
-- Use sensible parameter ranges and defaults
-- Test CPU usage (norns has limited processing power)
-
-## Common pitfalls
-
-1. **Forgetting to call screen.update()**: Display won't refresh
-2. **Global variable pollution**: Use `local` keyword
-3. **Not cleaning up resources**: Implement `cleanup()` function
-4. **Blocking operations**: Keep functions fast, use clocks for timing
-5. **Ignoring nil checks**: Always validate parameters and table access
-
-## Testing and debugging basics
-
-- `print()` output appears in maiden's REPL; `tab.print(table)` inspects a table
-- Test on actual hardware when possible (encoder/key feel matters)
-- Check CPU usage in SYSTEM > STATS menu
-- To run and test code yourself, read `references/tasks/debug.md`
-
-## Norns reference materials
-
-The guides refer to the norns core repository as `../norns/`, i.e. a checkout
-next to the project. Check whether it exists there (or elsewhere, e.g.
-`~/norns`); if not, use https://github.com/monome/norns and
-https://monome.org/docs/norns/ instead, or suggest cloning it.
-
-- **API documentation**: `../norns/doc/`
-- **Script examples**: `../norns/scripts/`, https://github.com/tehn/awake
-- **Engine examples**: `../norns/sc/engines/` (`Engine_PolyPerc.sc` is a basic template)
-- **Mod examples**: https://github.com/monome/norns-example-mod
-- **Community**: https://norns.community/ (scripts), https://llllllll.co/ (forum)
-
-## Workflow
-
-1. **Understand the component type** (script, mod, or engine)
-2. **Reference existing implementations** in the norns repository or online examples
-3. **Follow norns conventions** for file structure and naming
-4. **Test on norns hardware or desktop norns** when possible (`references/tasks/debug.md`)
-5. **Document clearly** for community sharing
-
-## Important notes
-
-1. **Never modify files in the norns core repository**: only read them for reference
-2. **Always check existing norns components** for patterns before implementing
-3. **Follow Lua/SuperCollider best practices** appropriate to the component type
-4. **Document what needs testing on hardware**: not all functionality can be validated without norns
-5. **Use clear, descriptive names** following norns community conventions
+`scripts/nrepl.py` sends Lua to matron over websocket; usage and dependencies
+are in `references/tasks/debug.md` and `scripts/requirements.txt`.

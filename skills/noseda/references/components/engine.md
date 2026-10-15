@@ -1,329 +1,191 @@
-# Norns Engine Development
+# Engine development
 
-## Engine Overview
+Apply the [modern engine definition](../modern.md#engine-definition). First
+consider an existing engine, softcut, or an optional nb voice-provider mod.
+Use a custom engine when the instrument needs its DSP or command contract.
 
-A norns engine is a SuperCollider class that provides audio synthesis capabilities to norns scripts. Engines run in the crone/SuperCollider environment and communicate with matron (Lua) via OSC commands.
+## Packaging and lifecycle
 
-## Engine Structure
+Distribute a unique `Engine_<Name>` subclass, conventionally under `lib/` in
+`Engine_<Name>.sc`. Class discovery uses compiled subclass names, not filenames.
+New/changed SC classes require recompilation, normally SYSTEM > RESTART; Lua-only
+edits need only script reload. Use a supported target release rather than
+assuming the newest beta works.
 
+`CroneEngine` supplies construction and calls `alloc` inside a Routine. Finish
+required asynchronous setup before it returns. Base teardown removes registered
+commands/polls, invokes your `free`, then synchronizes. A forwarding `*new` and
+poll registration are optional. Keep ownership explicit, including partial init.
+
+Evidence: N `sc/core/CroneEngine.sc:15–77`, `sc/core/Crone.sc:100–129,168–180`,
+`sc/norns-config.sc:12–16`; D `norns/reference/engine.md:45–51`,
+`norns/engine-study-1.md:145–174`. N/D use the
+[audited source baseline](../modern.md#evidence-and-scope).
+
+## Minimal runnable engine, parameter library and host
+
+```text
+dust/code/modern_tone/
+├── modern_tone.lua
+└── lib/
+    ├── Engine_NoSEDATone.sc
+    └── noseda_tone_engine.lua
 ```
-myengine/
-└── Engine_MyEngine.sc        # Engine file (REQUIRED, note capitalization)
-```
 
-**Naming Convention**: File must be named `Engine_[EngineName].sc` where EngineName matches the class name.
+Install all three files, restart to compile, then select `modern_tone`. Rename
+the class and SynthDef together when adopting the example for a new project.
 
-## Basic Engine Template
+### `lib/Engine_NoSEDATone.sc`
+
+One persistent, initially gated-off stereo sine voice. Pitch is Hz, amplitude
+is linear 0–0.5, gate is 0/1. A release envelope silences it without destroying
+the persistent synth; `free` owns destruction. There are no polls to register.
 
 ```supercollider
-// Engine_MyEngine
-// Simple example engine
-
-Engine_MyEngine : CroneEngine {
-    // Class variables
+Engine_NoSEDATone : CroneEngine {
     var synth;
-    var <amp = 0.5;
-    var <freq = 440;
 
-    // Constructor
-    *new { arg context, doneCallback;
-        ^super.new(context, doneCallback);
-    }
-
-    // Allocation - called once at engine start
     alloc {
-        // Define synthesis
-        SynthDef(\mysynth, {
-            arg out, freq = 440, amp = 0.5, gate = 1;
-            var sig, env;
+        SynthDef(\noseda_tone_voice, {
+            arg out = 0, hz = 220, amp = 0.15, gate = 0;
+            var env = EnvGen.kr(Env.asr(0.01, 1, 0.05), gate);
+            var signal = SinOsc.ar(hz.lag(0.02)) * amp.lag(0.02) * env;
+            Out.ar(out, [signal, signal]);
+        }).send(context.server);
+        context.server.sync;
 
-            // Oscillator
-            sig = SinOsc.ar(freq);
+        synth = Synth(\noseda_tone_voice,
+            [\out, context.out_b], target: context.xg);
 
-            // Envelope
-            env = EnvGen.kr(Env.asr(0.01, 1, 0.1), gate, doneAction: 2);
-
-            // Output
-            Out.ar(out, sig * env * amp);
-        }).add;
-
-        // Register OSC commands
-        this.addCommand(\start, "f", { arg msg;
-            var note = msg[1];
-            synth = Synth(\mysynth, [
-                \out, context.out_b,
-                \freq, note.midicps,
-                \amp, amp
-            ], target: context.xg);
+        this.addCommand(\hz, "f", { arg msg;
+            synth.set(\hz, msg[1].clip(40, 4000));
         });
-
-        this.addCommand(\stop, "", { arg msg;
-            synth.set(\gate, 0);
-        });
-
         this.addCommand(\amp, "f", { arg msg;
-            amp = msg[1];
-            synth.set(\amp, amp);
+            synth.set(\amp, msg[1].clip(0, 0.5));
         });
-
-        this.addCommand(\freq, "f", { arg msg;
-            freq = msg[1];
-            synth.set(\freq, freq);
-        });
-    }
-
-    // Cleanup - called when engine stops
-    free {
-        synth.free;
-    }
-}
-```
-
-## Engine Components
-
-### Class Definition
-```supercollider
-Engine_MyEngine : CroneEngine {
-    // Must extend CroneEngine
-}
-```
-
-### Constructor
-```supercollider
-*new { arg context, doneCallback;
-    ^super.new(context, doneCallback);
-}
-```
-
-### Allocation Method
-The `alloc` method is where you:
-1. Define SynthDefs
-2. Register OSC commands
-3. Set up synthesis structures
-
-```supercollider
-alloc {
-    // Define synthesis
-    SynthDef(\name, { /* ... */ }).add;
-
-    // Register commands
-    this.addCommand(\commandName, "types", { arg msg;
-        // Handle command
-    });
-}
-```
-
-### Command Registration
-
-Commands are how Lua scripts control the engine:
-
-```supercollider
-this.addCommand(\name, "argumentTypes", { arg msg;
-    // msg[1] is first argument
-    // msg[2] is second argument, etc.
-});
-```
-
-**Argument Types:**
-- `i` - integer
-- `f` - float
-- `s` - string
-- `""` - no arguments
-
-**Example:**
-```supercollider
-// Command with float and integer
-this.addCommand(\note_on, "fi", { arg msg;
-    var freq = msg[1];    // float
-    var velocity = msg[2]; // integer
-    // ...
-});
-```
-
-### Audio Output
-
-Always output to `context.out_b`:
-
-```supercollider
-Out.ar(out, signal);  // Where out = context.out_b
-
-// Or in the Synth call:
-Synth(\name, [\out, context.out_b, /* ... */]);
-```
-
-### Cleanup Method
-
-Free resources when engine stops:
-
-```supercollider
-free {
-    synth.free;
-    group.free;
-    // etc.
-}
-```
-
-## Common Patterns
-
-### Polyphonic Engine
-
-```supercollider
-Engine_Poly : CroneEngine {
-    var group;
-
-    alloc {
-        group = ParGroup.tail(context.xg);
-
-        SynthDef(\voice, { arg out, freq = 440;
-            var sig = SinOsc.ar(freq);
-            var env = EnvGen.kr(Env.perc, doneAction: 2);
-            Out.ar(out, sig * env);
-        }).add;
-
-        this.addCommand(\note, "f", { arg msg;
-            Synth(\voice, [
-                \out, context.out_b,
-                \freq, msg[1]
-            ], target: group);
+        this.addCommand(\gate, "i", { arg msg;
+            synth.set(\gate, msg[1].clip(0, 1));
         });
     }
 
     free {
-        group.free;
+        if(synth.notNil) {
+            synth.free;
+            synth = nil;
+        };
     }
 }
 ```
 
-### Parameter Storage
-
-Store parameters as instance variables:
-
-```supercollider
-var <amp = 0.5;      // readable from outside
-var <>cutoff = 1000; // readable and writable
-
-this.addCommand(\amp, "f", { arg msg;
-    amp = msg[1];
-    synth.set(\amp, amp);
-});
-```
-
-### Using Buffers
-
-```supercollider
-var buffer;
-
-alloc {
-    // Allocate buffer
-    buffer = Buffer.alloc(context.server, 48000);
-
-    this.addCommand(\read, "s", { arg msg;
-        buffer.read(msg[1]);
-    });
-}
-
-free {
-    buffer.free;
-}
-```
-
-## Lua Script Integration
-
-Using an engine from a norns script:
+### `lib/noseda_tone_engine.lua`
 
 ```lua
--- Select engine at script start
-engine.name = 'MyEngine'
+local Tone = {}
+Tone.specs = {
+  hz = controlspec.new(40, 4000, 'exp', 0, 220, 'Hz'),
+  amp = controlspec.new(0, 0.5, 'lin', 0, 0.15)
+}
+
+function Tone.add_params(on_change)
+  params:add_group('noseda_tone', 'tone', 2)
+  params:add_control('noseda_tone_hz', 'frequency', Tone.specs.hz)
+  params:set_action('noseda_tone_hz', function(value)
+    engine.hz(value)
+    if on_change then on_change() end
+  end)
+  params:add_control('noseda_tone_amp', 'amplitude', Tone.specs.amp)
+  params:set_action('noseda_tone_amp', function(value)
+    engine.amp(value)
+    if on_change then on_change() end
+  end)
+end
+
+return Tone
+```
+
+### `modern_tone.lua`
+
+```lua
+-- modern_tone: persistent sine voice
+-- v1.0.0 @yourname
+-- https://monome.org/docs/norns/engine-study-1/
+-- Hold K3: sound; E2: frequency; E3: amplitude
+
+engine.name = 'NoSEDATone'
+local tone = include('lib/noseda_tone_engine')
 
 function init()
-    -- Send commands to engine
-    engine.start(440)
-    engine.amp(0.5)
+  tone.add_params(function() redraw() end)
+  params:bang()
 end
 
--- Commands available as engine.commandname()
+function enc(n, d)
+  if n == 2 then params:delta('noseda_tone_hz', d)
+  elseif n == 3 then params:delta('noseda_tone_amp', d) end
+end
+
 function key(n, z)
-    if n == 2 and z == 1 then
-        engine.start(math.random(200, 800))
-    elseif n == 3 and z == 1 then
-        engine.stop()
-    end
+  if n == 3 then engine.gate(z) end
+end
+
+function redraw()
+  screen.clear()
+  screen.level(15)
+  screen.move(8, 20)
+  screen.text('hold K3 to play')
+  screen.move(8, 36)
+  screen.text(params:string('noseda_tone_hz'))
+  screen.move(8, 52)
+  screen.text(params:string('noseda_tone_amp'))
+  screen.update()
 end
 ```
 
-## Key Reference Files to Examine
+The gate is transient input, not a recalled setting. The companion's optional
+change notification lets the host draw this small UI after parameter changes,
+including PMAP/PSET paths. The closure resolves global redraw when called, so
+it respects menu suppression instead of capturing a local renderer or the init
+phase's no-op. Returning from the menu also draws current values. For high-rate
+automation, have the notification mark dirty and use the [UI patterns](../patterns/ui.md).
+There is no Lua-owned background work; core engine release invokes SC `free`.
+Don't depend on `engine.gate(0)` in Lua cleanup after engine release is requested.
 
-When developing engines, examine these reference implementations:
+Evidence: N `sc/engines/Engine_SimplePassThru.sc:16–50`,
+`sc/engines/Engine_TestSine.sc`, `sc/core/CroneEngine.sc:19–77`,
+`sc/core/CroneAudioContext.sc:33–46`, `lua/core/script.lua:11–24,230–247`,
+`lua/core/engine.lua:44–73,89–129`, `lua/core/paramset.lua`,
+`matron/src/weaver.cc:1962–2025`; D `norns/engine-study-1.md:384–456`.
 
-1. **Simple engines:**
-   - `../norns/sc/engines/Engine_PolyPerc.sc` - Basic percussive engine
-   - `../norns/sc/engines/Engine_TestSine.sc` - Minimal example
+## Extending the contract
 
-2. **Advanced engines:**
-   - `../norns/sc/engines/Engine_PolySub.sc` - Polyphonic subtractive
-   - Engines in community scripts
+- `addCommand(name, format, fn)` receives the OSC address in `msg[0]`, arguments
+  from `msg[1]`; `i`, `f`, `s`, and an empty format are supported. Match Lua
+  argument count and units. Dynamic engine commands exist after engine loading,
+  so call them from init or later, not top level.
+- Use optional `addPoll(name, fn, periodic=true)` for analysis/feedback. Give
+  custom polls unique names; the registry rejects duplicate names. Lua obtains
+  a registered poll through `poll.set(name, callback)` and can start/stop it.
+- Put per-note synths in an owned group and bound polyphony/lifetimes. A
+  self-freeing envelope suits one-shots; explicit release/free suits sustained
+  or persistent voices. Replacing a single synth reference does not free the
+  previous voice.
+- Allocate buffers/private buses against `context.server`; synchronize async
+  dependencies. Free your own resources, not `context.xg` or shared context
+  buses. Namespace all globally compiled classes and named SynthDefs.
+- Keep specs/actions in the Lua companion and performance/UI policy in the
+  host. Don't hide PSET loading or a full `params:bang()` inside a reusable
+  `add_params()` function.
 
-3. **SuperCollider references:**
-   - `../norns/sc/core/` - Crone core classes
-   - `../norns/sc/engines/` - All core engines
+Evidence: N `sc/core/CroneEngine.sc:35–77`, `sc/core/CronePoll.sc:117–137`,
+`lua/core/poll.lua:38–56,128–145`, `sc/engines/Engine_PolySub.sc`,
+`sc/core/Crone.sc:86–123`; D `norns/reference/engine.md`,
+`norns/engine-study-1.md`, `norns/engine-study-3.md`.
 
-## Testing Checklist
+## Acceptance checks
 
-- [ ] Engine file named correctly: `Engine_[Name].sc`
-- [ ] Class extends CroneEngine
-- [ ] Constructor calls super.new
-- [ ] SynthDefs are added in alloc
-- [ ] Commands registered with correct types
-- [ ] Audio outputs to context.out_b
-- [ ] Resources freed in free method
-- [ ] Test from Lua script
-- [ ] CPU usage is reasonable
-- [ ] No audio artifacts or clicks
-
-## Common Mistakes to Avoid
-
-1. **Wrong file naming**: Must be `Engine_Name.sc` exactly
-2. **Wrong output bus**: Must use `context.out_b`
-3. **Not freeing resources**: Implement `free` method
-4. **Wrong command types**: Match Lua argument types
-5. **CPU overload**: Monitor CPU usage on norns
-6. **Not using doneAction**: Synths may accumulate
-7. **Forgetting .add**: SynthDefs won't be available
-
-## SuperCollider Tips for Norns
-
-### CPU Efficiency
-- Use efficient UGens (Saw vs LFSaw)
-- Limit polyphony appropriately
-- Use doneAction to free synths
-- Monitor CPU in norns SYSTEM > STATS
-
-### Audio Quality
-- Consider sample rate (48kHz on norns)
-- Use appropriate envelope times
-- Filter aliasing (use .ar instead of .kr where needed)
-- Test with headphones and speakers
-
-### Debugging
-- Use `postln()` to print to SuperCollider log
-- Check maiden's SuperCollider output tab
-- Test SynthDefs individually in SuperCollider
-- Use simpler synthesis first, then add complexity
-
-## Installation
-
-Engines are installed in:
-```
-dust/code/myengine/
-└── Engine_MyEngine.sc
-```
-
-Or in the same directory as the script that uses them.
-
-## Documentation
-
-Document in comments at top of file:
-- Engine name and purpose
-- Available commands and parameters
-- Example usage
-- Credits and version
+Compile alongside installed engines without duplicate classes; load/reload and
+switch engines; test minimum/maximum commands and rapid gate changes. Confirm
+no accumulated nodes/buffers/tasks after repeated use. Measure idle and maximum
+voice/effect load on the intended hardware, leaving control/UI headroom. Test
+parameter save/restore through the host. Avoid unsupported blanket efficiency
+claims about UGens or `.ar` versus `.kr`; measure the actual DSP.

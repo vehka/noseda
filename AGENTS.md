@@ -10,9 +10,11 @@ scripts, mods and engines. It is used from Claude Code and opencode; see
 skills/noseda/
 ├── SKILL.md              # entry point: frontmatter, core principles, what to read when
 ├── references/
+│   ├── modern.md          # source-verified definitions and compatibility notes
+│   ├── exemplars.md       # narrowly scoped implementation references
 │   ├── components/       # script.md, mod.md, engine.md
-│   ├── patterns/         # timing.md, midi.md, params.md
-│   └── tasks/            # debug.md, optimize.md
+│   ├── patterns/         # timing.md, midi.md, params.md, state.md, ui.md
+│   └── tasks/            # review.md, debug.md, optimize.md
 └── scripts/
     └── nrepl.py          # send Lua to a norns REPL over websocket
 ```

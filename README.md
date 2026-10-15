@@ -1,42 +1,33 @@
-# NoSEDA - Norns Script and Engine Development Assistant
+# NoSEDA — Norns Script and Engine Development Assistant
 
-An agent skill for developing monome norns scripts, mods, and engines with agentic AI.
+An [Agent Skills](https://agentskills.io) skill for writing, reviewing,
+refactoring, debugging and optimizing monome norns scripts, mods and
+SuperCollider engines. It works with Claude Code and opencode.
 
-## What is NoSEDA?
+## What it teaches
 
-NoSEDA is a skill (`noseda`) in the [Agent Skills](https://agentskills.io) format, usable from Claude Code and opencode. It gives the agent norns development patterns and best practices. The agent loads it when you work on norns code, detects whether the project is a script, mod, or engine, and reads only the guides that apply.
+[Modern norns components](skills/noseda/references/modern.md) defines the common
+standard, verified against pinned norns source and monome docs. It distinguishes
+platform contracts, conventions, architectural recommendations, undocumented
+interfaces and optional ecosystem dependencies.
 
-## File Structure
+- Params-first settings, stable IDs, PSET/PMAP compatibility and sidecar state.
+- Runtime data under `norns.state.data`, generated audio under `_path.audio`.
+- Beat-aware clocks and lattice; supported seconds-based metro usage.
+- Dirty rendering, screen/modal ownership, and the source-only `refresh()` hook.
+- Norns-specific global lifetime, module encapsulation and protected system names.
+- Real mod hooks/menu APIs, resource ownership and engine parameter libraries.
+- Legacy reviews reporting **idiom → replacement → risk of changing it**.
 
-```
-├── AGENTS.md                        # Notes for agents editing this repository
-├── CLAUDE.md                        # Redirect to AGENTS.md
-├── README.md                        # This file
-├── TASKS.md                         # Roadmap for extensive version
-└── skills/
-    └── noseda/
-        ├── SKILL.md                 # Entry point: core principles, what to read when
-        ├── references/
-        │   ├── components/
-        │   │   ├── script.md        # Script development guide
-        │   │   ├── mod.md           # Mod development guide
-        │   │   └── engine.md        # Engine development guide
-        │   ├── patterns/
-        │   │   ├── timing.md        # clock loops, transport, tick budget
-        │   │   ├── midi.md          # note-off bookkeeping, testing MIDI output
-        │   │   └── params.md        # id collisions, groups, optional includes
-        │   └── tasks/
-        │       ├── debug.md         # testing on a norns over wifi and on desktop norns
-        │       └── optimize.md      # measuring performance, xruns, fair comparisons
-        └── scripts/
-            └── nrepl.py             # Send Lua to a norns REPL over websocket
-```
+Modern does not mean latest beta. The target build matters: the sidecar beta
+has a reported `io.popen` failure, with write/streaming limitations corroborated
+in current source. The definition records the evidence and unverified release
+boundaries rather than recommending beta adoption.
 
-## Usage
+## Install
 
-### Install
-
-Clone the repository anywhere, then link the skill directory into a skills folder. The link must be named `noseda`.
+Clone anywhere, then link the skill directory into a skills folder. The link
+must be named `noseda`, matching the skill's frontmatter name.
 
 ```bash
 git clone https://github.com/vehka/noseda.git ~/src/noseda
@@ -44,105 +35,118 @@ mkdir -p ~/.claude/skills
 ln -s ~/src/noseda/skills/noseda ~/.claude/skills/noseda
 ```
 
-`~/.claude/skills/` is read by both Claude Code and opencode, so this one link covers both, in every project. Other locations:
+`~/.claude/skills/` is read by both Claude Code and opencode. Other locations:
 
 | Location | Read by | Scope |
 |---|---|---|
-| `~/.claude/skills/noseda` | Claude Code, opencode | all projects |
-| `~/.config/opencode/skills/noseda` | opencode | all projects |
-| `<project>/.claude/skills/noseda` | Claude Code, opencode | one project |
-| `<project>/.opencode/skills/noseda` | opencode | one project |
+| `~/.claude/skills/noseda` | Claude Code, opencode | All projects |
+| `~/.config/opencode/skills/noseda` | opencode | All projects |
+| `<project>/.claude/skills/noseda` | Claude Code, opencode | One project |
+| `<project>/.opencode/skills/noseda` | opencode | One project |
 
-Copy the directory instead of linking it if you want to commit the skill into a norns project.
+Copy the directory instead of linking if committing the skill into a project.
+For the optional REPL client, install `websocket-client` from
+`skills/noseda/scripts/requirements.txt` in your Python environment.
 
-`scripts/nrepl.py` needs `pip install websocket-client`.
+## Use
 
-### Norns core repository (optional but recommended)
+Start the agent in your norns project and ask for the work. The skill detects
+script/mod/engine components, applies their modern definition, and loads only
+relevant guides. Projects can contain multiple component types. In Claude Code
+you can also invoke `/noseda` directly.
 
-The guides point at the norns source for reference. Clone it next to your norns project:
+Examples:
+
+> Write a small norns sequencer with PARAMS controls and explicit transport behavior.
+
+> Review this legacy sampler. For each finding give the idiom, replacement and
+> risk to existing sessions or musical behavior.
+
+> Refactor this mod to use the actual hook/menu interfaces and coexist with scripts.
+
+> Build a synthesis engine with a reusable Lua parameter library, and test its lifecycle.
+
+> Compare timing and xruns before and after this change on my norns build.
+
+### Source checkouts
+
+Local norns and monome/docs checkouts make verification easier:
 
 ```bash
 git clone https://github.com/monome/norns.git
+git clone https://github.com/monome/docs.git monome-docs
 ```
 
+Tell the agent where they are and which release/build the component supports.
+Core paths are `lua/core/`, `lua/lib/`, `matron/src/`, and `sc/core/`; public
+documentation source is under `monome-docs/norns/`. The norns `doc/` directory
+contains generated API material. The skill records an audited snapshot, not
+a claim that upstream HEAD matches every user's firmware.
+
+## What gets loaded
+
+`SKILL.md` is the lean entry point. `references/modern.md` supplies shared rules
+and the relevant component definition. Then the agent follows this routing:
+
+| Need | Guide |
+|---|---|
+| Script / mod / engine construction | `references/components/{script,mod,engine}.md` |
+| Params, state, timing, UI or output detail | Relevant `references/patterns/` file |
+| Review/refactor | `references/tasks/review.md` |
+| Running and debugging | `references/tasks/debug.md` |
+| Performance measurement | `references/tasks/optimize.md` |
+| A specifically scoped implementation to study | `references/exemplars.md` |
+
+Each component guide includes a minimal runnable skeleton. Running it on the
+target device is a separate check from source verification and syntax parsing;
+report those checks distinctly.
+
+## Repository layout
+
+```text
+AGENTS.md                     # Instructions for agents editing this repository
+CLAUDE.md                     # Redirect to AGENTS.md
+README.md
+TASKS.md                      # Completed baseline and focused roadmap
+skills/noseda/
+├── SKILL.md                  # Detection, modern standard, selective routing
+├── references/
+│   ├── modern.md             # Definitions, source baseline, verification gaps
+│   ├── exemplars.md          # What to learn from each audited project
+│   ├── components/
+│   │   ├── script.md
+│   │   ├── mod.md
+│   │   └── engine.md
+│   ├── patterns/
+│   │   ├── params.md
+│   │   ├── state.md
+│   │   ├── timing.md
+│   │   ├── ui.md
+│   │   └── midi.md
+│   └── tasks/
+│       ├── review.md
+│       ├── debug.md
+│       └── optimize.md
+└── scripts/
+    ├── nrepl.py               # Lua REPL websocket client
+    └── requirements.txt
 ```
-.
-├── norns/              # norns core (reference)
-└── mynornsproject/     # Your script, mod or engine
-```
 
-### Use
+## Development status
 
-Start Claude Code or opencode in your norns project and ask for what you need. The agent loads the skill when the request is about norns. In Claude Code you can also call it directly with `/noseda`.
+The source-verified modern baseline and review workflow are implemented.
+[TASKS.md](TASKS.md) separates this foundation from advanced UI, hardware,
+session-management and DSP work. New guidance needs evidence and a route from
+`SKILL.md`; examples need checks appropriate to their behavior and target.
 
-### What Gets Loaded
+Resources: [monome docs](https://monome.org/docs/norns/),
+[norns source](https://github.com/monome/norns),
+[norns community](https://norns.community/), [lines](https://llllllll.co/).
 
-`SKILL.md` (core principles) is loaded with the skill. From there the agent reads:
+## Contributing and license
 
-- **Script project**: `components/script.md`
-- **Mod project** (has `lib/mod.lua`): `components/mod.md`
-- **Engine project** (has an `Engine_*.sc` file): `components/engine.md`
-- **Patterns** (timing, MIDI, params) when the code uses them
-- **Tasks** for the kind of work: `debug.md` for running and testing on a
-  norns or desktop norns, `optimize.md` for performance work
-
-### Example Prompts
-
-> "Help me create a simple sequencer script for norns"
-
-> "I want to create a mod that adds a global metronome to all scripts"
-
-> "Build a polyphonic FM synthesis engine"
-
-## Supported Component Types
-
-### Scripts
-Custom norns applications with:
-- Main Lua file
-- UI (screen, encoders, keys)
-- Parameter system
-- Optional libraries
-
-### Mods
-System-level extensions that:
-- Run alongside scripts
-- Hook into norns lifecycle
-- Add global functionality
-- Modify system behavior
-
-### Engines
-SuperCollider audio engines that:
-- Provide synthesis capabilities
-- Expose parameters to Lua
-- Handle audio processing
-- Integrate with norns scripts
-
-## Current Status: Sparse First Version
-
-This is a minimal viable version with:
-- ✅ Core development principles
-- ✅ Basic structure for scripts, mods, and engines
-- ✅ Essential patterns and templates
-- ✅ Reference to norns documentation
-
-See [TASKS.md](./TASKS.md) for the roadmap to a more extensive version.
-
-## Contributing
-
-This is an early version! Contributions welcome:
-- Additional pattern libraries
-- More examples
-- Common pitfall documentation
-- Testing strategies
-- Integration patterns (MIDI, Grid, Arc, etc.)
-
-## Resources
-
-- **Norns Documentation**: `../norns/doc/` (local) or https://monome.org/docs/norns/
-- **Community**: https://llllllll.co/
-- **Scripts**: https://norns.community/
-- **Source**: https://github.com/monome/norns
-
-## License
+Contributions welcome: focused patterns, source corrections, hardware results
+and realistic review/refactor examples. Preserve the distinction between an API
+fact and a recommendation. Record firmware/build and dependencies with results.
 
 Same license as referenced norns materials.

@@ -1,232 +1,149 @@
-# Norns Mod Development
+# Mod development
 
-## Mod Structure
+Apply the [modern mod definition](../modern.md#mod-definition). Mods are
+process-lifetime extensions with script-lifecycle responsibilities. Utility
+mods, nb voice providers and engine providers have different responsibilities;
+name the intended contract before choosing hooks.
 
-A norns mod is a Lua module that extends or modifies the norns system globally. Every mod MUST follow this structure:
+## Entry point and imports
 
-```
-mymod/
+```text
+dust/code/my_mod/
 ├── lib/
-│   └── mod.lua               # Main mod file (REQUIRED)
-└── README.md                 # Documentation (RECOMMENDED)
+│   ├── mod.lua
+│   └── helper.lua          # optional
+└── README.md
 ```
 
-**Critical**: The file MUST be located at `lib/mod.lua` for norns to recognize it as a mod.
+Core discovers `*/lib/mod.lua`; enabled modules load through `require` at
+startup. Use `local mods = require 'core/mods'`. Import helpers with
+`require 'my_mod/lib/helper'`, not `include('lib/helper')`, whose first search
+location belongs to the active script. Capture `mods.this_name` at module load
+if needed later; it is cleared when loading finishes. Return a local API table
+when scripts need access via `require 'my_mod/lib/mod'`.
 
-## Mod File Template
+Evidence: N `lua/core/mods.lua:13–58`, `lua/core/startup.lua:51–65,118–121`,
+`lua/core/config.lua:6–16`; D `norns/mods.md:145–167`.
+N/D use the [source baseline](../modern.md#evidence-and-scope).
 
-```lua
--- mymod
--- v1.0.0 @author
--- Description of what the mod does
+## Minimal runnable mod with optional menu
 
-local mod = require 'core/mods'
-
--- Check if mod is installed
-if note then
-  return
-end
-
-local MyMod = {}
-
--- Initialize mod
-function MyMod.init()
-  print("MyMod: initializing")
-  -- Setup code here
-end
-
--- Hook: system_post_startup
--- Called after matron initialization, before scripts run
-function MyMod.system_post_startup()
-  print("MyMod: system started")
-  -- System-level initialization
-end
-
--- Hook: system_pre_shutdown
--- Called when entering sleep mode
-function MyMod.system_pre_shutdown()
-  print("MyMod: system shutting down")
-  -- Cleanup before shutdown
-end
-
--- Hook: script_pre_init
--- Called before a script's engine and init() function
-function MyMod.script_pre_init()
-  print("MyMod: script pre-init")
-  -- Prepare for script loading
-end
-
--- Hook: script_post_init
--- Called after a script's init() function completes
-function MyMod.script_post_init()
-  print("MyMod: script initialized")
-  -- Augment or modify loaded script
-end
-
--- Hook: script_post_cleanup
--- Called after script termination
-function MyMod.script_post_cleanup()
-  print("MyMod: script cleaned up")
-  -- Cleanup after script ends
-end
-
--- Initialize the mod
-MyMod.init()
-
--- Register hooks
-mod.hook.register("system_post_startup", "mymod_system_post_startup", MyMod.system_post_startup)
-mod.hook.register("system_pre_shutdown", "mymod_system_pre_shutdown", MyMod.system_pre_shutdown)
-mod.hook.register("script_pre_init", "mymod_script_pre_init", MyMod.script_pre_init)
-mod.hook.register("script_post_init", "mymod_script_post_init", MyMod.script_post_init)
-mod.hook.register("script_post_cleanup", "mymod_script_post_cleanup", MyMod.script_post_cleanup)
-```
-
-## Lifecycle Hooks
-
-Mods can register callback functions for these events:
-
-### system_post_startup
-- **When**: After matron initialization, before scripts run
-- **Use for**: System-level modifications, global state setup
-- **Example**: Adding menu items, initializing services
-
-### system_pre_shutdown
-- **When**: When entering sleep mode
-- **Use for**: Cleanup, saving state
-- **Example**: Closing connections, writing data
-
-### script_pre_init
-- **When**: Before a script's engine and init() function
-- **Use for**: Preparing environment for script
-- **Example**: Injecting dependencies, modifying globals
-
-### script_post_init
-- **When**: After a script's init() function completes
-- **Use for**: Augmenting script functionality
-- **Example**: Adding parameters, hooking into script functions
-
-### script_post_cleanup
-- **When**: After script termination
-- **Use for**: Cleanup after script ends
-- **Example**: Resetting state, freeing resources
-
-## Common Mod Patterns
-
-### Adding Menu Items
+Save as `dust/code/modern_counter/lib/mod.lua`, enable under SYSTEM > MODS and
+restart. It counts script initializations, with a menu toggle for logging.
+Settings are session-only; it does not mutate an active script's controls.
 
 ```lua
-local mod = require 'core/mods'
+-- modern_counter: example utility mod
+local mods = require 'core/mods'
+local mod_name = mods.this_name
+local starts = 0
+local logging = true
 
-function MyMod.menu()
-  return {
-    {type = "number", name = "setting1", min = 1, max = 10, default = 5},
-    {type = "option", name = "mode", options = {"A", "B", "C"}, default = 1},
-    {type = "trigger", name = "action", action = function()
-      print("action triggered")
-    end}
-  }
+mods.hook.register('script_post_init', mod_name .. ':count', function()
+  starts = starts + 1
+  if logging then print(mod_name .. ': script starts = ' .. starts) end
+end)
+
+local menu = {}
+function menu.init() end
+function menu.deinit() end
+
+function menu.key(n, z)
+  if n == 2 and z == 1 then mods.menu.exit() end
 end
 
-mod.menu.register(mod.this_name, MyMod.menu)
-```
-
-### Augmenting Script Functions
-
-```lua
-function MyMod.script_post_init()
-  -- Store original redraw function
-  local original_redraw = redraw
-
-  -- Replace with augmented version
-  redraw = function()
-    -- Call original
-    original_redraw()
-
-    -- Add custom drawing
-    screen.move(100, 10)
-    screen.text("MOD")
-    screen.update()
+function menu.enc(n, d)
+  if n == 3 and d ~= 0 then
+    logging = d > 0
+    mods.menu.redraw()
   end
 end
-```
 
-### Adding Global Utilities
-
-```lua
--- Make utility available to all scripts
-_G.myutil = {}
-
-_G.myutil.helper = function(x)
-  return x * 2
+function menu.redraw()
+  screen.clear()
+  screen.level(15)
+  screen.move(8, 20)
+  screen.text('script starts: ' .. starts)
+  screen.move(8, 36)
+  screen.text('logging: ' .. (logging and 'on' or 'off'))
+  screen.move(8, 52)
+  screen.text('E3: logging / K2: back')
+  screen.update()
 end
+
+mods.menu.register(mod_name, menu)
+
+local Counter = {}
+function Counter.get_count() return starts end
+return Counter
 ```
 
-## Using Additional Library Files
+The registered value is a **menu callback table**, not a function returning
+parameter descriptors. No special mod `init()` method or installation guard is
+required. The count survives script changes because it is a module local. This
+example owns no timer/process/notes requiring teardown. Enable/disable takes
+effect on restart; it is not a hot-unload interface.
 
-Mods can require additional modules:
+Evidence: N `lua/core/mods.lua:52–58,81–88,111–140`,
+`lua/core/menu.lua:191–205`, `lua/core/menu/mods.lua:18–25,78–85`;
+D `norns/mods.md:104–167`.
 
-```
-mymod/
-├── lib/
-│   ├── mod.lua               # Main mod file
-│   ├── helper.lua            # Additional module
-│   └── ui.lua                # Another module
-```
+## Hooks and actual ordering
 
-In `lib/mod.lua`:
-```lua
-local helper = include('lib/helper')  -- Use include() for mod-local files
-```
+Use `mods.hook.register(which, unique_name, fn)` and
+source-supported `mods.hook.deregister(which, unique_name)` (not described in
+the inspected public mod guide). Reusing a callback name replaces
+that registration; names run alphabetically within a hook. Mod loading itself
+does not promise alphabetical order.
 
-## Testing Checklist
+| Hook | Use / ordering |
+|---|---|
+| `script_pre_init` | Prepare per-script interfaces after top level, before engine load/init |
+| `script_post_init` | Augment a successfully initialized script |
+| `script_post_cleanup` | Release per-script mod ownership, before core resets |
+| `system_post_startup` | System startup work; don't assume a strict before-script barrier |
+| `system_pre_shutdown` | Release/save process-lifetime work for SLEEP and RESTART |
+| `audio_post_restore_default_routing` | Reapply intentional mod routing after defaults are restored |
 
-- [ ] Mod file is at `lib/mod.lua`
-- [ ] Mod loads without errors
-- [ ] Hooks register successfully
-- [ ] Mod functionality works across different scripts
-- [ ] No conflicts with other mods
-- [ ] Cleanup properly releases resources
-- [ ] Menu items (if any) work correctly
-- [ ] Documentation explains functionality
+There is no `script_pre_cleanup` hook. Script post-cleanup does not guarantee
+the asynchronous SC teardown has finished, and SLEEP does not run that hook.
+The public mods page omits the routing hook; source verifies it.
 
-## Common Mistakes to Avoid
+Evidence: N `lua/core/hook.lua:13–42`, `lua/core/script.lua:11–24,145–149,230–247`,
+`lua/core/norns.lua:195–205,247–268`, `lua/core/audio.lua:478–494`,
+`matron/src/main.cc:124–140`; D `norns/mods.md:28–38`.
 
-1. **Wrong file location**: Must be `lib/mod.lua`, not `mod.lua`
-2. **Breaking existing scripts**: Test with multiple scripts
-3. **Not cleaning up**: Implement proper cleanup in hooks
-4. **Global pollution**: Be careful with globals, use `_G` explicitly
-5. **Hook name conflicts**: Use unique, descriptive hook names
+## Ownership and coexistence
 
-## Key Reference Files to Examine
+- Keep module state separate from state for the active script. Reinitialize
+  per-script resources at the proper hook; don't capture old script callbacks
+  forever in a cached module.
+- Core clearing cancels clocks, frees script metros and resets callbacks,
+  polls and params even when a mod started them. A service started in
+  `script_post_cleanup` may immediately be reset. Don't claim reserved metros
+  as a workaround; design for the lifecycle.
+- Prefer supported hooks and returned APIs over global injection. `_G.foo = …`
+  still goes through the script metatable for a new name and isn't a guarantee
+  of process-lifetime storage.
+- If wrapping a shared function, chain its existing behavior, retain ownership
+  information, and restore it without overwriting someone else's newer wrapper.
+  Simply assigning global redraw in post-init is unreliable: menu transitions
+  restore the loader's captured redraw. Use explicit integration or carefully
+  version-scoped hooks for specialized system UI work.
+- Persistent mod settings need their own directory beneath `_path.data`, not
+  the current script's `norns.state.data`. Document the save/load policy and
+  keep it out of high-rate callbacks.
+- An nb provider should implement the pinned player contract and register it
+  at the appropriate per-script hook. See [output patterns](../patterns/midi.md)
+  and [nb exemplars](../exemplars.md#optional-nb-interface).
 
-When developing mods, examine these reference implementations:
+Evidence: N `lua/core/script.lua:26–124,215–222`, `lua/core/menu.lua:157–175`,
+`lua/core/config.lua:25–31`; D `norns/mods.md:145–167`.
 
-1. **Mod system core:**
-   - `../norns/lua/core/mods.lua` - Mod loading and hook system
+## Acceptance checks
 
-2. **Example mods:**
-   - https://github.com/monome/norns-example-mod - Basic template
-   - Community mods on https://norns.community/
-
-3. **Core libraries to understand:**
-   - `../norns/lua/core/` - System libraries that can be extended
-
-## Installation
-
-Mods are installed in the norns `dust` directory:
-```
-dust/code/mymod/
-└── lib/
-    └── mod.lua
-```
-
-Enable/disable via: SYSTEM > MODS
-
-## Documentation
-
-Include a README.md with:
-- Description of mod functionality
-- Installation instructions
-- Configuration options
-- Known conflicts
-- Version history
+Test with no script, at least two unrelated scripts, reruns, menu entry/exit,
+SLEEP/RESTART, and any cooperating mods. Check partial initialization and
+repeated hooks. Document conflicts, persistence, target releases and all shared
+mutations. Do not infer working subprocess support from source availability on
+the affected sidecar beta; see [target compatibility](../modern.md#target-compatibility-comes-first).
