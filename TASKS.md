@@ -48,47 +48,41 @@ new reference from it.
 These are static and host-instrumented checks, not a desktop norns session,
 physical-device audio test or sidecar-beta regression reproduction.
 
-### Additional physical run — 2026-10-15
+## Verification and compatibility
 
-- [x] Run the verbatim skeletons on `10.0.0.138`: Pi 3 B+, shield PCB 200323,
-  update marker 260616, modified core `4cbb17f`; isolate mods, test persistence,
-  controls/audio/UI, engine switching, partial Lua init and mod disable/restart.
-- [x] Save commands, logs, deployed hashes, measurements, framebuffer captures
-  and user-confirmed physical checks in the
+- [x] **Priority acceptance run: norns shield with a Raspberry Pi 3** — completed
+  2026-10-15 on `10.0.0.138`: Pi 3 B+, shield PCB 200323, update marker 260616,
+  modified core `4cbb17f`. Recorded build/hardware, component revision and connected
+  devices; started with third-party mods disabled. Results and findings are in the
   [acceptance report](acceptance/2026-10-15-pi3-260616/REPORT.md).
-- [ ] Recheck the reproduced queued-clock cancellation failure on stock stable;
-  verify direct SLEEP from a loaded script recalls it after power-on. Source
-  confirms RESTART clears the remembered script, explaining the observed `NO SCRIPT`.
-
-This target has local core changes and compiled third-party SC extensions, so
-the stock stable-image baseline below remains open. Physical-controller PMAP
-is pending; the skeletons do not require a Grid.
-
-## Verification and compatibility — next priority
-
-- [ ] **Priority acceptance run: stock norns shield with a Raspberry Pi 3**, on
-  an unmodified stable monome image. Record exact image/build, Pi/shield model,
-  component revision and connected devices; start with third-party mods disabled.
-  - [ ] Install the three skeletons verbatim from
+  - [x] Install the three skeletons verbatim from
     `skills/noseda/references/components/{script,mod,engine}.md`; record any edits
     needed to run them as compatibility findings.
-  - [ ] Check audible output, encoders/keys, repeated start/stop/reset, rerun,
+  - [x] Check audible output, encoders/keys, repeated start/stop/reset, rerun,
     script/engine switching and cleanup, including partial initialization.
-  - [ ] Check PARAMS/PSET save/recall, sidecar read/write/delete and missing-data
-    defaults; check PMAP with a controller when available.
-  - [ ] Enable only the example mod for its tests: menu entry/exit, state across
-    unrelated scripts, disable/restart and SLEEP/RESTART behavior.
-  - [ ] Test dirty rendering, menu/modal ownership and native `refresh()` on the
+  - [x] Check PARAMS/PSET save/recall, sidecar read/write/delete and missing-data
+    defaults; exercise PMAP with injected CCs. No physical controller was connected.
+  - [x] Enable only the example mod for its tests: menu entry/exit, state across
+    unrelated scripts, disable/restart and shutdown/power-on. Source confirms
+    RESTART clears the remembered script; direct SLEEP recall is a follow-up below.
+  - [x] Test dirty rendering, menu/modal ownership and native `refresh()` on the
     physical screen; measure cadence instead of assuming 60 Hz delivery.
-  - [ ] Record idle/playing DSP load, xruns and sequencer lateness under a stated
+  - [x] Record idle/playing DSP load, xruns and sequencer lateness under a stated
     workload. Keep firmware and test conditions fixed for Pi 3 comparisons.
-  - [ ] Save reproducible steps, commands, logs and pass/fail results in the repo;
+  - [x] Save reproducible steps, commands, logs and pass/fail results in the repo;
     distinguish observed behavior from source-derived expectations. Update the
     guides and verification gaps from the results.
+- [ ] Repeat the acceptance run on a verifiably unmodified stable monome image
+  to establish the stock Pi 3 software baseline; recheck the queued-clock
+  cancellation failure there. The completed run used modified core software
+  and compiled third-party SC extensions.
+- [ ] Verify direct SLEEP from a loaded script recalls it after power-on.
+- [ ] Verify PMAP with a physical MIDI controller when available. The three
+  skeletons do not require a Grid.
 - [ ] Extend the acceptance run to other supported physical norns releases and
   hardware, keeping their results separate from the stock shield/Pi 3 baseline.
-- [ ] Verify native refresh cadence/modal behavior on hardware and assess other
-  supported backends; do not infer SDL support.
+- [ ] Assess native refresh on other supported hardware/backends; the tested
+  shield's cadence/modal behavior is verified above. Do not infer SDL support.
 - [ ] Establish exact affected/fixed builds for reported sidecar-beta failures,
   including popen behavior and any verified workaround. Preserve separate
   source evidence and runtime reports.
