@@ -1,0 +1,308 @@
+{
+  "performance": {
+    "performance-idle": {
+      "dsp_percent": {
+        "count": 60,
+        "mean": 8.796413898468021,
+        "p50": 8.7784976959229,
+        "p95": 9.035364151001,
+        "max": 9.4258842468262,
+        "min": 8.6627521514893
+      },
+      "xruns": 0,
+      "seconds": 15.039269924164
+    },
+    "performance-playing-120": {
+      "dsp_percent": {
+        "count": 60,
+        "mean": 12.631100225448634,
+        "p50": 12.620293617249,
+        "p95": 12.837240219116,
+        "max": 13.311875343323,
+        "min": 12.319040298462
+      },
+      "xruns": 0,
+      "seconds": 15.04411816597,
+      "lateness_ms": {
+        "count": 120,
+        "mean": 0.6208333332487825,
+        "p50": 0.6249999999994316,
+        "p95": 1.062499999989086,
+        "max": 1.187500000000341,
+        "min": 0.10416666501100735
+      },
+      "events": 120,
+      "max_inter_event_ms": 125.9000301361084,
+      "draws_per_second": 7.976539314311,
+      "draw_interval_ms": {
+        "count": 119,
+        "mean": 125.31008239553756,
+        "p50": 134.3998908996582,
+        "p95": 134.70005989074707,
+        "max": 135.4999542236328,
+        "min": 66.90001487731934
+      }
+    },
+    "performance-playing-300-max-amp": {
+      "dsp_percent": {
+        "count": 60,
+        "mean": 17.488916333516432,
+        "p50": 17.481731414795,
+        "p95": 17.758575439453,
+        "max": 17.818023681641,
+        "min": 17.280178070068
+      },
+      "xruns": 0,
+      "seconds": 15.03885602951,
+      "lateness_ms": {
+        "count": 300,
+        "mean": 0.6318055554727001,
+        "p50": 0.6250000000022737,
+        "p95": 1.1458333339987803,
+        "max": 1.1666666659948532,
+        "min": 0.08333333399832554
+      },
+      "events": 300,
+      "max_inter_event_ms": 50.89998245239258,
+      "draws_per_second": 14.82825552438418,
+      "draw_interval_ms": {
+        "count": 222,
+        "mean": 67.64189187470858,
+        "p50": 67.30008125305176,
+        "p95": 68.30000877380371,
+        "max": 68.30000877380371,
+        "min": 66.90001487731934
+      }
+    },
+    "performance-tone-idle": {
+      "dsp_percent": {
+        "count": 40,
+        "mean": 9.594753384590147,
+        "p50": 9.577919960022,
+        "p95": 9.7073745727539,
+        "max": 9.7308025360107,
+        "min": 9.4028949737549
+      },
+      "xruns": 0,
+      "seconds": 10
+    },
+    "performance-tone-held": {
+      "dsp_percent": {
+        "count": 40,
+        "mean": 9.63959403038024,
+        "p50": 9.6007499694824,
+        "p95": 9.8100471496582,
+        "max": 9.9671907424927,
+        "min": 9.4954586029053
+      },
+      "xruns": 0,
+      "seconds": 10
+    }
+  },
+  "refresh": {
+    "textentry": {
+      "events": 179,
+      "hz": 59.7455773766034,
+      "interval_ms": {
+        "count": 178,
+        "mean": 16.737640573737327,
+        "p50": 16.700029373168945,
+        "p95": 16.8001651763916,
+        "max": 16.899824142456055,
+        "min": 16.500234603881836
+      }
+    },
+    "final": {
+      "events": 183,
+      "hz": 60.69904003601724,
+      "interval_ms": {
+        "count": 182,
+        "mean": 16.47472512591016,
+        "p50": 16.700029373168945,
+        "p95": 16.8001651763916,
+        "max": 19.500017166137695,
+        "min": 0.0
+      }
+    },
+    "textentry_accept": {
+      "events": 63,
+      "hz": 62.81024434097113,
+      "interval_ms": {
+        "count": 62,
+        "mean": 15.920969747727916,
+        "p50": 16.700029373168945,
+        "p95": 16.8001651763916,
+        "max": 16.900062561035156,
+        "min": 0.0
+      }
+    },
+    "fileselect": {
+      "events": 180,
+      "hz": 59.70248935974964,
+      "interval_ms": {
+        "count": 179,
+        "mean": 16.749720333674766,
+        "p50": 16.700029373168945,
+        "p95": 16.8001651763916,
+        "max": 19.500017166137695,
+        "min": 16.59989356994629
+      }
+    },
+    "returned": {
+      "events": 183,
+      "hz": 60.733472505645004,
+      "interval_ms": {
+        "count": 182,
+        "mean": 16.46538488157503,
+        "p50": 16.700029373168945,
+        "p95": 16.8001651763916,
+        "max": 21.80004119873047,
+        "min": 0.0
+      }
+    },
+    "play": {
+      "events": 299,
+      "hz": 59.69670906036457,
+      "interval_ms": {
+        "count": 298,
+        "mean": 16.751342171790615,
+        "p50": 16.700029373168945,
+        "p95": 16.8001651763916,
+        "max": 20.49994468688965,
+        "min": 16.59989356994629
+      }
+    },
+    "menu": {
+      "events": 0
+    }
+  },
+  "raw_failed_assertions": [
+    {
+      "name": "cleared-script-resources",
+      "script": "",
+      "time": 1792066265.2225,
+      "ok": false,
+      "result": "/home/we/dust/code/noseda_acceptance/checks.lua:224: remaining clocks: 4\nstack traceback:\n\t[C]: in function 'assert'\n\t/home/we/dust/code/noseda_acceptance/checks.lua:224: in function </home/we/dust/code/noseda_acceptance/checks.lua:220>\n\t[C]: in function 'xpcall'\n\t/home/we/dust/code/noseda_acceptance/checks.lua:12: in function </home/we/dust/code/noseda_acceptance/checks.lua:11>"
+    },
+    {
+      "name": "cleared-script-resources",
+      "script": "",
+      "time": 1792066280.9996,
+      "ok": false,
+      "result": "/home/we/dust/code/noseda_acceptance/checks.lua:224: remaining clocks: 4\nstack traceback:\n\t[C]: in function 'assert'\n\t/home/we/dust/code/noseda_acceptance/checks.lua:224: in function </home/we/dust/code/noseda_acceptance/checks.lua:220>\n\t[C]: in function 'xpcall'\n\t/home/we/dust/code/noseda_acceptance/checks.lua:12: in function </home/we/dust/code/noseda_acceptance/checks.lua:11>"
+    },
+    {
+      "name": "cleared-script-resources",
+      "script": "",
+      "time": 1792066295.9812,
+      "ok": false,
+      "result": "/home/we/dust/code/noseda_acceptance/checks.lua:224: remaining clocks: 4\nstack traceback:\n\t[C]: in function 'assert'\n\t/home/we/dust/code/noseda_acceptance/checks.lua:224: in function </home/we/dust/code/noseda_acceptance/checks.lua:220>\n\t[C]: in function 'xpcall'\n\t/home/we/dust/code/noseda_acceptance/checks.lua:12: in function </home/we/dust/code/noseda_acceptance/checks.lua:11>"
+    }
+  ],
+  "observations": [
+    {
+      "script": "",
+      "ok": true,
+      "time": 1792066452.7656,
+      "name": "core-only-cancel-race",
+      "result": {
+        "engine_commands": false,
+        "stale_ids": [
+          34,
+          36,
+          38,
+          40,
+          42,
+          44,
+          46,
+          48,
+          50,
+          52
+        ],
+        "attempts": 10
+      }
+    },
+    {
+      "script": "/home/we/dust/code/modern_tone/modern_tone.lua",
+      "ok": true,
+      "time": 1792068332.0629,
+      "name": "human-tone",
+      "result": {
+        "hold_release": true,
+        "source": "user confirmation",
+        "menu_return": true,
+        "shield_pcb": "200323",
+        "encoders": true,
+        "screen": true
+      }
+    },
+    {
+      "script": "/home/we/dust/code/modern_steps/modern_steps.lua",
+      "ok": true,
+      "time": 1792068457.3727,
+      "name": "human-steps",
+      "result": {
+        "menu_while_playing": true,
+        "audio": true,
+        "source": "user confirmation",
+        "stop": true,
+        "reset": true,
+        "encoders": true
+      }
+    },
+    {
+      "result": {
+        "wifi_recovery": "intermittent, recovered",
+        "postboot_script": "",
+        "power_on": true,
+        "back": true,
+        "source": "user confirmation and postboot REPL",
+        "sleep": true,
+        "toggle": true,
+        "postboot_count": 0,
+        "menu_count": 4
+      },
+      "script": "",
+      "name": "human-mod-sleep-poweron",
+      "ok": true,
+      "time": 1792073038.3519
+    },
+    {
+      "name": "mod-disable-restart",
+      "ok": true,
+      "script": "",
+      "time": 1792073049.9801,
+      "result": {
+        "loaded_after_restart": false,
+        "disabled_before_restart_still_loaded": true
+      }
+    },
+    {
+      "result": {
+        "menu": true,
+        "tempo": 90,
+        "mods": [
+          "qremote",
+          "norns-uc4",
+          "modhousekeeper",
+          "nb_polyperc",
+          "nb_pp",
+          "z_tuning",
+          "emplaitress",
+          "nb_fluid"
+        ],
+        "script": "/home/we/dust/code/speech/speech.lua"
+      },
+      "time": 1792073084.5815,
+      "ok": true,
+      "script": "/home/we/dust/code/speech/speech.lua",
+      "name": "restoration"
+    }
+  ],
+  "modal_callbacks": {
+    "accept": "accepted",
+    "fileselect": "cancel",
+    "textentry": "nil"
+  },
+  "manifest_verified": true
+}

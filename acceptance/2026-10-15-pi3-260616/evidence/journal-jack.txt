@@ -1,0 +1,839 @@
+-- Journal begins at Thu 2026-10-15 13:49:28 BST, ends at Thu 2026-10-15 15:05:47 BST. --
+2026-10-15T13:49:30+0100 norns systemd[1]: Starting norns-jack.service...
+2026-10-15T13:49:30+0100 norns jack_wait[366]: Cannot connect to server socket err = No such file or directory
+2026-10-15T13:49:30+0100 norns jack_wait[366]: Cannot connect to server request channel
+2026-10-15T13:49:30+0100 norns jack_wait[366]: jack server is not running or cannot be started
+2026-10-15T13:49:30+0100 norns jack_wait[366]: JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+2026-10-15T13:49:30+0100 norns jack_wait[366]: JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+2026-10-15T13:49:31+0100 norns jackd[365]: jackdmp 1.9.17
+2026-10-15T13:49:31+0100 norns jackd[365]: Copyright 2001-2005 Paul Davis and others.
+2026-10-15T13:49:31+0100 norns jackd[365]: Copyright 2004-2016 Grame.
+2026-10-15T13:49:31+0100 norns jackd[365]: Copyright 2016-2021 Filipe Coelho.
+2026-10-15T13:49:31+0100 norns jackd[365]: jackdmp comes with ABSOLUTELY NO WARRANTY
+2026-10-15T13:49:31+0100 norns jackd[365]: This is free software, and you are welcome to redistribute it
+2026-10-15T13:49:31+0100 norns jackd[365]: under certain conditions; see the file COPYING for details
+2026-10-15T13:49:31+0100 norns jackd[365]: JACK server starting in realtime mode with priority 95
+2026-10-15T13:49:31+0100 norns jackd[365]: self-connect-mode is "Don't restrict self connect requests"
+2026-10-15T13:49:31+0100 norns jackd[365]: creating alsa driver ... hw:sndrpimonome|hw:sndrpimonome|128|3|48000|0|0|nomon|swmeter|soft-mode|16bit
+2026-10-15T13:49:31+0100 norns jackd[365]: configuring for 48000Hz, period = 128 frames (2.7 ms), buffer = 3 periods
+2026-10-15T13:49:31+0100 norns jackd[365]: ALSA: final selected sample format for capture: 16bit little-endian
+2026-10-15T13:49:31+0100 norns jackd[365]: ALSA: use 3 periods for capture
+2026-10-15T13:49:31+0100 norns jackd[365]: ALSA: final selected sample format for playback: 16bit little-endian
+2026-10-15T13:49:31+0100 norns jackd[365]: ALSA: use 3 periods for playback
+2026-10-15T13:49:31+0100 norns jack_wait[366]: server is available
+2026-10-15T13:49:31+0100 norns systemd[1]: Started norns-jack.service.
+2026-10-15T13:49:34+0100 norns jackd[365]: Unknown destination port in attempted (dis)connection src_name [crone:output_5] dst_name [SuperCollider:in_1]
+2026-10-15T13:49:34+0100 norns jackd[365]: Unknown source port in attempted (dis)connection src_name [SuperCollider:out_1] dst_name [crone:input_5]
+2026-10-15T13:49:34+0100 norns jackd[365]: Unknown source port in attempted (dis)connection src_name [SuperCollider:out_2] dst_name [crone:input_6]
+2026-10-15T13:49:34+0100 norns jackd[365]: Unknown destination port in attempted (dis)connection src_name [crone:output_6] dst_name [SuperCollider:in_2]
+2026-10-15T13:49:46+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Running
+2026-10-15T13:49:46+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T13:49:46+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Running
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Running
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Running
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Running
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Running
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: Cannot write socket fd = 19 err = Connection reset by peer
+2026-10-15T15:03:58+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:03:58+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:03:58+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:03:58+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:03:58+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:03:58+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:03:58+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:03:58+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:03:58+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:03:58+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:03:58+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:58+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: Cannot read socket fd = 13 err = Connection reset by peer
+2026-10-15T15:03:59+0100 norns jackd[365]: Could not read notification result
+2026-10-15T15:03:59+0100 norns jackd[365]: ClientNotify fails name = crone notification = 18 val1 = 0 val2 = 0
+2026-10-15T15:03:59+0100 norns jackd[365]: Cannot write socket fd = 16 err = Broken pipe
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:03:59+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:03:59+0100 norns jackd[365]: ClientNotify fails name = softcut notification = 18 val1 = 0 val2 = 0
+2026-10-15T15:03:59+0100 norns jackd[365]: Cannot write socket fd = 16 err = Broken pipe
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:03:59+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:03:59+0100 norns jackd[365]: ClientNotify fails name = softcut notification = 18 val1 = 1 val2 = 0
+2026-10-15T15:03:59+0100 norns jackd[365]: Cannot write socket fd = 13 err = Broken pipe
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:03:59+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:03:59+0100 norns jackd[365]: ClientNotify fails name = crone notification = 18 val1 = 1 val2 = 0
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: Cannot write socket fd = 16 err = Broken pipe
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:03:59+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:03:59+0100 norns jackd[365]: ClientNotify fails name = crone notification = 1 val1 = 0 val2 = 0
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:03:59+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckSize error size = 32 Size() = 12
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckRead error
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckSize error size = -1 Size() = 4
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckRead error
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckSize error size = 0 Size() = 12
+2026-10-15T15:03:59+0100 norns jackd[365]: CheckRead error
+2026-10-15T15:04:01+0100 norns jackd[365]: Unknown destination port in attempted (dis)connection src_name [crone:output_5] dst_name [SuperCollider:in_1]
+2026-10-15T15:04:01+0100 norns jackd[365]: Unknown source port in attempted (dis)connection src_name [SuperCollider:out_2] dst_name [crone:input_6]
+2026-10-15T15:04:01+0100 norns jackd[365]: Unknown destination port in attempted (dis)connection src_name [crone:output_6] dst_name [SuperCollider:in_2]
+2026-10-15T15:04:01+0100 norns jackd[365]: Unknown source port in attempted (dis)connection src_name [SuperCollider:out_1] dst_name [crone:input_5]
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Connection reset by peer
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 19 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = matron-clock notification = 3 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot read socket fd = 13 err = Connection reset by peer
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not read notification result
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = crone notification = 18 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 16 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = softcut notification = 18 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 16 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = softcut notification = 18 val1 = 1 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 13 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = crone notification = 18 val1 = 1 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = crone was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = SuperCollider was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: Cannot write socket fd = 16 err = Broken pipe
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRes error
+2026-10-15T15:04:24+0100 norns jackd[365]: Could not write notification
+2026-10-15T15:04:24+0100 norns jackd[365]: ClientNotify fails name = crone notification = 1 val1 = 0 val2 = 0
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: JackEngine::XRun: client = softcut was not finished, state = Triggered
+2026-10-15T15:04:24+0100 norns jackd[365]: JackAudioDriver::ProcessGraphAsyncMaster: Process error
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckSize error size = 32 Size() = 12
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRead error
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckSize error size = -1 Size() = 4
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRead error
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckSize error size = 0 Size() = 12
+2026-10-15T15:04:24+0100 norns jackd[365]: CheckRead error

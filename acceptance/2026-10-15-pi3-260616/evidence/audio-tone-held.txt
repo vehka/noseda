@@ -1,0 +1,1 @@
+[ "AUDIO", "tone-held", "engine", 'Engine_NoSEDATone', "rmsL", 0.14142135829195, "rmsR", 0.14142135829195, "peakL", 0.1999995559454, "positiveCrossingsHz", 440.0, "stereoMaxDifference", 0.0 ]

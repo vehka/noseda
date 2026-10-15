@@ -1,0 +1,11 @@
+{
+  "modern_steps/modern_steps.lua": "d035222c20c62c97fd1a4fdb5b9385e3da189aae5cb5b900b389c0fb9056ff6b",
+  "modern_counter/lib/mod.lua": "328730121a8d07ecf36a4a425e21d8aa14b757a1db7eb768f926b52e527c388f",
+  "modern_tone/lib/Engine_NoSEDATone.sc": "8f7d40c5f83a43754879d68536b501d1aa0654474250325b8df567f876981200",
+  "modern_tone/lib/noseda_tone_engine.lua": "cf143d26712b8a2ceb315b95579126e9dd9ac34fe9bd8ab9868353bb89ab7785",
+  "modern_tone/modern_tone.lua": "2afe332a77ac20680154dc3d179ea7bf72570eb3f20089daa67ced2cd817fa18",
+  "noseda_acceptance/checks.lua": "77fe57cc264a823f58efd7654118b128cf679bf5a5540c6ad452b7672a0304de",
+  "noseda_acceptance/probe.lua": "5762e29cd72fe45cc11d91498cb007458b8b1afefafbc4fa30d909f96abe59e5",
+  "modern_steps/fail_init.lua": "2d2d59701757d07bff1c139f8a50c4427d043f572aaca40d2ec8fd988ae66776",
+  "modern_steps/fail_top.lua": "29160cd2385ba15a912e8166f2b8ee297e9a63f901d583f1df52dacfedeae118"
+}

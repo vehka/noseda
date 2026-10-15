@@ -48,6 +48,22 @@ new reference from it.
 These are static and host-instrumented checks, not a desktop norns session,
 physical-device audio test or sidecar-beta regression reproduction.
 
+### Additional physical run — 2026-10-15
+
+- [x] Run the verbatim skeletons on `10.0.0.138`: Pi 3 B+, shield PCB 200323,
+  update marker 260616, modified core `4cbb17f`; isolate mods, test persistence,
+  controls/audio/UI, engine switching, partial Lua init and mod disable/restart.
+- [x] Save commands, logs, deployed hashes, measurements, framebuffer captures
+  and user-confirmed physical checks in the
+  [acceptance report](acceptance/2026-10-15-pi3-260616/REPORT.md).
+- [ ] Recheck the reproduced queued-clock cancellation failure on stock stable;
+  verify direct SLEEP from a loaded script recalls it after power-on. Source
+  confirms RESTART clears the remembered script, explaining the observed `NO SCRIPT`.
+
+This target has local core changes and compiled third-party SC extensions, so
+the stock stable-image baseline below remains open. Physical-controller PMAP
+is pending; the skeletons do not require a Grid.
+
 ## Verification and compatibility — next priority
 
 - [ ] **Priority acceptance run: stock norns shield with a Raspberry Pi 3**, on

@@ -1,0 +1,747 @@
+-- Journal begins at Thu 2026-10-15 13:49:28 BST, ends at Thu 2026-10-15 15:05:45 BST. --
+2026-10-15T13:49:31+0100 norns systemd[1]: Started norns-main.service.
+2026-10-15T13:49:31+0100 norns ws-wrapper[444]: attempting to bind socket at url ws://*:5555
+2026-10-15T13:49:32+0100 norns ws-wrapper[444]: constructed Client: crone
+2026-10-15T13:49:32+0100 norns ws-wrapper[444]: constructed Client: softcut
+2026-10-15T13:49:32+0100 norns ws-wrapper[444]: initializing buffer management worker..
+2026-10-15T13:49:32+0100 norns ws-wrapper[444]: setting up jack clients..
+2026-10-15T13:49:32+0100 norns ws-wrapper[444]: engine sample rate: 48000
+2026-10-15T13:49:32+0100 norns ws-wrapper[444]: engine sample rate: 48000
+2026-10-15T13:49:32+0100 norns ws-wrapper[444]: starting jack clients..
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: connecting ports...
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: starting OSC interface...
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: osc methods:
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /hello []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /goodbye []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /quit []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /poll/start/vu []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /poll/stop/vu []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /poll/start/tape []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /poll/stop/tape []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/adc [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/dac [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/ext [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/cut_master [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/ext_rev [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/rev_dac [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/monitor [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/monitor_mix [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/monitor_rev [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/compressor_mix [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/enabled/compressor [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/enabled/reverb [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/compressor/ratio [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/compressor/threshold [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/compressor/attack [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/compressor/release [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/compressor/gain_pre [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/compressor/gain_post [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/reverb/pre_del [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/reverb/lf_fc [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/reverb/low_rt60 [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/reverb/mid_rt60 [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/reverb/hf_damp [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/enabled/cut [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/cut [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/pan/cut [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/adc_cut [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/ext_cut [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/tape_cut [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/cut_rev [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/in_cut [iif]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/cut_cut [iif]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/rate [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/loop_start [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/loop_end [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/loop_flag [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/fade_time [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/rec_level [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_level [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/rec_flag [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/play_flag [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/rec_offset [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/position [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_fc [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_fc_mod [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_rq [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_lp [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_hp [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_bp [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_br [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pre_filter_dry [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/post_filter_fc [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/post_filter_rq [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/post_filter_lp [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/post_filter_hp [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/post_filter_bp [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/post_filter_br [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/post_filter_dry [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/voice_sync [iif]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/level_slew_time [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/pan_slew_time [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/recpre_slew_time [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/rate_slew_time [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/buffer [ii]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/read_mono [sfffiiff]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/read_stereo [sfffff]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/write_mono [sffi]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/write_stereo [sff]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/clear []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/clear_channel [i]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/clear_region [ff]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/clear_region_channel [iff]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/clear_fade_region [ffff]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/clear_fade_region_channel [iffff]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/copy_mono [iifffffi]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/copy_stereo [fffffi]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/buffer/render [iffi]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/query/position [i]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /softcut/reset []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/phase_quant [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/param/cut/phase_offset [if]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /poll/start/cut/phase []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /poll/stop/cut/phase []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/record/open [s]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/record/start []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/record/pause [i]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/record/stop []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/play/open [s]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/play/start []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/play/pause [i]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/play/stop []
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /tape/play/loop [i]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/tape [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: /set/level/tape_rev [f]
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: no user matronrc file (/home/we/matronrc.lua) found, using default
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: loading matronrc file: /home/we/norns/matronrc.lua
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: setup IO keys:gpio
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: setup IO enc:gpio
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: setup IO enc:gpio
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: setup IO enc:gpio
+2026-10-15T13:49:33+0100 norns ws-wrapper[444]: IO setup OK.
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: font setup OK.
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: *** WARNING *** The program 'norns' uses the Apple Bonjour compatibility layer of Avahi.
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: *** WARNING *** Please fix your application to use the native API of Avahi!
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: *** WARNING *** For more information see <http://0pointer.de/blog/projects/avahi-compat.html>
+2026-10-15T13:49:34+0100 norns norns[488]: *** WARNING *** The program 'norns' uses the Apple Bonjour compatibility layer of Avahi.
+2026-10-15T13:49:34+0100 norns norns[488]: *** WARNING *** Please fix your application to use the native API of Avahi!
+2026-10-15T13:49:34+0100 norns norns[488]: *** WARNING *** For more information see <http://0pointer.de/blog/projects/avahi-compat.html>
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: init oracle...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: OSC rx port: 8888
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: OSC ext port: 57120
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: OSC remote port: 10111
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: init weaver...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: starting main lua vm
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: running lua config file: dofile('/home/we/norns/lua/core/config.lua')
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: MATRON
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: norns version: 0.0.0
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: git hash: 4cbb17f
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: platform: pi3 (3)
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: init dev_monitor...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: setting cleanup...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: init input...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: running startup...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: error loading keyboard layout, using old value: us
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: start_audio():
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: loading mod: modern_counter (modern_counter/lib/mod)
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: scanning devices...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: handling pending events...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: _norns.midi.add: 1, virtual, userdata: 0x56bb58
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: running post-startup...
+2026-10-15T13:49:34+0100 norns ws-wrapper[444]: _norns._post_startup
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: norns.startup_status.ok
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: # script clear
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: ### SCRIPT ERROR: NO SCRIPT
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: network connections:
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: --------------------
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: 1        sompakupu
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: 2        Hotspot
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: 3        OnePlus Nord CE 2 Lite 5G
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]: available engines (32):
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   GridofPoints
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   PolySub
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   NoSEDATone
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Bline_Synth
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   FM7
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Ong
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   SimpleDelay
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Bitters
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   KarplusRings_gor
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Glacial
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   SimplePassThru
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Dronecaster
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   SimpleDelayKolor
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   MollyThePoly
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Overtones
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   TheMachine
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   D
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   PolyPerc
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Hachi
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Orgn
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Timber
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Kolor
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   MxSamples
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Passersby
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Timber_Takt
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Timber_TaktOpt
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   AmenBreak1
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   MxSynths
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   TestSine
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   ZGlut
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   None
+2026-10-15T13:49:47+0100 norns ws-wrapper[444]:   Eterna
+2026-10-15T13:53:16+0100 norns ws-wrapper[444]: AFTER_SLEEP                true        true
+2026-10-15T13:53:16+0100 norns ws-wrapper[444]: COUNT        0
+2026-10-15T13:53:16+0100 norns ws-wrapper[444]: <ok>
+2026-10-15T15:03:58+0100 norns ws-wrapper[444]: ACCEPT        human-mod-sleep-poweron        PASS        {"wifi_recovery":"intermittent, recovered","postboot_script":"","power_on":true,"back":true,"source":"user confirmation and postboot REPL","sleep":true,"toggle":true,"postboot_count":0,"menu_count":4}
+2026-10-15T15:03:58+0100 norns ws-wrapper[444]: MODS_AFTER_SLEEP        modern_counter
+2026-10-15T15:03:58+0100 norns ws-wrapper[444]: MENU_AFTER_SLEEP        NO SCRIPT
+2026-10-15T15:03:58+0100 norns ws-wrapper[444]: DISABLED_STILL_LOADED        true
+2026-10-15T15:03:58+0100 norns ws-wrapper[444]: RESTARTING
+2026-10-15T15:03:58+0100 norns ws-wrapper[444]: # script clear
+2026-10-15T15:03:58+0100 norns sudo[10365]:       we : PWD=/ ; USER=root ; COMMAND=/usr/bin/systemctl restart norns-sclang.service
+2026-10-15T15:03:58+0100 norns sudo[10365]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026-10-15T15:03:58+0100 norns sudo[10365]: pam_unix(sudo:session): session closed for user root
+2026-10-15T15:03:58+0100 norns ws-wrapper[444]: norns: self-terminating for restart
+2026-10-15T15:03:59+0100 norns ws-wrapper[444]: child killed (signal 15)
+2026-10-15T15:03:59+0100 norns systemd[1]: norns-main.service: Succeeded.
+2026-10-15T15:03:59+0100 norns systemd[1]: norns-main.service: Consumed 6min 57.536s CPU time.
+2026-10-15T15:03:59+0100 norns systemd[1]: norns-main.service: Scheduled restart job, restart counter is at 1.
+2026-10-15T15:03:59+0100 norns systemd[1]: Stopped norns-main.service.
+2026-10-15T15:03:59+0100 norns systemd[1]: norns-main.service: Consumed 6min 57.536s CPU time.
+2026-10-15T15:03:59+0100 norns systemd[1]: Started norns-main.service.
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: attempting to bind socket at url ws://*:5555
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: constructed Client: crone
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: constructed Client: softcut
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: initializing buffer management worker..
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: setting up jack clients..
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: engine sample rate: 48000
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: engine sample rate: 48000
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: starting jack clients..
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: connecting ports...
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: starting OSC interface...
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: osc methods:
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /hello []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /goodbye []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /quit []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /poll/start/vu []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /poll/stop/vu []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /poll/start/tape []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /poll/stop/tape []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/adc [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/dac [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/ext [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/cut_master [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/ext_rev [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/rev_dac [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/monitor [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/monitor_mix [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/monitor_rev [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/compressor_mix [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/enabled/compressor [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/enabled/reverb [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/compressor/ratio [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/compressor/threshold [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/compressor/attack [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/compressor/release [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/compressor/gain_pre [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/compressor/gain_post [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/reverb/pre_del [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/reverb/lf_fc [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/reverb/low_rt60 [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/reverb/mid_rt60 [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/reverb/hf_damp [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/enabled/cut [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/cut [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/pan/cut [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/adc_cut [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/ext_cut [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/tape_cut [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/cut_rev [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/in_cut [iif]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/cut_cut [iif]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/rate [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/loop_start [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/loop_end [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/loop_flag [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/fade_time [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/rec_level [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_level [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/rec_flag [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/play_flag [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/rec_offset [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/position [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_fc [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_fc_mod [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_rq [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_lp [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_hp [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_bp [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_br [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pre_filter_dry [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/post_filter_fc [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/post_filter_rq [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/post_filter_lp [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/post_filter_hp [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/post_filter_bp [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/post_filter_br [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/post_filter_dry [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/voice_sync [iif]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/level_slew_time [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/pan_slew_time [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/recpre_slew_time [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/rate_slew_time [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/buffer [ii]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/read_mono [sfffiiff]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/read_stereo [sfffff]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/write_mono [sffi]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/write_stereo [sff]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/clear []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/clear_channel [i]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/clear_region [ff]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/clear_region_channel [iff]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/clear_fade_region [ffff]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/clear_fade_region_channel [iffff]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/copy_mono [iifffffi]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/copy_stereo [fffffi]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/buffer/render [iffi]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/query/position [i]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /softcut/reset []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/phase_quant [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/param/cut/phase_offset [if]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /poll/start/cut/phase []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /poll/stop/cut/phase []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/record/open [s]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/record/start []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/record/pause [i]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/record/stop []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/play/open [s]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/play/start []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/play/pause [i]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/play/stop []
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /tape/play/loop [i]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/tape [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: /set/level/tape_rev [f]
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: no user matronrc file (/home/we/matronrc.lua) found, using default
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: loading matronrc file: /home/we/norns/matronrc.lua
+2026-10-15T15:03:59+0100 norns ws-wrapper[10401]: setup IO keys:gpio
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: setup IO enc:gpio
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: setup IO enc:gpio
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: setup IO enc:gpio
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: IO setup OK.
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: font setup OK.
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: *** WARNING *** The program 'norns' uses the Apple Bonjour compatibility layer of Avahi.
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: *** WARNING *** Please fix your application to use the native API of Avahi!
+2026-10-15T15:04:00+0100 norns norns[10421]: *** WARNING *** The program 'norns' uses the Apple Bonjour compatibility layer of Avahi.
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: *** WARNING *** For more information see <http://0pointer.de/blog/projects/avahi-compat.html>
+2026-10-15T15:04:00+0100 norns norns[10421]: *** WARNING *** Please fix your application to use the native API of Avahi!
+2026-10-15T15:04:00+0100 norns norns[10421]: *** WARNING *** For more information see <http://0pointer.de/blog/projects/avahi-compat.html>
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: init oracle...
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: OSC rx port: 8888
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: OSC ext port: 57120
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: OSC remote port: 10111
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: init weaver...
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: starting main lua vm
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: running lua config file: dofile('/home/we/norns/lua/core/config.lua')
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: MATRON
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: norns version: 0.0.0
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: git hash: 4cbb17f
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: platform: pi3 (3)
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: init dev_monitor...
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: setting cleanup...
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: init input...
+2026-10-15T15:04:00+0100 norns ws-wrapper[10401]: running startup...
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: error loading keyboard layout, using old value: us
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: start_audio():
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: scanning devices...
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: handling pending events...
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: _norns.midi.add: 1, virtual, userdata: 0x56b9d0
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: lua: /home/we/norns/lua/core/menu.lua:151: attempt to call a nil value (field 'key')
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: stack traceback:
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]:         /home/we/norns/lua/core/menu.lua:151: in function </home/we/norns/lua/core/menu.lua:128>
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: running post-startup...
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: _norns._post_startup
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: lua: /home/we/norns/lua/core/menu.lua:151: attempt to call a nil value (field 'key')
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]: stack traceback:
+2026-10-15T15:04:01+0100 norns ws-wrapper[10401]:         /home/we/norns/lua/core/menu.lua:151: in function </home/we/norns/lua/core/menu.lua:128>
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: norns.startup_status.ok
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: # script clear
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: ### SCRIPT ERROR: NO SCRIPT
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: network connections:
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: --------------------
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: 1        sompakupu
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: 2        Hotspot
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: 3        OnePlus Nord CE 2 Lite 5G
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: available engines (32):
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   GridofPoints
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   PolySub
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   NoSEDATone
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Bline_Synth
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   FM7
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Ong
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   SimpleDelay
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Bitters
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   KarplusRings_gor
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Glacial
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   SimplePassThru
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Dronecaster
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   SimpleDelayKolor
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   MollyThePoly
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Overtones
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   TheMachine
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   D
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   PolyPerc
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Hachi
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Orgn
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Timber
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Kolor
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   MxSamples
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Passersby
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Timber_Takt
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Timber_TaktOpt
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   AmenBreak1
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   MxSynths
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   TestSine
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   ZGlut
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   None
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]:   Eterna
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: ACCEPT        mod-disable-restart        PASS        {"loaded_after_restart":false,"disabled_before_restart_still_loaded":true}
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: DISABLE_RESTART_PASS
+2026-10-15T15:04:09+0100 norns ws-wrapper[10401]: <ok>
+2026-10-15T15:04:24+0100 norns systemd[1]: Stopping norns-main.service...
+2026-10-15T15:04:24+0100 norns systemd[1]: norns-main.service: Killing process 10542 (norns) with signal SIGKILL.
+2026-10-15T15:04:24+0100 norns systemd[1]: norns-main.service: Succeeded.
+2026-10-15T15:04:24+0100 norns systemd[1]: Stopped norns-main.service.
+2026-10-15T15:04:24+0100 norns systemd[1]: norns-main.service: Consumed 4.118s CPU time.
+2026-10-15T15:04:24+0100 norns systemd[1]: Started norns-main.service.
+2026-10-15T15:04:24+0100 norns ws-wrapper[10697]: attempting to bind socket at url ws://*:5555
+2026-10-15T15:04:24+0100 norns ws-wrapper[10697]: constructed Client: crone
+2026-10-15T15:04:24+0100 norns ws-wrapper[10697]: constructed Client: softcut
+2026-10-15T15:04:24+0100 norns ws-wrapper[10697]: initializing buffer management worker..
+2026-10-15T15:04:24+0100 norns ws-wrapper[10697]: setting up jack clients..
+2026-10-15T15:04:24+0100 norns ws-wrapper[10697]: engine sample rate: 48000
+2026-10-15T15:04:24+0100 norns ws-wrapper[10697]: engine sample rate: 48000
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: starting jack clients..
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: connecting ports...
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: starting OSC interface...
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: osc methods:
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /hello []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /goodbye []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /quit []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /poll/start/vu []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /poll/stop/vu []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /poll/start/tape []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /poll/stop/tape []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/adc [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/dac [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/ext [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/cut_master [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/ext_rev [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/rev_dac [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/monitor [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/monitor_mix [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/monitor_rev [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/compressor_mix [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/enabled/compressor [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/enabled/reverb [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/compressor/ratio [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/compressor/threshold [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/compressor/attack [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/compressor/release [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/compressor/gain_pre [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/compressor/gain_post [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/reverb/pre_del [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/reverb/lf_fc [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/reverb/low_rt60 [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/reverb/mid_rt60 [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/reverb/hf_damp [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/enabled/cut [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/cut [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/pan/cut [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/adc_cut [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/ext_cut [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/tape_cut [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/cut_rev [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/in_cut [iif]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/cut_cut [iif]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/rate [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/loop_start [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/loop_end [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/loop_flag [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/fade_time [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/rec_level [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_level [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/rec_flag [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/play_flag [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/rec_offset [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/position [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_fc [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_fc_mod [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_rq [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_lp [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_hp [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_bp [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_br [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pre_filter_dry [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/post_filter_fc [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/post_filter_rq [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/post_filter_lp [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/post_filter_hp [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/post_filter_bp [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/post_filter_br [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/post_filter_dry [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/voice_sync [iif]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/level_slew_time [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/pan_slew_time [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/recpre_slew_time [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/rate_slew_time [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/buffer [ii]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/read_mono [sfffiiff]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/read_stereo [sfffff]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/write_mono [sffi]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/write_stereo [sff]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/clear []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/clear_channel [i]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/clear_region [ff]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/clear_region_channel [iff]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/clear_fade_region [ffff]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/clear_fade_region_channel [iffff]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/copy_mono [iifffffi]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/copy_stereo [fffffi]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/buffer/render [iffi]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/query/position [i]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /softcut/reset []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/phase_quant [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/param/cut/phase_offset [if]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /poll/start/cut/phase []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /poll/stop/cut/phase []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/record/open [s]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/record/start []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/record/pause [i]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/record/stop []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/play/open [s]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/play/start []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/play/pause [i]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/play/stop []
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /tape/play/loop [i]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/tape [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: /set/level/tape_rev [f]
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: no user matronrc file (/home/we/matronrc.lua) found, using default
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: loading matronrc file: /home/we/norns/matronrc.lua
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: setup IO keys:gpio
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: setup IO enc:gpio
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: setup IO enc:gpio
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: setup IO enc:gpio
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: IO setup OK.
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: font setup OK.
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: *** WARNING *** The program 'norns' uses the Apple Bonjour compatibility layer of Avahi.
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: *** WARNING *** Please fix your application to use the native API of Avahi!
+2026-10-15T15:04:25+0100 norns norns[10717]: *** WARNING *** The program 'norns' uses the Apple Bonjour compatibility layer of Avahi.
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: *** WARNING *** For more information see <http://0pointer.de/blog/projects/avahi-compat.html>
+2026-10-15T15:04:25+0100 norns norns[10717]: *** WARNING *** Please fix your application to use the native API of Avahi!
+2026-10-15T15:04:25+0100 norns norns[10717]: *** WARNING *** For more information see <http://0pointer.de/blog/projects/avahi-compat.html>
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: init oracle...
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: OSC rx port: 8888
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: OSC ext port: 57120
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: OSC remote port: 10111
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: init weaver...
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: starting main lua vm
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: running lua config file: dofile('/home/we/norns/lua/core/config.lua')
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: MATRON
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: norns version: 0.0.0
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: git hash: 4cbb17f
+2026-10-15T15:04:25+0100 norns ws-wrapper[10697]: platform: pi3 (3)
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: init dev_monitor...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: setting cleanup...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: init input...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: running startup...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: error loading keyboard layout, using old value: us
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: start_audio():
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: norns-uc4 (norns-uc4/lib/mod)
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: nb_polyperc (nb_polyperc/lib/mod)
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: qremote (qremote/lib/mod)
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: nb_pp (nb_pp/lib/mod)
+2026-10-15T15:04:26+0100 norns sudo[10809]:       we : PWD=/ ; USER=root ; COMMAND=/usr/bin/true
+2026-10-15T15:04:26+0100 norns sudo[10809]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026-10-15T15:04:26+0100 norns sudo[10809]: pam_unix(sudo:session): session closed for user root
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: z_tuning (z_tuning/lib/mod)
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: modhousekeeper (modhousekeeper/lib/mod)
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: including /home/we/dust/code/modhousekeeper/lib/animation.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: including /home/we/dust/code/modhousekeeper/lib/catalog.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: including /home/we/dust/code/modhousekeeper/lib/json.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: emplaitress (emplaitress/lib/mod)
+2026-10-15T15:04:26+0100 norns sudo[10823]:       we : PWD=/ ; USER=root ; COMMAND=/usr/bin/true
+2026-10-15T15:04:26+0100 norns sudo[10823]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026-10-15T15:04:26+0100 norns sudo[10823]: pam_unix(sudo:session): session closed for user root
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading mod: nb_fluid (nb_fluid/lib/mod)
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: scanning devices...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling pending events...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: _norns.midi.add: 1, virtual, userdata: 0x56bc80
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: running post-startup...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: _norns._post_startup
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: init tuning mod
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: init tuning mod
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: bootstrapping tunings...
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: scanning:
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ls /home/we/dust/data/z_tuning/tunings
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ----------------------------------
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling scanned tuning files:
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: edo8_augmented.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_johnston_81.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_ptolemaic.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_pythagorean.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_young-lm_piano.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_zarlino24.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: mt_quartercomma.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: mt_werckmeister3.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ----------------------------------
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: edo8_augmented.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.lua): edo8_augmented.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: edo8_augmented
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: ji_johnston_81.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.scl): ji_johnston_81.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: ji_johnston_81
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: ji_ptolemaic.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.lua): ji_ptolemaic.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: ji_ptolemaic
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: ji_pythagorean.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.lua): ji_pythagorean.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: ji_pythagorean
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: ji_young-lm_piano.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.scl): ji_young-lm_piano.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: ji_young-lm_piano
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: ji_zarlino24.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.scl): ji_zarlino24.scl
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: ji_zarlino24
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: mt_quartercomma.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.lua): mt_quartercomma.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: mt_quartercomma
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: handling tuning file: mt_werckmeister3.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: loading tuning file (.lua): mt_werckmeister3.lua
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: added: mt_werckmeister3
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_johnston_81        table: 0x9e2ae0
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: mt_werckmeister3        table: 0x9def00
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: edo8_augmented        table: 0x5720d8
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: mt_quartercomma        table: 0x9e4438
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_zarlino24        table: 0x9e3ed8
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_young-lm_piano        table: 0x9dff20
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_ptolemaic        table: 0x9e49b8
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_pythagorean        table: 0x9e1740
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: tuning_keys_rev:
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_young-lm_piano        11
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: edo8_augmented        2
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: edo12        1
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_zarlino24        12
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_normal        5
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_pythagorean        9
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_johnston_81        4
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_undertone        10
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: mt_werckmeister3        14
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: mt_quartercomma        13
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_overtone        6
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_ptolemaic        8
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_partch        7
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ji_gamut        3
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: applying tuning mod
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: modhousekeeper_system_post_startup
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: modhousekeeper: system started
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: nb_fluid midi device
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: qremote-sys-post-startup
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: recall tuning mod settings
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: recall tuning state
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: norns.startup_status.ok
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: # script clear
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: clean up tuning mod callbacks
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: emplaitress post cleanup
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: nb_fluid post cleanup
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: nb_pp post cleanup
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: calling: uc4 release screen
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: mod - qremote - clear at (re)start
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: ### SCRIPT ERROR: NO SCRIPT
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: network connections:
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: --------------------
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: 1        sompakupu
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: 2        Hotspot
+2026-10-15T15:04:26+0100 norns ws-wrapper[10697]: 3        OnePlus Nord CE 2 Lite 5G
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]: available engines (32):
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   GridofPoints
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   PolySub
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   NoSEDATone
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Bline_Synth
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   FM7
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Ong
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   SimpleDelay
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Bitters
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   KarplusRings_gor
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Glacial
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   SimplePassThru
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Dronecaster
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   SimpleDelayKolor
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   MollyThePoly
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Overtones
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   TheMachine
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   D
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   PolyPerc
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Hachi
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Orgn
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Timber
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Kolor
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   MxSamples
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Passersby
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Timber_Takt
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Timber_TaktOpt
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   AmenBreak1
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   MxSynths
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   TestSine
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   ZGlut
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   None
+2026-10-15T15:04:27+0100 norns ws-wrapper[10697]:   Eterna
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: # script clear
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: clean up tuning mod callbacks
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: emplaitress post cleanup
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: nb_fluid post cleanup
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: nb_pp post cleanup
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: uc4 release screen
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: mod - qremote - clear at script stop / pre-start
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: # script load: /home/we/dust/code/speech/speech.lua
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: including /home/we/dust/code/speech/lib/text_editor.lua
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: including /home/we/dust/code/speech/lib/deps.lua
+2026-10-15T15:04:38+0100 norns sudo[10900]:       we : PWD=/ ; USER=root ; COMMAND=/usr/bin/true
+2026-10-15T15:04:38+0100 norns sudo[10900]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026-10-15T15:04:38+0100 norns sudo[10900]: pam_unix(sudo:session): session closed for user root
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: add tuning mod parameters
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: emplaitress pre init
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: my init hacks
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: nb_fluid pre init
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: nb_pp pre init
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: polyperc pre init
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: calling: zz uc4 first param
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: # script run
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: >> reading PMAP /home/we/dust/data/speech/speech.pmap
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: m.read: /home/we/dust/data/speech/speech.pmap not read, using defaults.
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: <ok>
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: Engine.register_commands; count: 0
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: ___ engine commands ___
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: ___ polls ___
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: amp_in_l
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: amp_in_r
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: amp_out_l
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: amp_out_r
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: cpu_avg
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: cpu_peak
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: pitch_in_l
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: pitch_in_r
+2026-10-15T15:04:38+0100 norns ws-wrapper[10697]: # script init
+2026-10-15T15:04:39+0100 norns ws-wrapper[10697]: add tuning mod params
+2026-10-15T15:04:39+0100 norns ws-wrapper[10697]: pset >> read: /home/we/dust/data/speech/speech-01.pset
+2026-10-15T15:04:39+0100 norns ws-wrapper[10697]: pset :: /home/we/dust/data/speech/speech-01.pset not read.
+2026-10-15T15:04:39+0100 norns ws-wrapper[10697]: calling: emplaitress deps
+2026-10-15T15:04:40+0100 norns ws-wrapper[10697]: calling: nb_pp post init
+2026-10-15T15:04:40+0100 norns ws-wrapper[10697]: calling: uc4 map params
+2026-10-15T15:04:40+0100 norns ws-wrapper[10697]: uc4: 29 params mapped
+2026-10-15T15:04:40+0100 norns ws-wrapper[10697]: hook: uc4 map params failed, error: /home/we/dust/code/norns-uc4/lib/uc4.lua:605: attempt to index a nil value (field '?')
+2026-10-15T15:04:44+0100 norns ws-wrapper[10697]: RESTORED_SCRIPT        /home/we/dust/code/speech/speech.lua
+2026-10-15T15:04:44+0100 norns ws-wrapper[10697]: RESTORED_MODS        qremote,norns-uc4,modhousekeeper,nb_polyperc,nb_pp,z_tuning,emplaitress,nb_fluid
+2026-10-15T15:04:44+0100 norns ws-wrapper[10697]: RESTORED_CLOCK        90
+2026-10-15T15:04:44+0100 norns ws-wrapper[10697]: ACCEPT        restoration        PASS        {"menu":true,"tempo":90,"mods":["qremote","norns-uc4","modhousekeeper","nb_polyperc","nb_pp","z_tuning","emplaitress","nb_fluid"],"script":"\/home\/we\/dust\/code\/speech\/speech.lua"}
+2026-10-15T15:04:44+0100 norns ws-wrapper[10697]: <ok>

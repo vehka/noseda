@@ -1,0 +1,13 @@
+return {
+-- Table: {1}
+{
+   "norns-uc4",
+   "emplaitress",
+   "nb_polyperc",
+   "qremote",
+   "modhousekeeper",
+   "z_tuning",
+   "nb_fluid",
+   "nb_pp",
+},
+}

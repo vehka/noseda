@@ -164,6 +164,36 @@ Evidence: N `lua/core/screen.lua:397–399`, `lua/core/menu.lua:128–175`,
 
 ## Report checks honestly
 
+### Recorded physical acceptance run
+
+The repository's `acceptance/2026-10-15-pi3-260616/REPORT.md` records a Pi 3 B+
+shield (PCB 200323), update marker 260616, modified core `4cbb17f`. Verbatim
+skeletons ran; physical audio/controls and menu behavior were user-confirmed.
+It is not an unmodified stable-image baseline.
+
+That target reproduced a queued-resume race: cancelling a clock whose resume is
+already queued can leave `clock.resume` calling `coroutine.resume(nil)` at
+`lua/core/clock.lua:62`. Two sleeping coroutines with the same deadline, the
+first cancelling the second, reproduced it 10/10 times without engine commands.
+Capture thread IDs and queued/cancel ordering when investigating this error;
+resource ownership assertions can pass before the queued error is dispatched.
+Affected/fixed upstream release boundaries remain unverified.
+
+After `Script.clear`, this target recreates three core clocks in
+`clock.add_params` (crow output, MIDI output and external-tempo monitoring).
+Distinguish their provenance from script-owned clocks rather than asserting
+that `clock.threads` must be empty. Post-power-on connectivity was intermittent.
+The user later recalled likely restarting norns first, which explains `NO SCRIPT`:
+on this target, `_norns.restart` clears the script before saving clean state,
+while `norns.shutdown` saves the active script before cleanup. Startup
+`state.resume` reloads only a clean, nonempty, existing saved script. Thus a
+restart followed by shutdown without selecting another script preserves the
+empty selection. Direct SLEEP-from-script recall still needs a controlled device
+check. Evidence: target `lua/core/{norns,script,state}.lua`. Fetch volatile
+journals before power cycling.
+
+### Reporting boundaries
+
 State syntax/offline, host-instrumented, desktop-runtime and physical-device
 checks separately. Include exact version/build for subprocess/sidecar failures.
 After a refactor, check PSET/PMAP fixtures, first-note/transport behavior, notes

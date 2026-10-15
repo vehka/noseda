@@ -1,0 +1,1 @@
+[ "AUDIO", "steps-playing", "engine", 'Engine_PolyPerc', "rmsL", 0.015088251086408, "rmsR", 0.015088251086408, "peakL", 0.058106284588575, "positiveCrossingsHz", 251.0, "stereoMaxDifference", 0.0 ]

@@ -102,6 +102,14 @@ the [audited revision](../exemplars.md).
   modal-active flag around your helper calls so it cannot paint over the dialog.
   Library-specific behavior must be checked rather than inferred.
 
+**Hardware observation, 2026-10-15:** on a modified 260616 Pi 3 shield, native
+refresh averaged 59.70 Hz during a five-second play probe and was suppressed in
+the main menu. It continued during **both textentry and fileselect**; an explicit
+modal flag protected both dialogs. Some return transitions delivered queued
+bursts, so counting every second event does not guarantee evenly spaced 30 fps.
+This is target-specific evidence, not stable-image or SDL verification. The repo
+records raw timestamps/screenshots in `acceptance/2026-10-15-pi3-260616/`.
+
 Evidence: N `lua/lib/ui.lua`, `lua/lib/textentry.lua:41–87`,
 `lua/lib/fileselect.lua:16–81`; D `norns/reference/lib/ui/`,
 `norns/reference/lib/textentry.md`, `norns/reference/lib/fileselect.md`.

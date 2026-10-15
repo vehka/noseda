@@ -1,0 +1,252 @@
+-- Journal begins at Thu 2026-10-15 13:49:28 BST, ends at Thu 2026-10-15 15:05:46 BST. --
+2026-10-15T13:49:31+0100 norns systemd[1]: Started norns-sclang.service.
+2026-10-15T13:49:31+0100 norns ws-wrapper[443]: attempting to bind socket at url ws://*:5556
+2026-10-15T13:49:33+0100 norns ws-wrapper[443]: compiling class library...
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Found 738 primitives.
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Compiling directory '/usr/local/share/SuperCollider/SCClassLibrary'
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Compiling directory '/usr/local/share/SuperCollider/Extensions'
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Compiling directory '/home/we/.local/share/SuperCollider/Extensions'
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Compiling directory '/home/we/norns/sc/core'
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Compiling directory '/home/we/norns/sc/engines'
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Compiling directory '/home/we/dust'
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         numentries = 1187950 / 14245896 = 0.083
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         4463 method selectors, 3192 classes
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         method table size 8940168 bytes, big table size 56983584
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Number of Symbols 14007
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         Byte Code Size 441268
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]:         compiled 564 files in 5.82 seconds
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Info: 4 methods are currently overwritten by extensions. To see which, execute:
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: MethodOverride.printAll
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: compile done
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: localhost : setting clientID to 0.
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: internal : setting clientID to 0.
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Registering plugin a FxFilter
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Registering plugin a FxDelay
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Registering plugin a FxBitcrusher
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Registering plugin a FxGrains
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Registering plugin a FxTanh
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Registering plugin a FxDistortion
+2026-10-15T13:49:39+0100 norns ws-wrapper[443]: Registering plugin a FxResonator
+2026-10-15T13:49:40+0100 norns ws-wrapper[443]: Class tree inited in 1.17 seconds
+2026-10-15T13:49:40+0100 norns ws-wrapper[443]: pouring oilcan
+2026-10-15T13:49:41+0100 norns ws-wrapper[443]: Initializing plugins
+2026-10-15T13:49:41+0100 norns ws-wrapper[443]: Installing a FxFilter
+2026-10-15T13:49:41+0100 norns ws-wrapper[443]: Installing a FxDelay
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: Installing a FxBitcrusher
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: Installing a FxGrains
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: Installing a FxTanh
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: Installing a FxDistortion
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: Installing a FxResonator
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: server 'localhost' already booting
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: server 'localhost' already booting
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: server 'localhost' already booting
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: -------------------------------------------------
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]:  Norns startup
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]:  OSC rx port: 57120
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]:  OSC tx port: 8888
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]:  server port: 57110
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]:  crone port: 9999
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: --------------------------------------------------
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: server 'localhost' already booting
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: server 'localhost' already booting
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: server 'localhost' already booting
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: *** Welcome to SuperCollider 3.13.0-dev. *** For help type ctrl-c ctrl-h (Emacs) or :SChelp (vim) or ctrl-U (sced/gedit).
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: Booting server 'localhost' on address 127.0.0.1:57110.
+2026-10-15T13:49:42+0100 norns ws-wrapper[443]: Found 0 LADSPA plugins
+2026-10-15T13:49:44+0100 norns ws-wrapper[443]: JackDriver: client name is 'SuperCollider'
+2026-10-15T13:49:44+0100 norns ws-wrapper[443]: SC_AudioDriver: sample rate = 48000.000000, driver's block size = 128
+2026-10-15T13:49:44+0100 norns ws-wrapper[443]: SuperCollider 3 server ready.
+2026-10-15T13:49:45+0100 norns ws-wrapper[443]: Requested notification messages from server 'localhost'
+2026-10-15T13:49:45+0100 norns ws-wrapper[443]: localhost: server process's maxLogins (1) matches with my options.
+2026-10-15T13:49:45+0100 norns ws-wrapper[443]: localhost: keeping clientID (0) as confirmed by server process.
+2026-10-15T13:49:45+0100 norns ws-wrapper[443]: Shared memory server interface initialized
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: JackDriver: max output latency 8.0 ms
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: CroneDefs: sending defs
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: play_fade
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: patch_mono
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: patch_mono_fb
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: patch_stereo
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: patch_pan
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: rec_smooth
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: adc
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: amp_env
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: pitch
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: polySub
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: polyFM7
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: patch_mono_gate_pause
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: patch_mono_gate_pause_fb
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: WARNING: Audio rate input(s) to Mix.kr will result in signal degradation.
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: audio
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:  ARGS:
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:    operator: *
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:    a: a LPF LPF
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:    b: an OutputProxy OutputProxy
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: audio
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:  ARGS:
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:    operator: *
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:    a: a LPF LPF
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]:    b: an OutputProxy OutputProxy
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: AudioContext: in_b[0] index: 4
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: AudioContext: in_b[1] index: 5
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: AudioContext: out_b index (stereo): 0
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: AudioContext: initPolls
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:46+0100 norns ws-wrapper[443]: >>> /crone/ready
+2026-10-15T13:49:47+0100 norns ws-wrapper[443]: engines: [ GridofPoints, PolySub, NoSEDATone, Bline_Synth, FM7, Ong, SimpleDelay, Bitters, KarplusRings_gor, Glacial, SimplePassThru, Dronecaster, SimpleDelayKolor, MollyThePoly, Overtones, TheMachine, D, PolyPerc, Hachi, Orgn, Timber, Kolor, MxSamples, Passersby, Timber_Takt, Timber_TaktOpt, AmenBreak1, MxSynths, TestSine, ZGlut, None, Eterna ]
+2026-10-15T13:49:49+0100 norns ws-wrapper[443]: ALL HAIL THE EMPLAITRESS
+2026-10-15T15:03:58+0100 norns systemd[1]: Stopping norns-sclang.service...
+2026-10-15T15:03:58+0100 norns systemd[1]: norns-sclang.service: Succeeded.
+2026-10-15T15:03:58+0100 norns systemd[1]: Stopped norns-sclang.service.
+2026-10-15T15:03:58+0100 norns systemd[1]: norns-sclang.service: Consumed 1min 17.986s CPU time.
+2026-10-15T15:03:58+0100 norns systemd[1]: Started norns-sclang.service.
+2026-10-15T15:03:58+0100 norns ws-wrapper[10371]: attempting to bind socket at url ws://*:5556
+2026-10-15T15:03:59+0100 norns ws-wrapper[10371]: compiling class library...
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Found 738 primitives.
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Compiling directory '/usr/local/share/SuperCollider/SCClassLibrary'
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Compiling directory '/usr/local/share/SuperCollider/Extensions'
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Compiling directory '/home/we/.local/share/SuperCollider/Extensions'
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Compiling directory '/home/we/norns/sc/core'
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Compiling directory '/home/we/norns/sc/engines'
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Compiling directory '/home/we/dust'
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         numentries = 1187950 / 14245896 = 0.083
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         4463 method selectors, 3192 classes
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         method table size 8940168 bytes, big table size 56983584
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Number of Symbols 14007
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         Byte Code Size 441268
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]:         compiled 564 files in 2.79 seconds
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Info: 4 methods are currently overwritten by extensions. To see which, execute:
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: MethodOverride.printAll
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: compile done
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: localhost : setting clientID to 0.
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: internal : setting clientID to 0.
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Registering plugin a FxFilter
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Registering plugin a FxDelay
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Registering plugin a FxBitcrusher
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Registering plugin a FxGrains
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Registering plugin a FxTanh
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Registering plugin a FxDistortion
+2026-10-15T15:04:01+0100 norns ws-wrapper[10371]: Registering plugin a FxResonator
+2026-10-15T15:04:02+0100 norns ws-wrapper[10371]: Class tree inited in 0.92 seconds
+2026-10-15T15:04:02+0100 norns ws-wrapper[10371]: pouring oilcan
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Initializing plugins
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Installing a FxFilter
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Installing a FxDelay
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Installing a FxBitcrusher
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Installing a FxGrains
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Installing a FxTanh
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Installing a FxDistortion
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Installing a FxResonator
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: server 'localhost' already booting
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: server 'localhost' already booting
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: server 'localhost' already booting
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: -------------------------------------------------
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]:  Norns startup
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]:  OSC rx port: 57120
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]:  OSC tx port: 8888
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]:  server port: 57110
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]:  crone port: 9999
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: --------------------------------------------------
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: server 'localhost' already booting
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: server 'localhost' already booting
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: server 'localhost' already booting
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: *** Welcome to SuperCollider 3.13.0-dev. *** For help type ctrl-c ctrl-h (Emacs) or :SChelp (vim) or ctrl-U (sced/gedit).
+2026-10-15T15:04:04+0100 norns ws-wrapper[10371]: Booting server 'localhost' on address 127.0.0.1:57110.
+2026-10-15T15:04:05+0100 norns ws-wrapper[10371]: Found 0 LADSPA plugins
+2026-10-15T15:04:05+0100 norns ws-wrapper[10371]: JackDriver: client name is 'SuperCollider'
+2026-10-15T15:04:05+0100 norns ws-wrapper[10371]: SC_AudioDriver: sample rate = 48000.000000, driver's block size = 128
+2026-10-15T15:04:05+0100 norns ws-wrapper[10371]: SuperCollider 3 server ready.
+2026-10-15T15:04:06+0100 norns ws-wrapper[10371]: Requested notification messages from server 'localhost'
+2026-10-15T15:04:06+0100 norns ws-wrapper[10371]: localhost: server process's maxLogins (1) matches with my options.
+2026-10-15T15:04:06+0100 norns ws-wrapper[10371]: localhost: keeping clientID (0) as confirmed by server process.
+2026-10-15T15:04:07+0100 norns ws-wrapper[10371]: Shared memory server interface initialized
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: JackDriver: max output latency 8.0 ms
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: CroneDefs: sending defs
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: play_fade
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: patch_mono
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: patch_mono_fb
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: patch_stereo
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: patch_pan
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: rec_smooth
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: adc
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: amp_env
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: pitch
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: polySub
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: polyFM7
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: patch_mono_gate_pause
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: patch_mono_gate_pause_fb
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: WARNING: Audio rate input(s) to Mix.kr will result in signal degradation.
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: audio
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:  ARGS:
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:    operator: *
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:    a: a LPF LPF
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:    b: an OutputProxy OutputProxy
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: audio
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:  ARGS:
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:    operator: *
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:    a: a LPF LPF
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]:    b: an OutputProxy OutputProxy
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: AudioContext: in_b[0] index: 4
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: AudioContext: in_b[1] index: 5
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: AudioContext: out_b index (stereo): 0
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: AudioContext: initPolls
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:08+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:09+0100 norns ws-wrapper[10371]: engines: [ GridofPoints, PolySub, NoSEDATone, Bline_Synth, FM7, Ong, SimpleDelay, Bitters, KarplusRings_gor, Glacial, SimplePassThru, Dronecaster, SimpleDelayKolor, MollyThePoly, Overtones, TheMachine, D, PolyPerc, Hachi, Orgn, Timber, Kolor, MxSamples, Passersby, Timber_Takt, Timber_TaktOpt, AmenBreak1, MxSynths, TestSine, ZGlut, None, Eterna ]
+2026-10-15T15:04:11+0100 norns ws-wrapper[10371]: ALL HAIL THE EMPLAITRESS
+2026-10-15T15:04:24+0100 norns ws-wrapper[10371]: JackDriver: max output latency 0.0 ms
+2026-10-15T15:04:26+0100 norns ws-wrapper[10371]: >>> /crone/ready
+2026-10-15T15:04:26+0100 norns ws-wrapper[10371]: JackDriver: max output latency 8.0 ms
+2026-10-15T15:04:26+0100 norns ws-wrapper[10371]: engines: [ GridofPoints, PolySub, NoSEDATone, Bline_Synth, FM7, Ong, SimpleDelay, Bitters, KarplusRings_gor, Glacial, SimplePassThru, Dronecaster, SimpleDelayKolor, MollyThePoly, Overtones, TheMachine, D, PolyPerc, Hachi, Orgn, Timber, Kolor, MxSamples, Passersby, Timber_Takt, Timber_TaktOpt, AmenBreak1, MxSynths, TestSine, ZGlut, None, Eterna ]
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: a CroneAudioContext
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: -----------------------
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: -- crone: done loading engine, starting reports
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: --------
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: engine: an Engine_None
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: cpu_peak
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: cpu_avg
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: amp_in_l
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: amp_in_r
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: amp_out_l
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: amp_out_r
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: pitch_in_l
+2026-10-15T15:04:38+0100 norns ws-wrapper[10371]: pitch_in_r

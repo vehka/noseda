@@ -337,6 +337,11 @@ D `norns/reference/engine.md:45–51`, `norns/engine-study-1.md:384–456,510–
 - Community example audit establishes particular code patterns, not ongoing
   maintenance or hardware compatibility. Minimum firmware numbers require
   release-history evidence; don't invent them from a checkout date.
-- Skeleton syntax/behavior checks do not establish Pi timing, actual audio
-  quality, physical-device behavior or `refresh()` cadence. Report these limits
-  with the checks performed; see [debugging](tasks/debug.md).
+- A 2026-10-15 physical run on a Pi 3 B+ shield, PCB 200323, update marker 260616
+  and modified core `4cbb17f` ran all skeletons verbatim, measured timing/audio
+  and refresh, and obtained user confirmation of controls/sound. It reproduced
+  a queued-clock cancellation error. `NO SCRIPT` after a likely prior RESTART
+  matches source behavior; direct SLEEP-from-script recall remains untested.
+  This does not establish an unmodified stable-image baseline,
+  other backend support or minimum releases. The repository report is
+  `acceptance/2026-10-15-pi3-260616/REPORT.md`; see [debugging](tasks/debug.md).
