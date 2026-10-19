@@ -1,6 +1,8 @@
 # NoSEDA roadmap
 
-Updated 2026-10-15. The first priority is a coherent, source-verified definition
+Updated 2026-10-19. Guidance targets the current stable release (260102,
+`v2.9.4`); 3.x beta differences live only in `references/tasks/beta-compat.md`.
+The first priority is a coherent, source-verified definition
 of modern components; additional coverage should follow that definition rather
 than accumulating unrelated templates. Keep `SKILL.md` lean and route every
 new reference from it.
@@ -23,15 +25,16 @@ new reference from it.
   shipped helpers, documented exceptions and source-only native refresh.
 - [x] Add foundational state patterns: startup recall, PSET hooks, versioned
   sidecars, absent-data policy and session boundaries.
-- [x] Correct all six mod hooks, menu callback tables, module imports/lifetime
+- [x] Correct the mod hooks (five on stable), menu callback tables, module imports/lifetime
   and coexistence guidance.
 - [x] Correct engine discovery, alloc/free readiness, optional polls/constructors,
   context ownership and Lua specs/add_params separation.
 - [x] Include minimal script, mod and engine+host skeletons in component guides.
 - [x] Add `tasks/review.md`: idiom → replacement → risk, evidence and verification.
 - [x] Align existing debug/optimize/MIDI guides with the definitions.
-- [x] Document sidecar-beta compatibility concerns: user report plus source-verified
-  popen write/streaming limitations; do not equate modern with latest beta.
+- [x] Re-pin source citations from upstream HEAD (3.x beta) to stable `v2.9.4`;
+  move beta-only material (sidecar shell, routing hook, services, beta hardware
+  observations) into opt-in `tasks/beta-compat.md`. Done 2026-10-19.
 - [x] Update entry-point routing and README.
 
 ### Validation completed for this revision
@@ -50,51 +53,44 @@ physical-device audio test or sidecar-beta regression reproduction.
 
 ## Verification and compatibility
 
-- [x] **Priority acceptance run: norns shield with a Raspberry Pi 3** — completed
-  2026-10-15 on `10.0.0.138`: Pi 3 B+, shield PCB 200323, update marker 260616,
-  modified core `4cbb17f`. Recorded build/hardware, component revision and connected
-  devices; started with third-party mods disabled. Results and findings are in the
-  [acceptance report](acceptance/2026-10-15-pi3-260616/REPORT.md).
-  - [x] Install the three skeletons verbatim from
-    `skills/noseda/references/components/{script,mod,engine}.md`; record any edits
-    needed to run them as compatibility findings.
-  - [x] Check audible output, encoders/keys, repeated start/stop/reset, rerun,
-    script/engine switching and cleanup, including partial initialization.
-  - [x] Check PARAMS/PSET save/recall, sidecar read/write/delete and missing-data
-    defaults; exercise PMAP with injected CCs. No physical controller was connected.
-  - [x] Enable only the example mod for its tests: menu entry/exit, state across
-    unrelated scripts, disable/restart and shutdown/power-on. Source confirms
-    RESTART clears the remembered script; direct SLEEP recall is a follow-up below.
-  - [x] Test dirty rendering, menu/modal ownership and native `refresh()` on the
-    physical screen; measure cadence instead of assuming 60 Hz delivery.
-  - [x] Record idle/playing DSP load, xruns and sequencer lateness under a stated
-    workload. Keep firmware and test conditions fixed for Pi 3 comparisons.
-  - [x] Save reproducible steps, commands, logs and pass/fail results in the repo;
-    distinguish observed behavior from source-derived expectations. Update the
-    guides and verification gaps from the results.
-- [ ] Repeat the acceptance run on a verifiably unmodified stable monome image
-  to establish the stock Pi 3 software baseline; recheck the queued-clock
-  cancellation failure there. The completed run used modified core software
-  and compiled third-party SC extensions.
+- [ ] **Priority: acceptance run on a verifiably unmodified stable image**
+  (260102) on a Pi 3 shield, repeating the beta run's procedure
+  (`acceptance/2026-10-15-pi3-260616-beta/`). Establish the stock baseline:
+  skeletons verbatim, sound/controls, PSET/PMAP/sidecar, mod lifecycle, native
+  `refresh()` cadence and modal behavior, DSP load/xruns/lateness. Recheck the
+  queued-clock cancellation failure there (same Lua/scheduler code as the beta).
 - [ ] Verify direct SLEEP from a loaded script recalls it after power-on.
 - [ ] Verify PMAP with a physical MIDI controller when available. The three
   skeletons do not require a Grid.
-- [ ] Extend the acceptance run to other supported physical norns releases and
-  hardware, keeping their results separate from the stock shield/Pi 3 baseline.
-- [ ] Assess native refresh on other supported hardware/backends; the tested
-  shield's cadence/modal behavior is verified above. Do not infer SDL support.
-- [ ] Establish exact affected/fixed builds for reported sidecar-beta failures,
-  including popen behavior and any verified workaround. Preserve separate
-  source evidence and runtime reports.
+- [ ] Extend the acceptance run to other supported hardware (CM3 norns,
+  Pi 4 shield), keeping results separate from the shield/Pi 3 baseline.
+- [ ] Assess native refresh on other supported hardware/backends. Do not infer
+  SDL support.
 - [ ] Verify minimum release versions for APIs used in new examples before
   assigning `norns.version.required` numbers.
 - [ ] Maintain representative legacy PSET/PMAP/sidecar migration fixtures.
 - [ ] Run end-to-end skill evaluations for creation, legacy review/refactor and
   mod/engine integration; compare outputs against the previous skill.
 - [ ] Periodically re-audit source/docs disagreements (PSET actions, mod hooks,
-  lattice/LFO defaults, scheduler behavior, shell interfaces).
+  lattice/LFO defaults, scheduler behavior) and re-pin when stable changes.
 - [ ] Record maintenance evidence before using “two maintained scripts” to
   justify an idiom unsupported by current core/docs.
+
+## Beta compatibility (3.x)
+
+Separate from the stable guidance; used only when explicitly requested or for
+beta-only failures and core work.
+
+- [x] **Beta acceptance run: Pi 3 shield at 260616 (v3.0.1)** — completed
+  2026-10-15 on `10.0.0.138`: Pi 3 B+, shield PCB 200323, modified core
+  `4cbb17f`. Skeletons ran verbatim; results in the
+  [acceptance report](acceptance/2026-10-15-pi3-260616-beta/REPORT.md),
+  summarized in `beta-compat.md`.
+- [ ] Establish exact affected/fixed builds for the reported `io.popen` failure
+  (lua_shell arrived in v3.0.2 / 260819), and a verified workaround.
+- [ ] Beta-compatibility recipes for common subprocess uses (directory listing,
+  long-running helpers, popen write mode) with checks on a beta device.
+- [ ] Re-pin `B` when a new beta is released; track when beta changes reach stable.
 
 ## Focused pattern expansion
 

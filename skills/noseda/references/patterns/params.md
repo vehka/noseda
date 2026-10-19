@@ -87,7 +87,7 @@ Declare required dependencies and install instructions. `require` caches a
 module; choose that lifetime intentionally, especially for mod helpers. Check
 licensing before copying third-party code.
 
-Evidence: N `lua/core/startup.lua:51–65`, `lua/core/config.lua:6–16`,
+Evidence: N `lua/core/startup.lua:48–62`, `lua/core/config.lua:6–16`,
 `lua/lib/util.lua` (`file_exists`); D `norns/reference.md` (libraries),
 `norns/mods.md:145–167`.
 

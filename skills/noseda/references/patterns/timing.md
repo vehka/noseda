@@ -20,8 +20,8 @@ overhead; metro maintains a regular seconds schedule. Choose according to the
 task rather than rewriting working seconds-based UI timing. Old `beatclock`
 is a different library, superseded for musical synchronization by `clock`.
 
-Evidence: N `lua/core/clock.lua:19–56`, `matron/src/metro.cc:220–238`,
-`matron/src/clocks/clock_scheduler.cc:194–205`, `lua/lib/pattern_time.lua`,
+Evidence: N `lua/core/clock.lua:19–56`, `matron/src/metro.c:219–237`,
+`matron/src/clocks/clock_scheduler.c:193–204`, `lua/lib/pattern_time.lua`,
 `lua/lib/reflection.lua`; D `norns/reference/metro.md:100–110`,
 `norns/reference.md` (libraries), `norns/clocks.md`.
 
@@ -64,8 +64,8 @@ script cleanup.
 
 See the [script skeleton](../components/script.md#minimal-runnable-instrument)
 for idempotent start/stop. Evidence: N `lua/core/clock.lua:85–95,129–158,198–207`,
-`matron/src/clocks/clock_midi.cc:31–84`, `clock_link.cc:43–70`,
-`clock_crow.cc:37–75`, `clock_internal.cc:111–123,180–185` (all under
+`matron/src/clocks/clock_midi.c:31–84`, `clock_link.c:42–69`,
+`clock_crow.c:37–75`, `clock_internal.c:111–123,179–184` (all under
 `matron/src/clocks/`); D `norns/clocks.md:235–302`.
 
 ## Lattice and event libraries
@@ -124,6 +124,6 @@ missing thread. Investigate invalid handles/duplicate starts/lifecycle mistakes
 before attributing an error to that race; don't dismiss every resume error as
 harmless.
 
-Evidence: N `matron/src/clocks/clock_scheduler.cc:37–54,99–121,159–225`,
-`lua/core/clock.lua:35–38,59–79`, `matron/src/events.cc:216–218`,
-`tests/matron/clocks/clock_scheduler/test_clock_scheduler.cpp:223–275`.
+Evidence: N `matron/src/clocks/clock_scheduler.c:37–54,99–121,158–225`,
+`lua/core/clock.lua:35–38,59–79`, `matron/src/events.c:213–215`,
+`tests/matron/clocks/clock_scheduler/test_clock_scheduler.cpp:223–276`.

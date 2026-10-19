@@ -28,7 +28,7 @@ screen interface. The loader captures redraw/refresh before init and loads the
 selected engine before invoking init. Don't call a captured local renderer from
 a background timer: use global `redraw()` so menu suppression works.
 
-Evidence: N `lua/core/script.lua:11–124,157–247`, `lua/core/menu.lua:13–18,157–175`;
+Evidence: N `lua/core/script.lua:11–115,148–238`, `lua/core/menu.lua:13–18,157–175`;
 D `norns/reference.md:94–175`, `norns/reference/parameters.md:362–404`.
 N/D refer to the [pinned sources](../modern.md#evidence-and-scope).
 
@@ -163,7 +163,7 @@ return NoteTools
 Load it with `local note_tools = include('lib/note_tools')`. Don't use bare
 `require 'lib/note_tools'` expecting script-relative resolution. Shared modules
 can use a project-qualified require when cached lifetime is intentional.
-Evidence: N `lua/core/startup.lua:51–65`, `lua/core/config.lua:6–16`;
+Evidence: N `lua/core/startup.lua:48–62`, `lua/core/config.lua:6–16`;
 D `norns/reference.md` (local and third-party libraries).
 
 Read the relevant patterns instead of building ad hoc subsystems:

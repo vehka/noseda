@@ -24,8 +24,8 @@ existing engines, softcut and optional nb voices before adding a custom engine.
 
 ## 2. Apply the modern definition
 
-Read `references/modern.md`: the evidence policy and shared rules, then the
-section for each component involved. It is the authority for these guides.
+Read `references/modern.md`: the target, shared rules, then the section for
+each component involved. It is the authority for these guides.
 “Modern” means current platform integration and explicit ownership, not copying
 the style of a popular script. Preserve intentional musical behavior during
 refactors and report compatibility costs before changing it.
@@ -46,7 +46,7 @@ refactors and report compatibility costs before changing it.
 
 | Reference | Read when… |
 |---|---|
-| `references/modern.md` | Always: evidence/shared rules and relevant component definitions |
+| `references/modern.md` | Always: target, shared rules and relevant component definitions |
 | `references/patterns/params.md` | Adding/editing parameters, groups, actions, dependencies |
 | `references/patterns/state.md` | PSET hooks, sidecar data, migrations or session persistence |
 | `references/patterns/timing.md` | Clocks, transport, lattice, sequins or event recording |
@@ -56,13 +56,14 @@ refactors and report compatibility costs before changing it.
 | `references/tasks/debug.md` | Running, testing or debugging on hardware/desktop norns |
 | `references/tasks/optimize.md` | Measuring timing, CPU, memory, xruns or audio dropouts |
 | `references/exemplars.md` | Looking for an implementation to study for a specific purpose |
+| `references/tasks/beta-compat.md` | Only when asked for 3.x beta support, a failure occurs only on a beta build, or working on norns core |
 
 ## 4. Verify and finish
 
-Find the target norns version/build and a core checkout (`../norns`, `~/norns`,
-or elsewhere). Modern does not mean latest beta: check release-specific failures,
-including the reported sidecar-beta `io.popen` regression in `references/modern.md`.
-Read core as reference; don't edit it as part of component work.
+Target the current stable release (260102, tag `v2.9.4`) unless the user's
+device or request says otherwise. Find a core checkout (`../norns`, `~/norns`,
+or elsewhere) at the matching tag. Read core as reference; don't edit it as
+part of component work.
 Verify API behavior in `lua/core/`, `lua/lib/`, `matron/src/`, and, for engines,
 `sc/core/`; cross-check [monome docs](https://monome.org/docs/norns/).
 `references/modern.md` records the audited baseline and known documentation gaps.

@@ -7,11 +7,9 @@ for compatibility risks. Evidence below uses [N/D](../modern.md#evidence-and-sco
 
 ## Establish a comparable target
 
-Record device, firmware/build/channel, backend, sample rate/buffer configuration,
-mods, dependencies, tempo/source, seed, pattern and revision. Modern doesn't
-mean beta: the sidecar beta has a reported `io.popen` failure and source-verified
-write/streaming limitations. A subprocess failure is not automatically a slow
-script, and stock Lua benchmarks don't exercise the beta's substituted shell API.
+Record device, update number, backend, sample rate/buffer configuration,
+mods, dependencies, tempo/source, seed, pattern and revision. Keep firmware
+fixed across comparisons.
 
 Use real norns hardware for timing/audio headroom. Desktop checks correctness
 and can locate relative costs, but its CPU doesn't establish Pi performance.
@@ -42,8 +40,8 @@ Measure idle, realistic playing, and an explicitly described worst case.
   effects/voices from event-rate cost.
 
 Evidence: N `lua/lib/util.lua:14–19`,
-`matron/src/clocks/clock_scheduler.cc:99–121,159–205`,
-`matron/src/weaver.cc:2245–2252`, `matron/src/jack_client.cpp:22–24,51–58`,
+`matron/src/clocks/clock_scheduler.c:99–121,158–204`,
+`matron/src/weaver.c:2211–2218`, `matron/src/jack_client.c:24–28,54–61`,
 `lua/core/menu/home.lua` (stats readers). The `_norns` metrics are source-level
 diagnostics, not a public production-script dependency. Scheduler tests:
 `tests/matron/clocks/clock_scheduler/test_clock_scheduler.cpp:223–260`.
@@ -110,4 +108,4 @@ See [debugging](debug.md#scoped-testing-and-diagnostics) for wrapper lifetime.
 Offline Lua can load pure libraries for deterministic behavior and relative-cost
 experiments. Stub required host primitives explicitly; `util.time()` requires
 `_norns.get_time` and isn't an offline timer by itself. Report offline versus
-device results separately, including firmware and shell-API differences.
+device results separately.

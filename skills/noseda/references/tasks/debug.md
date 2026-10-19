@@ -16,21 +16,17 @@ getent hosts norns.local
 ssh -o ConnectTimeout=10 -o BatchMode=yes we@<ip> 'cat ~/version.txt; systemctl list-units --no-pager "norns*"'
 ```
 
-Record build/channel, hardware or desktop fork/backend, mods, component revision
-and dependencies. Don't prescribe a beta upgrade as a generic debugging step.
-The sidecar beta has a reported `io.popen` failure: source confirms substituted
-`io.popen` cannot write/stream and waits for command completion. Test the exact
-subprocess operation on that build; neither an upstream unit test nor a successful
-stock-Lua run establishes beta compatibility. See
-[target compatibility](../modern.md#target-compatibility-comes-first).
+Record the update number, hardware or desktop fork/backend, mods, component
+revision and dependencies. Stable is 260102; if the device runs a 3.x beta and
+the failure doesn't reproduce on stable, see [beta compatibility](beta-compat.md).
+Don't prescribe a firmware change as a generic debugging step.
 
 Use an IP if hostname resolution is the problem; distinguish resolution, SSH,
-REPL and maiden failures. Current upstream image services include `norns-main`,
-`norns-sclang` and `norns-jack`; older releases/forks differ. Inspect their
-definitions instead of assuming service names or credentials from a version date.
+REPL and maiden failures. Stable services include `norns-jack`, `norns-crone`,
+`norns-sclang` and `norns-matron`; forks and the beta differ.
+Check `systemctl list-units "norns*"` rather than assuming names.
 
-Evidence: N `image/config/etc/systemd/system/norns-{main,sclang,jack}.service`,
-`norns/main.cpp`, `matron/src/lua_shell.cc:1–5,231–261,286–301`.
+Evidence: N `lua/core/norns.lua:247–251` (`_norns.reset` service restarts).
 
 ## Matron REPL over websocket
 
@@ -50,9 +46,8 @@ dependent tests immediately. For long tests, run a scoped clock coroutine in
 matron and write its report under `norns.state.data`; fetch it after completion.
 A disconnected client doesn't inherently cancel a started coroutine.
 
-Evidence: N `maiden-repl/README.md:13–25`, `ws-wrapper/src/main.c:19–21,45–60,80–114`,
-`image/config/etc/systemd/system/norns-main.service`, `norns-sclang.service`
-(same directory), `lua/core/script.lua:230–247`, `lua/core/engine.lua:89–109`.
+Evidence: N `maiden-repl/README.md:13–25`, `ws-wrapper/src/main.c:19–21,40–73`,
+`lua/core/script.lua:221–238`, `lua/core/engine.lua:89–109`.
 
 ## Deployment and logs
 
@@ -64,7 +59,8 @@ restart. Changed SC classes need recompilation/restart; Lua-only changes can
 normally be reloaded through `norns.script.load`.
 
 ```bash
-journalctl -u norns-main -n 100 --no-pager
+journalctl -u norns-matron -n 100 --no-pager
+journalctl -u norns-crone -n 100 --no-pager
 journalctl -u norns-sclang -n 100 --no-pager
 journalctl -u norns-jack --since '10 min ago' --no-pager
 ```
@@ -74,23 +70,19 @@ SC classes can prevent sclang startup before any script init hook runs. Save log
 with target/build/test conditions. For remote failures use bounded retries and
 resumable result files; don't mistake interrupted transport for a code result.
 
-Evidence: N `sc/norns-config.sc:12–16`, `lua/core/startup.lua:79–103`,
+Evidence: N `sc/norns-config.sc:12–16`, `lua/core/startup.lua:76–100`,
 `lua/core/mods.lua:13–58`, `lua/core/menu/mods.lua:78–85`;
 D `norns/engine-study-1.md:172–174`, `norns/mods.md:24–55`.
 
-### Version-specific JACK/shared-memory failure
+### JACK connections fail while the service runs
 
-A previous hardware observation on shield build 260616: with logind `RemoveIPC`
-enabled and no user linger, the last SSH logout could remove JACK shared-memory
-resources, leaving running clients but preventing new connections. This is a
-configuration/version-specific incident, not a universal norns/SSH rule.
-Audited upstream now supplies `RemoveIPC=no` in
-`N image/config/etc/systemd/logind.conf.d/10-norns-removeipc.conf`.
-
-If logs show JACK connection failure while its service runs, inspect `/dev/shm`,
-`jack_lsp`, and the actual logind configuration. Restart the installed audio
-services coherently if necessary and authorized; don't restart JACK on every
-deployment or change system configuration without identifying the condition.
+Inspect `/dev/shm`, `jack_lsp` and the logind configuration. With logind
+`RemoveIPC` enabled and no user linger, the last SSH logout can remove JACK
+shared memory (observed on a beta device; see
+[beta compatibility](beta-compat.md#hardware-observations-on-a-beta-device)).
+Restart the audio services coherently only if necessary and authorized; don't
+restart JACK on every deployment or change system configuration without
+identifying the condition.
 
 ## Desktop checks
 
@@ -106,8 +98,8 @@ restarting an active user session. Note enabled mods and MIDI vport names here
 too. The inspected upstream SDL backend doesn't generate native refresh events;
 a refresh-only script needs hardware or an appropriate backend test.
 
-Evidence: N `matron/src/hardware/screen/sdl.cc:69–79`,
-`matron/src/hardware/screen/ssd1322.cc:106–125`, `sc/norns-config.sc`.
+Evidence: N `matron/src/hardware/screen/sdl.c:69–79`,
+`matron/src/hardware/screen/ssd1322.c:106–125`, `sc/norns-config.sc`.
 Launcher behavior above is a local environment observation, not monome docs.
 
 ## Scoped testing and diagnostics
@@ -116,8 +108,7 @@ Prefer direct unit boundaries where available: call a step with deterministic
 state, capture output, inspect its result. Plain Lua 5.3 can load suitable pure
 libraries with `<norns>/lua/lib/?.lua` on `package.path`; stub host primitives
 explicitly. Syntax-check with `luac5.3 -p file.lua`. The build uses Lua 5.3
-(`N third-party/wscript`). These don't test matron bindings, audio or beta shell
-substitutions.
+(`N third-party/wscript`). These don't test matron bindings or audio.
 
 When external instrumentation is necessary:
 
@@ -133,7 +124,7 @@ When external instrumentation is necessary:
   modules are not isolated by that reset; a stored wrapper there can retain a
   dead script instance. Don't repeat the blanket claim that globals survive.
 
-Evidence: N `lua/core/startup.lua:25,31`, `lua/core/script.lua:26–50`,
+Evidence: N `lua/core/startup.lua:25,31`, `lua/core/script.lua:26–47`,
 `lua/core/paramset.lua:85–103`, `lua/core/midi.lua:17–39`,
 `lua/lib/tabutil.lua:218–251`. Lua debug-library usage is generic Lua, not a
 norns-specific convention. See [MIDI captures](../patterns/midi.md) and
@@ -164,38 +155,28 @@ Evidence: N `lua/core/screen.lua:397–399`, `lua/core/menu.lua:128–175`,
 
 ## Report checks honestly
 
-### Recorded physical acceptance run
+### Clock errors and leftover clocks
 
-The repository's `acceptance/2026-10-15-pi3-260616/REPORT.md` records a Pi 3 B+
-shield (PCB 200323), update marker 260616, modified core `4cbb17f`. Verbatim
-skeletons ran; physical audio/controls and menu behavior were user-confirmed.
-It is not an unmodified stable-image baseline.
+`clock.resume` can call `coroutine.resume(nil)` (N `lua/core/clock.lua:59–62`)
+when a clock is cancelled after its resume event is already queued; see
+[timing](../patterns/timing.md#scheduler-behavior-and-diagnosis). Capture thread
+IDs and queued/cancel ordering when investigating it. Ownership assertions can
+pass before the queued error is dispatched.
 
-That target reproduced a queued-resume race: cancelling a clock whose resume is
-already queued can leave `clock.resume` calling `coroutine.resume(nil)` at
-`lua/core/clock.lua:62`. Two sleeping coroutines with the same deadline, the
-first cancelling the second, reproduced it 10/10 times without engine commands.
-Capture thread IDs and queued/cancel ordering when investigating this error;
-resource ownership assertions can pass before the queued error is dispatched.
-Affected/fixed upstream release boundaries remain unverified.
+After `Script.clear`, `clock.add_params` recreates core clocks (crow output,
+MIDI output and external-tempo monitoring). Distinguish them from
+script-owned clocks rather than asserting `clock.threads` is empty.
 
-After `Script.clear`, this target recreates three core clocks in
-`clock.add_params` (crow output, MIDI output and external-tempo monitoring).
-Distinguish their provenance from script-owned clocks rather than asserting
-that `clock.threads` must be empty. Post-power-on connectivity was intermittent.
-The user later recalled likely restarting norns first, which explains `NO SCRIPT`:
-on this target, `_norns.restart` clears the script before saving clean state,
-while `norns.shutdown` saves the active script before cleanup. Startup
-`state.resume` reloads only a clean, nonempty, existing saved script. Thus a
-restart followed by shutdown without selecting another script preserves the
-empty selection. Direct SLEEP-from-script recall still needs a controlled device
-check. Evidence: target `lua/core/{norns,script,state}.lua`. Fetch volatile
-journals before power cycling.
+`_norns.restart` clears the script before saving state, while `norns.shutdown`
+saves the active script before cleanup, and startup resumes only a cleanly
+saved, nonempty script. So RESTART then SLEEP comes back to no script. Evidence:
+N `lua/core/norns.lua:185–196,253–264`, `lua/core/state.lua:60–100`,
+`lua/core/clock.lua:211`. Fetch volatile journals before power cycling.
 
 ### Reporting boundaries
 
 State syntax/offline, host-instrumented, desktop-runtime and physical-device
-checks separately. Include exact version/build for subprocess/sidecar failures.
+checks separately, with the exact update number and core revision.
 After a refactor, check PSET/PMAP fixtures, first-note/transport behavior, notes
 on stop/output change, menu/modal redraw and repeated load/cleanup. Hardware
 CPU/audio/refresh validation remains necessary when those behaviors matter.

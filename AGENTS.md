@@ -10,11 +10,11 @@ scripts, mods and engines. It is used from Claude Code and opencode; see
 skills/noseda/
 ├── SKILL.md              # entry point: frontmatter, core principles, what to read when
 ├── references/
-│   ├── modern.md          # source-verified definitions and compatibility notes
+│   ├── modern.md          # stable target and source-verified definitions
 │   ├── exemplars.md       # narrowly scoped implementation references
 │   ├── components/       # script.md, mod.md, engine.md
 │   ├── patterns/         # timing.md, midi.md, params.md, state.md, ui.md
-│   └── tasks/            # review.md, debug.md, optimize.md
+│   └── tasks/            # review.md, debug.md, optimize.md, beta-compat.md
 └── scripts/
     └── nrepl.py          # send Lua to a norns REPL over websocket
 ```
@@ -30,4 +30,7 @@ skills/noseda/
   the tables in `SKILL.md`, or agents won't find it.
 - Paths inside the skill are relative to the skill directory. Don't rely on
   `${CLAUDE_SKILL_DIR}` or other tool-specific variables.
+- Guidance targets the current stable release; cite the stable tag (`N` pin in
+  `modern.md`). Put 3.x beta differences only in `references/tasks/beta-compat.md`
+  (`B` pin), not as caveats in the general guides.
 - [TASKS.md](./TASKS.md) is the roadmap.

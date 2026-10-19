@@ -50,7 +50,7 @@ retain the returned timer and stop/free it when no longer owned. Metro is not
 legacy merely because an older instrument uses it for UI refresh.
 
 Evidence: N `lua/core/menu.lua:157–175`, `lua/core/screen.lua:29–38`,
-`lua/core/grid.lua:107–163`, `lua/core/metro.lua:20–71,94–113`;
+`lua/core/grid.lua:105–161`, `lua/core/metro.lua:20–71,94–113`;
 D `norns/grid-recipes.md:11–16,49–84`, `norns/clocks.md:305–318`,
 `norns/reference/metro.md:100–110`, `norns/study-2.md:163–182`.
 
@@ -79,9 +79,9 @@ The inspected SDL backend doesn't produce these events. Public docs don't
 explain this callback, and dispatch isn't a guaranteed exact frame rate. Test
 the target firmware/backend and modal UI; don't advertise portable support.
 
-Evidence: N `matron/src/weaver.cc:2916–2919`,
-`matron/src/hardware/screen/ssd1322.cc:106–125`,
-`matron/src/hardware/screen/sdl.cc:69–79`, `lua/core/script.lua:215–222`,
+Evidence: N `matron/src/weaver.c:2872–2875`,
+`matron/src/hardware/screen/ssd1322.c:106–125`,
+`matron/src/hardware/screen/sdl.c:69–79`, `lua/core/script.lua:206–213`,
 `lua/core/menu.lua:157–175`; ecosystem `tehn/plasma/plasma.lua:128–134` at
 the [audited revision](../exemplars.md).
 
@@ -102,13 +102,11 @@ the [audited revision](../exemplars.md).
   modal-active flag around your helper calls so it cannot paint over the dialog.
   Library-specific behavior must be checked rather than inferred.
 
-**Hardware observation, 2026-10-15:** on a modified 260616 Pi 3 shield, native
-refresh averaged 59.70 Hz during a five-second play probe and was suppressed in
-the main menu. It continued during **both textentry and fileselect**; an explicit
-modal flag protected both dialogs. Some return transitions delivered queued
-bursts, so counting every second event does not guarantee evenly spaced 30 fps.
-This is target-specific evidence, not stable-image or SDL verification. The repo
-records raw timestamps/screenshots in `acceptance/2026-10-15-pi3-260616/`.
+On a beta device refresh kept firing during both textentry and fileselect, an
+explicit modal flag protected both dialogs, and menu returns sometimes delivered queued
+bursts, so counting every second event doesn't guarantee evenly spaced 30 fps
+([beta observations](../tasks/beta-compat.md#hardware-observations-on-a-beta-device)).
+Stable hardware measurement is still open.
 
 Evidence: N `lua/lib/ui.lua`, `lua/lib/textentry.lua:41–87`,
 `lua/lib/fileselect.lua:16–81`; D `norns/reference/lib/ui/`,
@@ -122,5 +120,5 @@ state-to-display latency, menu return, hotplug, modal cancel/accept and CPU at
 the chosen rate. Screen layouts, pagination, accessibility and custom visual
 language remain instrument design, not a single mandatory framework.
 
-Evidence: N `matron/src/events.cc:181–353`; D `norns/study-5.md:327–335`,
+Evidence: N `matron/src/events.c:179–347`; D `norns/study-5.md:327–335`,
 `norns/engine-study-3.md:1226–1254` (a 60 fps dirty example).

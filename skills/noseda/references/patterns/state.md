@@ -33,7 +33,7 @@ params aren't automatically persisted on exit. Code-side `data/*.pset` files
 are distributable defaults copied on first creation of the runtime directory,
 not a destination for user saves.
 
-Evidence: N `lua/core/script.lua:165–211`, `lua/core/paramset.lua:498–610`,
+Evidence: N `lua/core/script.lua:156–202`, `lua/core/paramset.lua:498–610`,
 `lua/core/menu/params.lua:103–120,274–280`, `lua/core/config.lua:25–29`;
 D `norns/reference/parameters.md:267–404`, `norns/reference.md:205–222`.
 Source revisions are in [modern.md](../modern.md#evidence-and-scope).
@@ -112,6 +112,5 @@ Evidence: N `lua/core/paramset.lua:518–519,572–594`,
   provided by these three hooks. Keep their roadmap items separate.
 
 Test fresh load, modified defaults, startup recall, manual read/write/delete,
-missing/corrupt/older sidecars and repeated recalls while running. Use the actual
-target build; the reported sidecar-beta subprocess regression is not resolved
-by selecting a different save directory.
+missing/corrupt/older sidecars and repeated recalls while running, on the
+actual target build.

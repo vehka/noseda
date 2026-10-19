@@ -7,9 +7,9 @@ are not findings by themselves.
 
 ## Workflow
 
-1. **Establish the target.** Record version/build/channel, hardware/backend,
-   dependencies and enabled mods. Check known release regressions, including
-   the reported sidecar-beta `io.popen` failure. Don't equate new beta with modern.
+1. **Establish the target.** Record the update number (stable is 260102),
+   hardware/backend, dependencies and enabled mods. Review against stable unless
+   the user asks for beta support; then also use [beta compatibility](beta-compat.md).
 2. **Map components and ownership.** Entry scripts, lib/mod.lua, SC classes,
    reusable modules, shared mutations, external notes/processes and saved data.
 3. **Capture behavior.** First-note phase, swing, transport continue/restart,
@@ -68,7 +68,7 @@ fix its ownership” when wholesale conversion has no benefit.
 
 Evidence: N `lua/core/script.lua`, `startup.lua`, `config.lua`, `paramset.lua`,
 `clock.lua`, `midi.lua`, `grid.lua`, `menu.lua` (all under `lua/core/`),
-`lua/lib/lattice.lua`, `matron/src/clocks/clock_scheduler.cc`;
+`lua/lib/lattice.lua`, `matron/src/clocks/clock_scheduler.c`;
 D `norns/reference.md`, `norns/reference/parameters.md`, `norns/clocks.md`,
 `norns/reference/metro.md`, `norns/grid-recipes.md`.
 Detailed contracts/citations: [modern.md](../modern.md), [params](../patterns/params.md),
@@ -79,17 +79,17 @@ Detailed contracts/citations: [modern.md](../modern.md), [params](../patterns/pa
 
 | Legacy idiom | Modern replacement | Risk of changing it |
 |---|---|---|
-| Incorrect entry path / fictitious hook name | `lib/mod.lua` and actual six hooks | Load failure; hook timing and missing startup cases |
+| Incorrect entry path / fictitious hook name | `lib/mod.lua` and the five stable hooks | Load failure; hook timing and missing startup cases |
 | Menu function returns param descriptors | Registered callback table, supported mods menu helpers | Navigation, entry/exit and input ownership |
 | `include` re-executes a mod / unqualified helper paths | Project-qualified cached require, returned API | Duplicate registration, changed module lifetime |
 | Global injected service assumed persistent | Module locals plus explicit per-script setup | Script state reset, old callback captures |
 | Timer/poll started just before core reset | Recreate in the appropriate initialized lifecycle | Service silently stops; interactions with enabled scripts |
 | Assumes one script or overwrites shared function/params | Explicit contract, namespace, composition/restoration | Inter-mod ordering, PARAMS conflicts, incompatible scripts |
-| Only script cleanup handles external process | Process-lifetime shutdown ownership plus per-script release | SLEEP does not invoke post-cleanup; beta subprocess support |
+| Only script cleanup handles external process | Process-lifetime shutdown ownership plus per-script release | SLEEP does not invoke post-cleanup |
 | nb provider inferred from generic “MIDI-like” methods | Pinned optional player contract and tested backend lifecycle | Inactive/selection behavior, held notes and no-op panic methods |
 
-Evidence: N `lua/core/mods.lua`, `hook.lua`, `script.lua`, `norns.lua`,
-`audio.lua` (under `lua/core/`); D `norns/mods.md`; external nb sources in
+Evidence: N `lua/core/mods.lua`, `hook.lua`, `script.lua`, `norns.lua`
+(under `lua/core/`); D `norns/mods.md`; external nb sources in
 [exemplars](../exemplars.md#optional-nb-interface).
 
 ## Engine checklist
@@ -108,7 +108,7 @@ Evidence: N `lua/core/mods.lua`, `hook.lua`, `script.lua`, `norns.lua`,
 
 Evidence: N `sc/core/CroneEngine.sc`, `Crone.sc`, `CroneAudioContext.sc`,
 `CronePoll.sc` (under `sc/core/`), `lua/core/engine.lua`,
-`matron/src/weaver.cc`; D `norns/engine-study-{1,2,3}.md`.
+`matron/src/weaver.c`; D `norns/engine-study-{1,2,3}.md`.
 
 ## Verify the migration
 

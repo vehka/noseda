@@ -1,5 +1,10 @@
 # Pi 3 shield acceptance run — 2026-10-15
 
+> **Beta target.** Update 260616 is norns v3.0.1, a 3.x beta, and the core was
+> locally modified. These results are beta evidence, not the stable (260102,
+> v2.9.4) baseline. Directory renamed from `2026-10-15-pi3-260616` on
+> 2026-10-19; paths inside `evidence/` record the original name.
+
 ## Verdict
 
 **Target-specific acceptance completed with a reproducible clock-cancellation

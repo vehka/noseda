@@ -22,7 +22,7 @@ location belongs to the active script. Capture `mods.this_name` at module load
 if needed later; it is cleared when loading finishes. Return a local API table
 when scripts need access via `require 'my_mod/lib/mod'`.
 
-Evidence: N `lua/core/mods.lua:13–58`, `lua/core/startup.lua:51–65,118–121`,
+Evidence: N `lua/core/mods.lua:13–58`, `lua/core/startup.lua:48–62,123–126`,
 `lua/core/config.lua:6–16`; D `norns/mods.md:145–167`.
 N/D use the [source baseline](../modern.md#evidence-and-scope).
 
@@ -103,15 +103,13 @@ does not promise alphabetical order.
 | `script_post_cleanup` | Release per-script mod ownership, before core resets |
 | `system_post_startup` | System startup work; don't assume a strict before-script barrier |
 | `system_pre_shutdown` | Release/save process-lifetime work for SLEEP and RESTART |
-| `audio_post_restore_default_routing` | Reapply intentional mod routing after defaults are restored |
 
 There is no `script_pre_cleanup` hook. Script post-cleanup does not guarantee
 the asynchronous SC teardown has finished, and SLEEP does not run that hook.
-The public mods page omits the routing hook; source verifies it.
+The 3.x beta adds an audio-routing hook; see [beta compatibility](../tasks/beta-compat.md).
 
-Evidence: N `lua/core/hook.lua:13–42`, `lua/core/script.lua:11–24,145–149,230–247`,
-`lua/core/norns.lua:195–205,247–268`, `lua/core/audio.lua:478–494`,
-`matron/src/main.cc:124–140`; D `norns/mods.md:28–38`.
+Evidence: N `lua/core/hook.lua:13–41`, `lua/core/script.lua:11–24,136–140,221–238`,
+`lua/core/norns.lua:185–196,253–264`, `matron/src/main.c:123–139`; D `norns/mods.md:28–38`.
 
 ## Ownership and coexistence
 
@@ -137,7 +135,7 @@ Evidence: N `lua/core/hook.lua:13–42`, `lua/core/script.lua:11–24,145–149,
   at the appropriate per-script hook. See [output patterns](../patterns/midi.md)
   and [nb exemplars](../exemplars.md#optional-nb-interface).
 
-Evidence: N `lua/core/script.lua:26–124,215–222`, `lua/core/menu.lua:157–175`,
+Evidence: N `lua/core/script.lua:26–115,206–213`, `lua/core/menu.lua:157–175`,
 `lua/core/config.lua:25–31`; D `norns/mods.md:145–167`.
 
 ## Acceptance checks
@@ -145,5 +143,4 @@ Evidence: N `lua/core/script.lua:26–124,215–222`, `lua/core/menu.lua:157–1
 Test with no script, at least two unrelated scripts, reruns, menu entry/exit,
 SLEEP/RESTART, and any cooperating mods. Check partial initialization and
 repeated hooks. Document conflicts, persistence, target releases and all shared
-mutations. Do not infer working subprocess support from source availability on
-the affected sidecar beta; see [target compatibility](../modern.md#target-compatibility-comes-first).
+mutations.

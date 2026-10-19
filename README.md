@@ -7,7 +7,8 @@ SuperCollider engines. It works with Claude Code and opencode.
 ## What it teaches
 
 [Modern norns components](skills/noseda/references/modern.md) defines the common
-standard, verified against pinned norns source and monome docs. It distinguishes
+standard for the current stable release (260102, norns `v2.9.4`), verified
+against pinned source and monome docs. It distinguishes
 platform contracts, conventions, architectural recommendations, undocumented
 interfaces and optional ecosystem dependencies.
 
@@ -19,10 +20,10 @@ interfaces and optional ecosystem dependencies.
 - Real mod hooks/menu APIs, resource ownership and engine parameter libraries.
 - Legacy reviews reporting **idiom → replacement → risk of changing it**.
 
-Modern does not mean latest beta. The target build matters: the sidecar beta
-has a reported `io.popen` failure, with write/streaming limitations corroborated
-in current source. The definition records the evidence and unverified release
-boundaries rather than recommending beta adoption.
+Modern does not mean latest beta. A separate
+[beta compatibility](skills/noseda/references/tasks/beta-compat.md) guide covers
+making components work on the 3.x beta (for example its `io.popen` changes); it
+loads only when asked for or when a failure is beta-specific.
 
 ## Install
 
@@ -77,11 +78,11 @@ git clone https://github.com/monome/norns.git
 git clone https://github.com/monome/docs.git monome-docs
 ```
 
-Tell the agent where they are and which release/build the component supports.
+Tell the agent where they are and which release the component supports; check
+out the matching tag (`git -C norns checkout v2.9.4` for stable).
 Core paths are `lua/core/`, `lua/lib/`, `matron/src/`, and `sc/core/`; public
 documentation source is under `monome-docs/norns/`. The norns `doc/` directory
-contains generated API material. The skill records an audited snapshot, not
-a claim that upstream HEAD matches every user's firmware.
+contains generated API material. Upstream HEAD is the 3.x beta line, not stable.
 
 ## What gets loaded
 
@@ -96,6 +97,7 @@ and the relevant component definition. Then the agent follows this routing:
 | Running and debugging | `references/tasks/debug.md` |
 | Performance measurement | `references/tasks/optimize.md` |
 | A specifically scoped implementation to study | `references/exemplars.md` |
+| 3.x beta support, beta-only failures, core work | `references/tasks/beta-compat.md` |
 
 Each component guide includes a minimal runnable skeleton. Running it on the
 target device is a separate check from source verification and syntax parsing;
@@ -111,7 +113,7 @@ TASKS.md                      # Completed baseline and focused roadmap
 skills/noseda/
 ├── SKILL.md                  # Detection, modern standard, selective routing
 ├── references/
-│   ├── modern.md             # Definitions, source baseline, verification gaps
+│   ├── modern.md             # Stable target, definitions, source baseline
 │   ├── exemplars.md          # What to learn from each audited project
 │   ├── components/
 │   │   ├── script.md
@@ -126,7 +128,8 @@ skills/noseda/
 │   └── tasks/
 │       ├── review.md
 │       ├── debug.md
-│       └── optimize.md
+│       ├── optimize.md
+│       └── beta-compat.md     # Opt-in: 3.x beta differences
 └── scripts/
     ├── nrepl.py               # Lua REPL websocket client
     └── requirements.txt

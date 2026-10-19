@@ -9,8 +9,7 @@ Use a custom engine when the instrument needs its DSP or command contract.
 Distribute a unique `Engine_<Name>` subclass, conventionally under `lib/` in
 `Engine_<Name>.sc`. Class discovery uses compiled subclass names, not filenames.
 New/changed SC classes require recompilation, normally SYSTEM > RESTART; Lua-only
-edits need only script reload. Use a supported target release rather than
-assuming the newest beta works.
+edits need only script reload.
 
 `CroneEngine` supplies construction and calls `alloc` inside a Routine. Finish
 required asynchronous setup before it returns. Base teardown removes registered
@@ -152,9 +151,9 @@ Don't depend on `engine.gate(0)` in Lua cleanup after engine release is requeste
 
 Evidence: N `sc/engines/Engine_SimplePassThru.sc:16–50`,
 `sc/engines/Engine_TestSine.sc`, `sc/core/CroneEngine.sc:19–77`,
-`sc/core/CroneAudioContext.sc:33–46`, `lua/core/script.lua:11–24,230–247`,
+`sc/core/CroneAudioContext.sc:33–46`, `lua/core/script.lua:11–24,221–238`,
 `lua/core/engine.lua:44–73,89–129`, `lua/core/paramset.lua`,
-`matron/src/weaver.cc:1962–2025`; D `norns/engine-study-1.md:384–456`.
+`matron/src/weaver.c:1928–1991`; D `norns/engine-study-1.md:384–456`.
 
 ## Extending the contract
 
