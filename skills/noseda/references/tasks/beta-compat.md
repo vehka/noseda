@@ -93,6 +93,13 @@ used a Pi 3 B+ shield (PCB 200323) at update 260616 (v3.0.1) with modified core
   remove JACK shared memory, leaving clients running but blocking new
   connections. Check `/dev/shm`, `jack_lsp` and logind configuration if JACK
   connections fail while the service runs. Stable images may lack the B fix.
+- Building core on a 903 MB shield at 260616 with `./waf build -j3` while
+  `norns-main` ran hung the device until reboot (2026-11-01). With
+  `norns-main` stopped, `-j1` built fine (see
+  [building core on the device](debug.md#building-core-on-the-device)). A
+  branch build can be tried without installing it as a transient unit with
+  `norns-main`'s limits:
+  `sudo systemd-run --unit=<name> --uid=we --gid=we -p LimitRTPRIO=95 -p LimitMEMLOCK=infinity --setenv=HOME=<test home> <build>/ws-wrapper/ws-wrapper 'ws://*:5555' <build>/norns/norns`.
 
 ## Reporting
 

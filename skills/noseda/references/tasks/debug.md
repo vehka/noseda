@@ -74,6 +74,28 @@ Evidence: N `sc/norns-config.sc:12–16`, `lua/core/startup.lua:76–100`,
 `lua/core/mods.lua:13–58`, `lua/core/menu/mods.lua:78–85`;
 D `norns/engine-study-1.md:172–174`, `norns/mods.md:24–55`.
 
+### Building core on the device
+
+A norns has about 900 MB of RAM and no swap. A running norns (matron, crone,
+softcut buffers, scsynth) uses about half of it, and one `cc1plus` on a large
+core file (`weaver`, crone) can take several hundred MB. Parallel builds next to
+running services exhaust memory; the device then stops answering SSH (TCP
+still connects, no banner, mDNS goes away) and stays that way until it is
+rebooted.
+
+- Stop the norns services that you are allowed to stop before building, check
+  `MemAvailable` in `/proc/meminfo`, and build with one job (`./waf build -j1`).
+- Start the build detached (`nohup … < /dev/null > build.log 2>&1 &`) and poll
+  the log with short, bounded SSH calls, so a slow device doesn't hang the session.
+- Build a branch in its own directory, not in the user's checkout, which may
+  carry uncommitted work. Before installing, compare its upstream base with the
+  device's (`git merge-base`): a branch on an older base rolls back core fixes.
+- To try a build without installing it, run it with a separate `HOME` whose
+  `norns` links to the build and whose `dust` links to `~/dust`; matron loads
+  Lua from `$HOME/norns/lua`. Run it under the service's limits, so the audio
+  threads get the same realtime priority. Back up `dust/data/system.state`
+  first: a new build can write keys that the old build fails to read.
+
 ### JACK connections fail while the service runs
 
 Inspect `/dev/shm`, `jack_lsp` and the logind configuration. With logind
