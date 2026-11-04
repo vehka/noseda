@@ -108,6 +108,7 @@ report those checks distinctly.
 ```text
 AGENTS.md                     # Instructions for agents editing this repository
 CLAUDE.md                     # Redirect to AGENTS.md
+LICENSE                       # MIT
 README.md
 TASKS.md                      # Completed baseline and focused roadmap
 skills/noseda/
@@ -152,4 +153,5 @@ Contributions welcome: focused patterns, source corrections, hardware results
 and realistic review/refactor examples. Preserve the distinction between an API
 fact and a recommendation. Record firmware/build and dependencies with results.
 
-Same license as referenced norns materials.
+[MIT](LICENSE) © vehka. Referenced norns source and monome documentation remain
+under their own licenses.

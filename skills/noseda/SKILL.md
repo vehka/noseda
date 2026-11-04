@@ -1,6 +1,7 @@
 ---
 name: noseda
 description: Write, review, refactor, debug, test and optimize monome norns scripts, mods and SuperCollider engines using current, source-verified norns idioms. Use for norns projects (Lua with init/redraw/enc/key, lib/mod.lua, Engine_*.sc, dust/code), norns, matron, maiden, crone, softcut or dust development, and running or testing components on hardware or desktop norns.
+license: MIT
 ---
 
 # NoSEDA: modern norns development
