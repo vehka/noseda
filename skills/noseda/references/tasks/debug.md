@@ -106,6 +106,29 @@ Restart the audio services coherently only if necessary and authorized; don't
 restart JACK on every deployment or change system configuration without
 identifying the condition.
 
+### New JACK clients hang while jackd still runs
+
+Different from missing `/dev/shm` files. After a norns restart with JACK left
+running, norns-main stops at `setting up jack clients..` and `jack_lsp`
+never returns. jackd 1.9.17's server thread is blocked forever reading its
+own internal notify socket. The journal shows `CheckSize error size = 32
+Size() = 12`, then `size = 0 Size() = 12`, while old clients close. A JACK
+client killed earlier triggers it (darkice: about 1 restart in 12,
+observed on a 260616 shield), whether or not other long-running clients are
+connected. Don't blame those clients.
+
+- Check with `timeout 5 jack_lsp`. The stuck jackd thread's `wchan` is
+  `unix_stream_read_generic`.
+- Attaching `gdb` to jackd unsticks it. Capture `/proc` state and socket
+  peers first. `ss -xp` shows no unix peer here: as root, use `pidfd_getfd`
+  (syscall 438) to copy the fd, then read `SO_PEERCRED`.
+- To recover: stop `norns-main norns-sclang`, restart `norns-jack`, then
+  start them again. Give a service that owns a JACK client
+  `PartOf=norns-jack.service`, so it comes back with JACK.
+- For a rare hang, run the repro loop on the device under `systemd-run`, so
+  ssh and wifi drops don't stop it. Have it stop at the first hang so you
+  can look at it live.
+
 ## Desktop checks
 
 A local `norns-desktop` launcher may manage maiden, sclang and an SDL norns
