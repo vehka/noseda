@@ -73,6 +73,11 @@ diagnostics, not a public production-script dependency. Scheduler tests:
 - Params lookups/actions in tight loops. Cache derived values through actions
   when useful; don't create a second source of truth. `params:set` may execute
   its action when changed and non-silent, potentially sending more commands.
+- Large data turned into Lua tables. On a Pi 3B+, unpacking 540 k 4-byte
+  records (a 3 h waveform overview) into two tables took about 1 s and 38 MB
+  of Lua heap. Keeping the file as one string and reading it with
+  `string.byte`/`string.unpack` at draw time costs its size, here 2 MB.
+  Store pre-reduced levels for zoomed-out views.
 - Redraw/disk/subprocess work on the musical event path. Use dirty rendering,
   explicit save snapshots and the appropriate time domain. Keep obligatory
   note-offs even when skipping idle/muted-track work.

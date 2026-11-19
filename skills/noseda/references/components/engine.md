@@ -161,6 +161,11 @@ Evidence: N `sc/engines/Engine_SimplePassThru.sc:16–50`,
   from `msg[1]`; `i`, `f`, `s`, and an empty format are supported. Match Lua
   argument count and units. Dynamic engine commands exist after engine loading,
   so call them from init or later, not top level.
+- Don't name a command after a raw field of Lua's `Engine` table: `load`,
+  `register`, `register_commands`, `add_command`, `list_commands`, `names`,
+  `name`, `commands`, `is_loading`. `Engine.__index` only runs for missing
+  keys, so `engine.load(path)` calls the engine *loader*. It does not report
+  an error; the command never reaches SC.
 - Use optional `addPoll(name, fn, periodic=true)` for analysis/feedback. Give
   custom polls unique names; the registry rejects duplicate names. Lua obtains
   a registered poll through `poll.set(name, callback)` and can start/stop it.
@@ -175,10 +180,53 @@ Evidence: N `sc/engines/Engine_SimplePassThru.sc:16–50`,
   host. Don't hide PSET loading or a full `params:bang()` inside a reusable
   `add_params()` function.
 
-Evidence: N `sc/core/CroneEngine.sc:35–77`, `sc/core/CronePoll.sc:117–137`,
+Evidence: N `lua/core/engine.lua:16–31,44–129` (raw fields, `__index`),
+`sc/core/CroneEngine.sc:35–77`, `sc/core/CronePoll.sc:117–137`,
 `lua/core/poll.lua:38–56,128–145`, `sc/engines/Engine_PolySub.sc`,
 `sc/core/Crone.sc:86–123`; D `norns/reference/engine.md`,
 `norns/engine-study-1.md`, `norns/engine-study-3.md`.
+
+## SynthDef pitfalls
+
+- `==` between UGens is object identity in sclang. It yields `false`, and the
+  next math operator then fails at SynthDef build time ("binary operator '*'
+  failed", receiver `false`). For a signal comparison use
+  `BinaryOpUGen('==', a, b)`. The error appears in the sclang journal when the
+  engine loads, not in the matron REPL output.
+- Signals between UGens are float32. A `Phasor` or index signal is exact for
+  integer frames only up to 2^24 (~349 s at 48 kHz), and its fractional
+  resolution degrades well before that. That hurts varispeed `BufRd` on long
+  buffers.
+  - `PlayBuf` and `Phasor` keep their own phase as `double` internally.
+  - For long buffers or arbitrary rates, play with `PlayBuf` (`t_trig` +
+  `startPos` to jump), and use a parallel `Phasor` only for coarse position
+  reporting.
+
+Evidence: SC source `server/plugins/DelayUGens.cpp` (`PlayBuf::m_phase`
+double; `BufRd` reads its phase input), `server/plugins/TriggerUGens.cpp`
+(`Phasor::mLevel` double), checked against 3.14.1.
+
+## Audio longer than RAM (streaming pattern)
+
+Softcut buffers are fixed at about 349 s, and float32 SC buffers cost
+1.38 GB per stereo hour, in a 32-bit process (`getconf LONG_BIT` was 32 on
+the Pi 3 checked; verify on a Pi 4 image). For hours-long files,
+stream into a ring buffer:
+- **Ring:** an allocated ring of N fixed chunks (e.g. 16 × 4 s).
+- **Reads:** sclang reads with
+  `b_readChannel(buf, path, fileStart, n, slot*chunk, 0, chans..., completion)`.
+  The completion message is a `b_set` on a small "which chunk is in which
+  slot" buffer, so the slot becomes valid on the server the moment the data
+  is in. Mark the slot invalid with `b_set` *before* the read.
+- **Voice:** the voice checks that buffer and mutes on a miss.
+- **Scheduling:** one read in flight, the next one started from the `/done`
+  reply; the order is the current chunk first, then ahead in the direction of
+  travel, then behind.
+- **Measured** on a shield (Pi 3B+, SD card; a 3.x beta build, though
+  nothing here depends on beta APIs): about 40 ms per 4 s stereo 16-bit
+  chunk, cold; no misses or xruns from 1× up to 64× shuttle, random seeks
+  about 50 ms to sound; FLAC as fast as WAV. Reference implementation:
+  aurotate `lib/sc/AurTape.sc`.
 
 ## Acceptance checks
 

@@ -49,6 +49,11 @@ A disconnected client doesn't inherently cancel a started coroutine.
 Evidence: N `maiden-repl/README.md:13–25`, `ws-wrapper/src/main.c:19–21,40–73`,
 `lua/core/script.lua:221–238`, `lua/core/engine.lua:89–109`.
 
+Script `local`s are invisible to the REPL; a REPL chunk only sees globals.
+For hardware checks, give the script a small global diagnostic function
+(e.g. `function dbg_status() print(...) end`) that prints the state you
+need, rather than making state global.
+
 ## Deployment and logs
 
 Inspect the installed directory and local modifications before replacing code.
@@ -64,6 +69,24 @@ journalctl -u norns-crone -n 100 --no-pager
 journalctl -u norns-sclang -n 100 --no-pager
 journalctl -u norns-jack --since '10 min ago' --no-pager
 ```
+
+After a restart:
+- The REPL websocket drops; that is expected.
+- Wait for sclang's `engines: [...]` line in its journal, and check that
+  your engine is listed, before loading the script.
+- SynthDef build errors appear in the sclang journal while the engine loads.
+  The matron REPL shows `<ok>` for the script load either way, so always grep
+  the sclang journal after loading a changed engine.
+
+Long jobs over SSH (analysis, test-file generation):
+- Start them with `setsid nohup … </dev/null &`, so they survive the session
+  and the SSH call returns.
+- Poll result files with short, bounded calls.
+- `pkill -f <pattern>` also matches the remote `bash -c` running the pkill,
+  and kills your own command.
+- The image may lack `/usr/bin/time`; use `date +%s.%N` arithmetic.
+- One observed shield had `sox`, `ffmpeg` and `gcc`, useful for
+  offline analysis helpers. Check with `which` before relying on them.
 
 Check the first relevant compile/load error, not only the last symptom. Duplicate
 SC classes can prevent sclang startup before any script init hook runs. Save logs
